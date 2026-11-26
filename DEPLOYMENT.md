@@ -52,7 +52,7 @@ This is the fastest fix: no project recreation is required.
 
 The preferred root directory is `/`. If it is already set to `/public`, the mirrored `public/wrangler.toml` fallback should still deploy, but change it back to `/` when convenient so the root configuration remains the single source of truth.
 
-If the Worker name `sreejithdigital-com` already exists in your account, change `name` in `wrangler.toml` to an available name and commit the change.
+`wrangler.toml` uses the Worker name `sreejith-digital` to match the name supplied by Cloudflare Workers Builds. `preview_urls = false` is set explicitly so Wrangler does not emit the implicit Preview URLs warning. If you rename the Worker in Cloudflare, update `name` in both the root and mirrored `public/wrangler.toml` files.
 
 ### Attach the apex custom domain
 
