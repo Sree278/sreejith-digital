@@ -11,6 +11,7 @@ Run this script from anywhere to regenerate every page and the sitemap:
 from __future__ import annotations
 
 import json
+import re
 from html import escape
 from pathlib import Path
 
@@ -20,7 +21,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-26"
-SITE_VERSION = "2026-11-26.4"
+SITE_VERSION = "2026-11-26.5"
 DEFAULT_DESCRIPTION = (
     "Independent SEO consultant in India helping businesses grow through technical "
     "SEO, local SEO, strategic content and organic search optimization. Get a "
@@ -1037,6 +1038,68 @@ def format_page_title(path: str, title: str) -> str:
     return f"{SEO_TITLE_PREFIX} | {keyword}"
 
 
+def format_page_description(path: str, title: str, description: str) -> str:
+    """Use the requested theme once at the start of every SEO description."""
+    return f"{format_page_title(path, title)} — {description}"
+
+
+def apply_content_pattern(main: str, page_title: str) -> str:
+    """Apply the theme to the visible H1 and first intro sentence only."""
+    phrase = e(page_title)
+    main, h1_count = re.subn(
+        r"(<h1\b[^>]*>)(.*?)(</h1>)",
+        lambda match: f"{match.group(1)}{phrase}{match.group(3)}",
+        main,
+        count=1,
+        flags=re.S,
+    )
+    if h1_count != 1:
+        raise ValueError("Expected exactly one H1 in generated page content")
+
+    intro_re = re.compile(
+        r'(<p class="(?:hero-lede|page-hero__lede)"[^>]*>)(.*?)(</p>)',
+        re.S,
+    )
+    main, intro_count = intro_re.subn(
+        lambda match: f"{match.group(1)}{phrase} — {match.group(2).lstrip()}{match.group(3)}",
+        main,
+        count=1,
+    )
+    if intro_count == 0:
+        main, intro_count = re.subn(
+            r"(</h1>\s*<p\b[^>]*>)(.*?)(</p>)",
+            lambda match: f"{match.group(1)}{phrase} — {match.group(2).lstrip()}{match.group(3)}",
+            main,
+            count=1,
+            flags=re.S,
+        )
+    if intro_count == 0:
+        raise ValueError("Expected an intro paragraph in generated page content")
+    return main
+
+
+def theme_schema_extra(
+    schema_extra: list[dict] | None,
+    page_title: str,
+    page_description: str,
+) -> list[dict]:
+    """Apply the theme to page-level schema names/descriptions, not breadcrumbs or FAQ answers."""
+    themed: list[dict] = []
+    for original in schema_extra or []:
+        node = dict(original)
+        node_type = node.get("@type")
+        node_types = set(node_type) if isinstance(node_type, list) else {node_type}
+        if node_types & {"Service", "TechArticle"}:
+            if "name" in node:
+                node["name"] = page_title
+            if "headline" in node:
+                node["headline"] = page_title
+            if "description" in node:
+                node["description"] = page_description
+        themed.append(node)
+    return themed
+
+
 def child_links(root: str, label: str, items: list[dict], overview: str) -> list[dict]:
     links = [{
         "label": f"All {label.lower()}",
@@ -1290,6 +1353,8 @@ def render_page(
     og_type: str = "website",
 ) -> str:
     page_title = format_page_title(path, title)
+    page_description = format_page_description(path, title, description)
+    main = apply_content_pattern(main, page_title)
     article_meta = ""
     if og_type == "article":
         article_meta = (
@@ -1297,9 +1362,9 @@ def render_page(
             f'  <meta property="article:modified_time" content="{LAST_UPDATED}">\n'
         )
     canonical = BASE_URL + path
-    graph = base_schema(path, page_title, description)
+    graph = base_schema(path, page_title, page_description)
     if schema_extra:
-        graph.extend(schema_extra)
+        graph.extend(theme_schema_extra(schema_extra, page_title, page_description))
     structured_data = json.dumps(
         {"@context": "https://schema.org", "@graph": graph},
         ensure_ascii=False,
@@ -1313,19 +1378,19 @@ def render_page(
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#050706">
   <title>{e(page_title)}</title>
-  <meta name="description" content="{e(description)}">
+  <meta name="description" content="{e(page_description)}">
   <meta name="author" content="{e(SITE_NAME)}">
   <meta name="robots" content="{e(robots)}">
   <link rel="canonical" href="{e(canonical)}">
   <meta property="og:type" content="{e(og_type)}">
   <meta property="og:site_name" content="{e(SITE_NAME)}">
   <meta property="og:title" content="{e(page_title)}">
-  <meta property="og:description" content="{e(description)}">
+  <meta property="og:description" content="{e(page_description)}">
   <meta property="og:url" content="{e(canonical)}">
   <meta property="og:image" content="{BASE_URL}/assets/img/og-image.svg">
 {article_meta}  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{e(page_title)}">
-  <meta name="twitter:description" content="{e(description)}">
+  <meta name="twitter:description" content="{e(page_description)}">
   <meta name="twitter:image" content="{BASE_URL}/assets/img/og-image.svg">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
@@ -2595,12 +2660,13 @@ def write_sitemap() -> None:
 
 
 def write_version_marker() -> None:
+    homepage_title = format_page_title("/", "SEO Consultant India")
     content = "\n".join([
         f"release: {SITE_VERSION}",
         f"updated: {LAST_UPDATED}",
         f"indexable-pages: {len(sitemap_paths())}",
-        f"homepage-title: {format_page_title('/', 'SEO Consultant India')}",
-        "homepage-h1: Independent SEO Consultant in India Helping Businesses Grow Organically",
+        f"homepage-title: {homepage_title}",
+        f"homepage-h1: {homepage_title}",
         "",
     ])
     write_text(SITE_ROOT / "version.txt", content)

@@ -44,15 +44,15 @@ As of `2026-11-26`, the repository contains the India SEO homepage optimization 
 - 36 indexable pages and 37 HTML files including `404.html`
 - 7 location guides and 8 India-focused resources
 - Homepage title: `SEO Expert & Consultant | Technical & Local SEO India`
-- Homepage H1: `Independent SEO Consultant in India Helping Businesses Grow Organically`
+- Homepage H1: `SEO Expert & Consultant | Technical & Local SEO India`
 - `SEO-STRATEGY.md` as the durable keyword map and roadmap
-- `public/version.txt` as a lightweight deployment marker, currently `release: 2026-11-26.4`
+- `public/version.txt` as a lightweight deployment marker, currently `release: 2026-11-26.5`
 - Menu QA: duplicate hub links removed, all services/resources included, viewport-safe dropdown scrolling, and close-on-scroll/focus-out behaviour
 - Secondary button hover: slow background-only breathing animation, with a static reduced-motion fallback
-- Site-wide title pattern: `SEO Expert & Consultant | [page keyword]` on every generated HTML page; generated HTML encodes `&` as `&amp;`
+- Site-wide content pattern: `SEO Expert & Consultant | [page keyword]` in the title, H1, meta/social description, page-level schema and first hero/intro sentence on every generated HTML page; generated HTML encodes `&` as `&amp;`
 - Kochi page: safer Option A title/meta, no free-audit or ranking claims, and `/locations/seo-consultant-kochi/` 301 alias
 
-Check the live domain against `/version.txt` and `/sitemap.xml`. If the live sitemap still has 29 URLs or `/version.txt` returns `404`, Cloudflare is still serving the older build. In that case, open the Workers Builds project, select the latest commit on the configured production branch, and click **Retry deployment**. The Cloudflare account is not connected to this workspace, so this dashboard action cannot be performed here.
+Check the live domain against `/version.txt` and `/sitemap.xml`. The live marker should show `release: 2026-11-26.5` and the sitemap should contain 36 clean URLs. If it shows an older release, the sitemap still has 29 URLs, or `/version.txt` returns `404`, Cloudflare is still serving an older build. In that case, open Workers Builds, select the latest commit on `main`, and run **New deployment / Retry build**. The Cloudflare account is not connected to this workspace, so this dashboard action cannot be performed here.
 
 ## What changed in the repository
 
@@ -178,7 +178,7 @@ curl -I https://sreejithdigital.com/this-page-does-not-exist/
 Expected results:
 
 - Apex home page returns `200`.
-- `/version.txt` shows `release: 2026-11-26.4` and `indexable-pages: 36`.
+- `/version.txt` shows `release: 2026-11-26.5` and `indexable-pages: 36`.
 - `/robots.txt` lists `https://sreejithdigital.com/sitemap.xml`.
 - `/sitemap.xml` contains 36 clean directory URLs, including Delhi NCR, Hyderabad, Pune and the four India-focused guides.
 - `/locations/delhi-ncr/` and `/resources/seo-cost-india/` return `200`.

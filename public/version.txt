@@ -1,5 +1,5 @@
-release: 2026-11-26.4
+release: 2026-11-26.5
 updated: 2026-11-26
 indexable-pages: 36
 homepage-title: SEO Expert & Consultant | Technical & Local SEO India
-homepage-h1: Independent SEO Consultant in India Helping Businesses Grow Organically
+homepage-h1: SEO Expert & Consultant | Technical & Local SEO India
