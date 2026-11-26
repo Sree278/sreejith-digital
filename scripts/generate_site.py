@@ -21,8 +21,9 @@ SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-26"
 DEFAULT_DESCRIPTION = (
-    "Independent SEO consulting for ambitious teams: technical SEO, content "
-    "strategy, local search, paid search, and decision-ready measurement."
+    "Looking for an independent SEO consultant in India? Sreejith Digital helps "
+    "businesses improve organic visibility through technical SEO, local SEO, "
+    "content strategy and data-driven search growth."
 )
 
 
@@ -441,6 +442,69 @@ LOCATIONS = [
             "Reporting that separates branded and non-branded demand",
         ],
     },
+    {
+        "slug": "delhi-ncr",
+        "name": "Delhi NCR",
+        "short": "One coherent search architecture for a multi-city business region.",
+        "description": "Remote-first SEO consulting for organisations targeting Delhi, Gurugram, Noida and the wider NCR market.",
+        "intro": "Build one coherent search architecture for a region where city, satellite-city and sector queries frequently overlap.",
+        "market": "Delhi NCR searches often span several business districts, so page roles, internal links and consistent business data matter more than a stack of near-identical city pages.",
+        "focus": [
+            "Distinct roles for Delhi, Gurugram and Noida content where genuinely needed",
+            "Service and industry pages that support regional intent",
+            "Business profile and citation consistency",
+            "Reporting that separates local, regional and branded demand",
+        ],
+    },
+    {
+        "slug": "hyderabad",
+        "name": "Hyderabad",
+        "short": "Technical and content-led SEO for technology and growth-stage teams.",
+        "description": "Remote-first SEO consulting for organisations targeting Hyderabad’s technology, professional-service and growth-stage business searches.",
+        "intro": "Combine technical clarity with useful decision-stage content in a market where generic service pages rarely differentiate a business.",
+        "market": "Hyderabad has a mix of technology, enterprise and fast-growing service searches, making site architecture, proof and conversion paths especially important.",
+        "focus": [
+            "Technical foundations for expanding websites",
+            "Evaluation-stage content for considered purchases",
+            "Clear service-to-industry page relationships",
+            "Conversion tracking for qualified enquiries",
+        ],
+    },
+    {
+        "slug": "pune",
+        "name": "Pune",
+        "short": "Search foundations for startups, manufacturers and professional services.",
+        "description": "Remote-first SEO consulting for startups, manufacturers and professional-service teams targeting Pune.",
+        "intro": "Create a maintainable search foundation for teams that need qualified enquiries without an oversized marketing site.",
+        "market": "Pune searches often combine startup, manufacturing, education and local-service intent, so the site needs a clear hierarchy rather than broad, unfocused pages.",
+        "focus": [
+            "Lean information architecture for smaller teams",
+            "Distinct service and sector landing pages",
+            "Local profile and business-data consistency",
+            "Measurement of calls, forms and qualified enquiries",
+        ],
+    },
+]
+
+LOCATION_TIERS = {
+    "chennai": "Priority 1 · Core market",
+    "bengaluru": "Priority 1 · Core market",
+    "mumbai": "Priority 1 · Core market",
+    "delhi-ncr": "Priority 1 · Core market",
+    "hyderabad": "Priority 1 · Core market",
+    "kochi": "Priority 2 · Expansion market",
+    "pune": "Priority 2 · Expansion market",
+}
+
+PLANNED_LOCATIONS = [
+    "Kolkata",
+    "Ahmedabad",
+    "Jaipur",
+    "Coimbatore",
+    "Gurugram",
+    "Noida",
+    "Thiruvananthapuram",
+    "Indore",
 ]
 
 RESOURCES = [
@@ -647,7 +711,242 @@ RESOURCES = [
             },
         ],
     },
+    {
+        "slug": "seo-cost-india",
+        "name": "SEO Cost in India: A Practical Pricing Guide for 2026",
+        "short": "Understand pricing models, scope variables and the questions to ask before comparing quotes.",
+        "description": "A practical guide to SEO pricing in India covering retainers, audits, projects, scope, deliverables and proposal red flags without unverified price claims.",
+        "category": "SEO Strategy",
+        "reading": "7 min read",
+        "intro": "SEO quotes are difficult to compare because two proposals with the same monthly fee can describe completely different work. Start by comparing scope, evidence and ownership.",
+        "sections": [
+            {
+                "heading": "Start with the engagement model",
+                "paragraphs": [
+                    "A one-time audit, an advisory retainer, a technical implementation project and a full organic growth programme solve different problems. Asking for a single SEO price before defining the model usually produces an unreliable comparison.",
+                ],
+                "bullets": [
+                    "Audit: a bounded review that ends with prioritised findings and recommendations.",
+                    "Consulting: recurring strategy, QA and decision support for an in-house team.",
+                    "Project: a defined build such as a migration, information architecture or measurement setup.",
+                    "Programme: ongoing strategy, implementation support, content planning and reporting.",
+                ],
+            },
+            {
+                "heading": "What genuinely changes the scope",
+                "paragraphs": [
+                    "The right scope depends on the site, the market and the team—not just the number of keywords on a proposal.",
+                ],
+                "bullets": [
+                    "Site size, template complexity and existing technical debt.",
+                    "Competitive intensity and the maturity of current content.",
+                    "Number of services, industries and real service areas.",
+                    "Available writing, design and development capacity.",
+                    "Quality of current analytics and conversion tracking.",
+                ],
+            },
+            {
+                "heading": "Questions to ask before comparing proposals",
+                "paragraphs": [
+                    "A useful proposal should make the work visible. If deliverables are vague, the fee is impossible to evaluate.",
+                ],
+                "bullets": [
+                    "What will be reviewed in the first thirty days?",
+                    "Who owns implementation, and how are recommendations written?",
+                    "Which deliverables remain with the business after the engagement?",
+                    "How are conversions defined and reported?",
+                    "What is explicitly out of scope?",
+                ],
+            },
+            {
+                "heading": "Red flags",
+                "paragraphs": [
+                    "Low-cost SEO can become expensive when it creates technical debt, duplicate pages or reporting that hides poor-quality enquiries.",
+                ],
+                "bullets": [
+                    "Guaranteed rankings or fixed-position promises.",
+                    "Bulk backlink packages with no editorial rationale.",
+                    "Large volumes of near-identical city pages.",
+                    "Reports made only of screenshots and vanity metrics.",
+                    "No written scope, owner or measurement definition.",
+                ],
+                "callout": "Compare proposals on transparent scope, decision-quality reporting and what your team keeps afterwards—not the cheapest headline fee.",
+            },
+        ],
+    },
+    {
+        "slug": "choose-seo-consultant-india",
+        "name": "How to Choose an SEO Consultant in India",
+        "short": "A due-diligence framework for evaluating expertise, process, evidence and working fit.",
+        "description": "A practical framework for choosing an SEO consultant in India, covering goals, diagnostics, evidence, communication, reporting and red flags.",
+        "category": "SEO Strategy",
+        "reading": "8 min read",
+        "intro": "The best consultant for one business may be wrong for another. Evaluate the fit between your goals, internal capacity and the consultant’s actual working method.",
+        "sections": [
+            {
+                "heading": "Define the outcome before shortlisting",
+                "paragraphs": [
+                    "Write down the business action you want more of: qualified enquiries, demos, purchases, local visits or another measurable event. Also list the team capacity available for implementation.",
+                    "That brief makes it much easier to distinguish a strategist, a technical specialist, a local SEO practitioner and a full-service team.",
+                ],
+                "bullets": [],
+            },
+            {
+                "heading": "Evaluate the diagnostic approach",
+                "paragraphs": [
+                    "Ask how the first month would work. A credible process should include discovery, evidence gathering, root-cause analysis and prioritisation—not an instant list of generic fixes.",
+                ],
+                "bullets": [
+                    "What data and access would be requested?",
+                    "How are technical issues separated from content and conversion problems?",
+                    "How are recommendations prioritised and assigned owners?",
+                    "What would count as a completed fix?",
+                ],
+            },
+            {
+                "heading": "Ask for evidence without demanding guarantees",
+                "paragraphs": [
+                    "Case studies are useful when they explain the starting constraint, the decisions made, the work shipped and the measurement limits. Ranking guarantees are not evidence; they are a warning sign.",
+                ],
+                "bullets": [
+                    "Look for original examples and clear before/after context.",
+                    "Ask what did not work and how the approach changed.",
+                    "Check whether results are tied to qualified outcomes, not just traffic.",
+                    "Verify that any confidential client details are shared with permission.",
+                ],
+            },
+            {
+                "heading": "Confirm the working model",
+                "paragraphs": [
+                    "Good working relationships are explicit about communication, documentation, approvals and handover. These details matter as much as the initial strategy.",
+                ],
+                "bullets": [
+                    "Who is the day-to-day point of contact?",
+                    "What documentation and artefacts are handed over?",
+                    "How often are priorities reviewed?",
+                    "What happens when engineering or content capacity changes?",
+                ],
+                "callout": "Choose the consultant who can explain trade-offs clearly. Confidence without a visible process is not expertise.",
+            },
+        ],
+    },
+    {
+        "slug": "local-seo-indian-businesses",
+        "name": "Local SEO Strategy for Indian Businesses",
+        "short": "A practical foundation for profiles, location pages, reviews and local measurement.",
+        "description": "A local SEO strategy for Indian businesses covering business data, Google Business Profiles, useful location pages, reviews, structured data and measurement.",
+        "category": "Local SEO",
+        "reading": "7 min read",
+        "intro": "Local SEO works when a business is easy to verify, easy to understand and easy to contact. Consistency and genuinely useful pages matter more than publishing a page for every nearby pin code.",
+        "sections": [
+            {
+                "heading": "Create one source of truth for business data",
+                "paragraphs": [
+                    "Document the accurate name, address, phone number, hours, service areas, categories and profile URLs. Use that source across the website, business profiles and priority listings so updates do not drift.",
+                ],
+                "bullets": [
+                    "Keep a record of who owns each profile.",
+                    "Use primary categories deliberately rather than adding every loosely related option.",
+                    "Record the date of every material business-information change.",
+                ],
+            },
+            {
+                "heading": "Build location pages with real local substance",
+                "paragraphs": [
+                    "A useful location page explains what is available in that area, who the business serves, and what the visitor should do next. Swapping only the city name is not a local strategy.",
+                ],
+                "bullets": [
+                    "Add area-specific services, availability or context.",
+                    "Link to relevant service and industry pages.",
+                    "Use consistent contact details and clear conversion actions.",
+                    "Avoid claiming a physical presence that does not exist.",
+                ],
+            },
+            {
+                "heading": "Make reputation a repeatable process",
+                "paragraphs": [
+                    "Reviews work best when requests are part of normal customer service and responses are useful to future readers. Follow platform policies and never gate or incentivise reviews improperly.",
+                ],
+                "bullets": [
+                    "Ask after a completed service through a simple, consistent workflow.",
+                    "Respond with context rather than defensiveness.",
+                    "Watch for duplicate profiles and inconsistent business details.",
+                ],
+            },
+            {
+                "heading": "Measure local actions separately",
+                "paragraphs": [
+                    "Track qualified enquiries, calls, direction requests, profile interactions and location-page conversions. Keep branded demand visible so it does not mask growth in non-branded local discovery.",
+                ],
+                "bullets": [],
+                "callout": "A location hub should be architecture, not decoration. It should help people and search engines understand how each genuine service area fits together.",
+            },
+        ],
+    },
+    {
+        "slug": "seo-vs-google-ads-india",
+        "name": "SEO vs Google Ads for Indian Businesses: How to Decide",
+        "short": "Choose channels based on intent, timeline, budget control and the quality of measurement.",
+        "description": "A practical comparison of SEO and Google Ads for Indian businesses, including time horizons, intent, budget control, landing pages and measurement.",
+        "category": "Paid & Organic",
+        "reading": "6 min read",
+        "intro": "SEO and Google Ads are not competing ideologies. They are different ways to capture demand, and the right mix depends on timing, margins and how reliably conversions can be measured.",
+        "sections": [
+            {
+                "heading": "Understand the different jobs",
+                "paragraphs": [
+                    "Organic search builds durable visibility across research, comparison and decision-stage queries. Paid search buys immediate presence on selected queries, with much tighter control over budget and targeting.",
+                ],
+                "bullets": [
+                    "SEO is better suited to compounding content, technical improvements and broader intent coverage.",
+                    "Google Ads is useful for launches, seasonal demand and testing message-market fit.",
+                    "Both depend on a landing page that matches the query and makes the next action clear.",
+                ],
+            },
+            {
+                "heading": "Consider timeline and budget control",
+                "paragraphs": [
+                    "Paid search can generate traffic quickly but stops when spend stops. Organic work usually takes longer to show movement, but useful pages and technical improvements can keep paying off after the initial work.",
+                ],
+                "bullets": [
+                    "Use paid search when a date-specific campaign needs immediate visibility.",
+                    "Use SEO when the business can invest in durable architecture and content.",
+                    "Review margin and conversion value before judging either channel on traffic alone.",
+                ],
+            },
+            {
+                "heading": "Use shared evidence",
+                "paragraphs": [
+                    "Search-term reports, conversion language and landing-page behaviour from paid campaigns can inform SEO priorities. Organic query data can reveal gaps worth testing in paid search.",
+                ],
+                "bullets": [
+                    "Compare high-converting paid queries with organic content coverage.",
+                    "Use the same conversion definitions wherever possible.",
+                    "Keep brand and non-brand demand separated in reporting.",
+                ],
+            },
+            {
+                "heading": "A simple decision framework",
+                "paragraphs": [
+                    "Start with the business question, not the channel. If the need is immediate and measurable, paid search may lead. If the constraint is weak architecture or thin decision-stage content, SEO should lead.",
+                ],
+                "bullets": [],
+                "callout": "The strongest programmes use clean measurement and shared landing-page learning across both channels.",
+            },
+        ],
+    },
 ]
+
+RESOURCE_SERVICE_LINKS = {
+    "technical-seo-audit-checklist": ["technical-seo", "seo-services", "analytics-reporting"],
+    "choosing-seo-keywords-that-convert": ["content-strategy", "seo-consulting", "analytics-reporting"],
+    "local-seo-foundation-checklist": ["local-seo", "website-design", "analytics-reporting"],
+    "practical-seo-measurement": ["analytics-reporting", "seo-consulting", "google-ads-management"],
+    "seo-cost-india": ["seo-consulting", "seo-services", "analytics-reporting"],
+    "choose-seo-consultant-india": ["seo-consulting", "technical-seo", "analytics-reporting"],
+    "local-seo-indian-businesses": ["local-seo", "website-design", "analytics-reporting"],
+    "seo-vs-google-ads-india": ["google-ads-management", "seo-services", "analytics-reporting"],
+}
 
 STATIC_LABELS = {
     "about": "About",
@@ -669,6 +968,17 @@ SERVICE_BY_SLUG = {item["slug"]: item for item in SERVICES}
 INDUSTRY_BY_SLUG = {item["slug"]: item for item in INDUSTRIES}
 LOCATION_BY_SLUG = {item["slug"]: item for item in LOCATIONS}
 RESOURCE_BY_SLUG = {item["slug"]: item for item in RESOURCES}
+
+SERVICE_SEO_TITLES = {
+    "seo-services": "SEO Services India | Organic Growth Consulting",
+    "seo-consulting": "SEO Consulting India | Independent SEO Consultant",
+    "local-seo": "Local SEO Expert India | Profiles & Location Pages",
+    "google-ads-management": "Google Ads Management India | Paid Search Consulting",
+    "website-design": "SEO Website Design India | Fast Static Sites",
+    "technical-seo": "Technical SEO Consultant India | Audits & Implementation",
+    "content-strategy": "SEO Content Strategy India | Topic Clusters",
+    "analytics-reporting": "SEO Analytics & Reporting India | Measurement",
+}
 
 
 def child_links(root: str, label: str, items: list[dict], overview: str) -> list[dict]:
@@ -712,7 +1022,7 @@ NAV_ITEMS = [
         "label": "Resources",
         "href": "/resources/",
         "children": child_links(
-            "/resources/", "Resources", RESOURCES, "Browse practical guides and checklists"
+            "/resources/", "Resources", RESOURCES[:6], "Browse practical guides and checklists"
         ),
     },
     {"label": "Contact", "href": "/contact/"},
@@ -1179,9 +1489,9 @@ def home_page() -> None:
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow eyebrow--pill">Independent SEO consulting</p>
-      <h1>Clarity for organic growth. <span>Not another generic checklist.</span></h1>
-      <p class="hero-lede">{e(DEFAULT_DESCRIPTION)}</p>
+      <p class="eyebrow eyebrow--pill">Independent SEO consultant · India</p>
+      <h1>Independent SEO Consultant <span>Helping Businesses Grow Across India</span></h1>
+      <p class="hero-lede">Technical SEO, local search, content strategy and decision-ready measurement for teams that want qualified enquiries—not generic checklists.</p>
       <div class="hero-actions">
         <a class="btn btn--primary" href="/contact/">Book a consultation <span aria-hidden="true">→</span></a>
         <a class="btn btn--secondary" href="/services/">Explore services</a>
@@ -1276,7 +1586,7 @@ def home_page() -> None:
 '''
     write_page(
         path="/",
-        title="Independent SEO Consulting & Digital Growth",
+        title="SEO Consultant India | Technical & Local SEO | Sreejith Digital",
         description=DEFAULT_DESCRIPTION,
         main=main,
         body_class="page-home",
@@ -1344,7 +1654,7 @@ def about_page() -> None:
 '''
     write_page(
         path="/about/",
-        title="About",
+        title="About Sreejith Digital | Independent SEO Consultant India",
         description="Learn how Sreejith Digital approaches independent SEO consulting, implementation, and reporting.",
         main=main,
     )
@@ -1390,7 +1700,7 @@ def services_hub() -> None:
 '''
     write_page(
         path="/services/",
-        title="SEO & Digital Growth Services",
+        title="SEO Services India | Consulting, Technical & Local SEO",
         description="Explore SEO services, consulting, local SEO, Google Ads management, website design, technical SEO, content strategy, and reporting.",
         main=main,
     )
@@ -1473,7 +1783,7 @@ def service_page(service: dict) -> None:
 '''
     write_page(
         path=path,
-        title=service["name"],
+        title=SERVICE_SEO_TITLES.get(service["slug"], service["name"]),
         description=service["description"],
         main=main,
         schema_extra=[service_schema],
@@ -1523,7 +1833,7 @@ def industries_hub() -> None:
 '''
     write_page(
         path="/industries/",
-        title="Industries",
+        title="SEO for B2B, SaaS, Ecommerce & Professional Services",
         description="SEO approaches for B2B and SaaS, professional services, ecommerce, and multi-location organisations.",
         main=main,
     )
@@ -1585,7 +1895,7 @@ def industry_page(industry: dict) -> None:
 '''
     write_page(
         path=path,
-        title=f'{industry["name"]} SEO',
+        title=f'{industry["name"]} SEO Services India | Sreejith Digital',
         description=industry["description"],
         main=main,
     )
@@ -1594,7 +1904,7 @@ def industry_page(industry: dict) -> None:
 def locations_hub() -> None:
     cards = [
         {
-            "tag": "Location",
+            "tag": LOCATION_TIERS.get(item["slug"], "Location"),
             "title": item["name"],
             "text": item["short"],
             "href": f'/locations/{item["slug"]}/',
@@ -1602,6 +1912,9 @@ def locations_hub() -> None:
         }
         for item in LOCATIONS
     ]
+    planned_html = '<div class="page-hero__meta">' + "".join(
+        f'<span>{e(name)}</span>' for name in PLANNED_LOCATIONS
+    ) + "</div>"
     main = f'''{page_hero(
         path="/locations/",
         eyebrow="Locations",
@@ -1612,7 +1925,7 @@ def locations_hub() -> None:
 
 <section class="section">
   <div class="container">
-    {section_header("Explore locations", "Current location guides", "Each guide explains the local search context and the foundations that matter most.", ("Local SEO service", "/services/local-seo/"))}
+    {section_header("Explore locations", "Priority location guides", "Each guide has a distinct market context and links to the services that support it. New cities are added only when there is useful local information to publish.", ("Local SEO service", "/services/local-seo/"))}
     {card_grid(cards, 2)}
   </div>
 </section>
@@ -1640,12 +1953,19 @@ def locations_hub() -> None:
   </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    {section_header("Expansion plan", "Markets to add after real local insight", "These locations are deliberately not published as thin pages yet. Each one should get a distinct page only after its search intent, audience and service context are documented.")}
+    {planned_html}
+  </div>
+</section>
+
 {cta_section("Planning a multi-location site?", "A short architecture review can prevent months of duplicated pages and overlapping keywords.")}
 '''
     write_page(
         path="/locations/",
-        title="SEO Locations & Service Areas",
-        description="Explore remote-first SEO consulting for Chennai, Bengaluru, Kochi, and Mumbai, with a scalable local page architecture.",
+        title="SEO Consultant India: City Guides | Sreejith Digital",
+        description="Explore remote-first SEO consulting across Chennai, Bengaluru, Mumbai, Delhi NCR, Hyderabad, Kochi and Pune, with a scalable India location architecture.",
         main=main,
     )
 
@@ -1664,7 +1984,7 @@ def location_page(location: dict) -> None:
     main = f'''{page_hero(
         path=path,
         eyebrow="Location",
-        title=f'SEO support for {location["name"]}',
+        title=f'SEO Consultant in {location["name"]}',
         lede=location["intro"],
         meta=["Remote-first", "Locally relevant research", "No physical office implied"],
     )}
@@ -1703,6 +2023,16 @@ def location_page(location: dict) -> None:
 
 <section class="section">
   <div class="container">
+    {section_header("Relevant services", "Connect the location to the offer", "Location pages work best when they support a clearly defined service—not when they stand alone.", ("All services", "/services/"))}
+    {card_grid([
+        {"tag": "Service", "title": SERVICE_BY_SLUG[slug]["name"], "text": SERVICE_BY_SLUG[slug]["short"], "href": f"/services/{slug}/", "link_label": "View service"}
+        for slug in ("local-seo", "technical-seo", "analytics-reporting")
+    ], 3)}
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
     {section_header("Other locations", "Explore the wider architecture", "The same principles apply across each service area.", ("All locations", "/locations/"))}
     {card_grid([
         {"tag": "Location", "title": item["name"], "text": item["short"], "href": f'/locations/{item["slug"]}/', "link_label": "View location"}
@@ -1715,7 +2045,7 @@ def location_page(location: dict) -> None:
 '''
     write_page(
         path=path,
-        title=f'{location["name"]} SEO Consulting',
+        title=f'SEO Consultant in {location["name"]} | Sreejith Digital',
         description=location["description"],
         main=main,
         schema_extra=[service_schema],
@@ -1743,7 +2073,7 @@ def resources_hub() -> None:
 
 <section class="section">
   <div class="container">
-    {section_header("Latest resources", "Start with a useful question")}
+    {section_header("India-focused guides", "Start with a useful question", "Practical guides for Indian businesses evaluating SEO, local search, measurement and paid-versus-organic decisions.")}
     {card_grid(cards, 2)}
   </div>
 </section>
@@ -1752,8 +2082,8 @@ def resources_hub() -> None:
 '''
     write_page(
         path="/resources/",
-        title="SEO Resources & Guides",
-        description="Practical SEO guides on technical audits, keyword selection, local search, and decision-focused measurement.",
+        title="SEO Resources India | Guides & Checklists",
+        description="Practical SEO guides for Indian businesses on technical audits, consultant selection, pricing, local search, measurement and SEO versus Google Ads.",
         main=main,
     )
 
@@ -1791,6 +2121,16 @@ def resource_page(resource: dict) -> None:
         }
         for item in related
     ]
+    related_service_cards = [
+        {
+            "tag": "Related service",
+            "title": SERVICE_BY_SLUG[slug]["name"],
+            "text": SERVICE_BY_SLUG[slug]["short"],
+            "href": f"/services/{slug}/",
+            "link_label": "View service",
+        }
+        for slug in RESOURCE_SERVICE_LINKS.get(resource["slug"], [])
+    ]
     article_schema = {
         "@type": "TechArticle",
         "headline": resource["name"],
@@ -1826,6 +2166,13 @@ def resource_page(resource: dict) -> None:
         <a class="btn btn--secondary btn--full" href="/contact/">Discuss this with me <span aria-hidden="true">→</span></a>
       </div>
     </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {section_header("Apply the guide", "Services that connect to this topic", "Use these pages when you need the work scoped and implemented.", ("All services", "/services/"))}
+    {card_grid(related_service_cards, 3)}
   </div>
 </section>
 
@@ -1942,7 +2289,7 @@ def contact_page() -> None:
 '''
     write_page(
         path="/contact/",
-        title="Contact",
+        title="Contact an SEO Consultant in India | Sreejith Digital",
         description="Start a conversation with Sreejith Digital about SEO consulting, technical audits, local search, or a website project.",
         main=main,
     )
