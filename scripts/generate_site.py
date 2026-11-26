@@ -20,7 +20,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-26"
-SITE_VERSION = "2026-11-26.3"
+SITE_VERSION = "2026-11-26.4"
 DEFAULT_DESCRIPTION = (
     "Independent SEO consultant in India helping businesses grow through technical "
     "SEO, local SEO, strategic content and organic search optimization. Get a "
@@ -419,7 +419,7 @@ LOCATIONS = [
         "slug": "kochi",
         "name": "Kochi",
         "short": "Local search foundations for growing service and destination businesses.",
-        "description": "Remote-first SEO consulting for organisations serving Kochi and nearby markets.",
+        "description": "Looking for an SEO expert and consultant in Kochi? Get custom local SEO, technical audits and a practical organic growth roadmap. Book a consultation.",
         "intro": "Make local offers easy to understand across search results, profiles, and useful location pages.",
         "market": "Kochi businesses often need a clean local presence that works for both nearby customers and visitors researching in advance.",
         "focus": [
@@ -981,6 +981,61 @@ SERVICE_SEO_TITLES = {
     "analytics-reporting": "SEO Analytics & Reporting India | Measurement",
 }
 
+# Site-wide SEO title theme requested by the owner.
+# In generated HTML, html.escape renders "&" as "&amp;".
+SEO_TITLE_PREFIX = "SEO Expert & Consultant"
+SEO_TITLE_KEYWORDS = {
+    "/": "Technical & Local SEO India",
+    "/about/": "About Independent SEO Consulting India",
+    "/services/": "SEO Services & Consulting India",
+    "/industries/": "SEO for Indian Industries",
+    "/locations/": "SEO City Guides India",
+    "/resources/": "SEO Guides & Checklists India",
+    "/contact/": "Contact SEO Consulting India",
+    "/privacy/": "Privacy Policy",
+    "/terms/": "Terms of Use",
+    "/404.html": "Page Not Found",
+}
+
+for slug, service_title in SERVICE_SEO_TITLES.items():
+    SEO_TITLE_KEYWORDS[f"/services/{slug}/"] = service_title.split(" | ", 1)[0]
+
+INDUSTRY_TITLE_KEYWORDS = {
+    "b2b-saas": "B2B & SaaS SEO India",
+    "ecommerce": "Ecommerce SEO India",
+    "professional-services": "Professional Services SEO India",
+    "local-multi-location": "Local & Multi-location SEO India",
+}
+for slug, keyword in INDUSTRY_TITLE_KEYWORDS.items():
+    SEO_TITLE_KEYWORDS[f"/industries/{slug}/"] = keyword
+
+for item in LOCATIONS:
+    SEO_TITLE_KEYWORDS[f'/locations/{item["slug"]}/'] = f'{item["name"]} SEO'
+
+RESOURCE_TITLE_KEYWORDS = {
+    "technical-seo-audit-checklist": "Technical SEO Audit Checklist",
+    "choosing-seo-keywords-that-convert": "SEO Keywords That Convert",
+    "local-seo-foundation-checklist": "Local SEO Foundation Checklist",
+    "practical-seo-measurement": "Practical SEO Measurement",
+    "seo-cost-india": "SEO Cost in India",
+    "choose-seo-consultant-india": "Choose an SEO Consultant India",
+    "local-seo-indian-businesses": "Local SEO for Indian Businesses",
+    "seo-vs-google-ads-india": "SEO vs Google Ads India",
+}
+for slug, keyword in RESOURCE_TITLE_KEYWORDS.items():
+    SEO_TITLE_KEYWORDS[f"/resources/{slug}/"] = keyword
+
+
+def format_page_title(path: str, title: str) -> str:
+    """Apply the owner-requested title pattern to every generated HTML page."""
+    keyword = SEO_TITLE_KEYWORDS.get(path)
+    if keyword is None:
+        keyword = title.replace(SITE_NAME, "").strip(" |-–")
+        keyword = keyword.split(" | ", 1)[0]
+        keyword = keyword.removeprefix(f"{SEO_TITLE_PREFIX} | ").strip()
+        keyword = keyword or "SEO Consulting India"
+    return f"{SEO_TITLE_PREFIX} | {keyword}"
+
 
 def child_links(root: str, label: str, items: list[dict], overview: str) -> list[dict]:
     links = [{
@@ -1234,7 +1289,7 @@ def render_page(
     robots: str = "index, follow",
     og_type: str = "website",
 ) -> str:
-    page_title = title if SITE_NAME in title else f"{title} | {SITE_NAME}"
+    page_title = format_page_title(path, title)
     article_meta = ""
     if og_type == "article":
         article_meta = (
@@ -2544,7 +2599,7 @@ def write_version_marker() -> None:
         f"release: {SITE_VERSION}",
         f"updated: {LAST_UPDATED}",
         f"indexable-pages: {len(sitemap_paths())}",
-        "homepage-title: SEO Consultant India | Technical & Local SEO – Sreejith Digital",
+        f"homepage-title: {format_page_title('/', 'SEO Consultant India')}",
         "homepage-h1: Independent SEO Consultant in India Helping Businesses Grow Organically",
         "",
     ])

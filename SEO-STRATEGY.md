@@ -19,13 +19,39 @@ Keyword suggestions below are **targets to validate** in Google Keyword Planner,
 
 The generator now uses:
 
-- **Title:** `SEO Consultant India | Technical & Local SEO – Sreejith Digital`
+- **Title:** `SEO Expert & Consultant | Technical & Local SEO India`
 - **Meta description:** `Independent SEO consultant in India helping businesses grow through technical SEO, local SEO, strategic content and organic search optimization. Get a practical SEO growth roadmap.`
 - **H1:** `Independent SEO Consultant in India Helping Businesses Grow Organically`
 
 The homepage now includes explicit service, industry, India location, approach, trust and FAQ sections with descriptive internal links. FAQ content is mirrored in `FAQPage` structured data. Service, industry, city and resource pages own their own more specific queries.
 
 Canonical domain remains `https://sreejithdigital.com` — no hyphen.
+
+### Site-wide title pattern
+
+Every generated HTML page now follows the owner-requested title theme:
+
+`SEO Expert & Consultant | [page keyword]`
+
+In the HTML source, the ampersand is correctly encoded as `SEO Expert &amp; Consultant | [page keyword]`. Examples:
+
+- Homepage: `SEO Expert & Consultant | Technical & Local SEO India`
+- Kochi: `SEO Expert & Consultant | Kochi SEO`
+- Technical SEO service: `SEO Expert & Consultant | Technical SEO Consultant India`
+- Resource: `SEO Expert & Consultant | Technical SEO Audit Checklist`
+
+H1s, meta descriptions, URLs, canonicals and body copy remain unchanged by this title theme. The brand remains visible in the site header, footer and `og:site_name` metadata.
+
+### Kochi metadata override
+
+The Kochi location page uses the safer Option A positioning within the site-wide title pattern:
+
+- **Title:** `SEO Expert & Consultant | Kochi SEO`
+- **Meta:** `Looking for an SEO expert and consultant in Kochi? Get custom local SEO, technical audits and a practical organic growth roadmap. Book a consultation.`
+- **H1:** unchanged as `SEO Consultant in Kochi`
+- **Alias:** `/locations/seo-consultant-kochi/` redirects with `301` to `/locations/kochi/`
+
+No ranking promise, free audit claim, free site review claim or unverified “proven strategies” wording was added.
 
 ## 2. Keyword-to-URL map
 
@@ -46,7 +72,8 @@ Canonical domain remains `https://sreejithdigital.com` — no hyphen.
 | SEO consultant Delhi NCR | `/locations/delhi-ncr/` | Live |
 | SEO consultant Hyderabad | `/locations/hyderabad/` | Live |
 | SEO consultant Pune | `/locations/pune/` | Live |
-| SEO consultant Kochi | `/locations/kochi/` | Live |
+| SEO expert & consultant Kochi | `/locations/kochi/` | Live |
+| SEO consultant Kochi alias | `/locations/seo-consultant-kochi/` → `/locations/kochi/` | 301 |
 | SaaS SEO India | `/industries/b2b-saas/` | Live |
 | Ecommerce SEO services | `/industries/ecommerce/` | Live |
 | SEO for professional services | `/industries/professional-services/` | Live |
@@ -56,7 +83,7 @@ Canonical domain remains `https://sreejithdigital.com` — no hyphen.
 | Local SEO strategy for Indian businesses | `/resources/local-seo-indian-businesses/` | Live |
 | SEO vs Google Ads India | `/resources/seo-vs-google-ads-india/` | Live |
 
-Path-level aliases such as `/locations/seo-consultant-chennai/` redirect to the stable live URLs. Existing URLs were preserved to avoid breaking already-indexed pages.
+Path-level aliases such as `/locations/seo-consultant-chennai/` and `/locations/seo-consultant-kochi/` redirect to the stable live URLs. Existing URLs were preserved to avoid breaking already-indexed pages.
 
 ### Long-tail topics to validate and build into existing clusters
 
