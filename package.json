@@ -1,0 +1,16 @@
+{
+  "name": "sreejith-digital-static",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for sreejithdigital.com, deployable with Cloudflare Workers static assets or Cloudflare Pages.",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "4.168.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

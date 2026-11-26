@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate the static HTML website for sreejithdigital.com.
 
-The generated files are committed to the repository root, so Cloudflare Pages
-can deploy the site with no build command. Run this script from anywhere to
-regenerate every page and the sitemap:
+The generated files are committed to public/, which is the static asset
+directory used by both Cloudflare Workers static assets and Cloudflare Pages.
+Run this script from anywhere to regenerate every page and the sitemap:
 
     python3 scripts/generate_site.py
 """
@@ -14,7 +14,8 @@ import json
 from html import escape
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SITE_ROOT = REPO_ROOT / "public"
 BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
@@ -978,8 +979,8 @@ def write_text(path: Path, content: str) -> None:
 
 def output_path(url_path: str) -> Path:
     if url_path == "/":
-        return ROOT / "index.html"
-    return ROOT / url_path.strip("/") / "index.html"
+        return SITE_ROOT / "index.html"
+    return SITE_ROOT / url_path.strip("/") / "index.html"
 
 
 def write_page(**kwargs: object) -> None:
@@ -2059,7 +2060,7 @@ def not_found_page() -> None:
   </div>
 </section>'''
     write_text(
-        ROOT / "404.html",
+        SITE_ROOT / "404.html",
         render_page(
             path="/404.html",
             title="Page Not Found",
@@ -2104,7 +2105,7 @@ def write_sitemap() -> None:
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {entries}</urlset>
 '''
-    write_text(ROOT / "sitemap.xml", content)
+    write_text(SITE_ROOT / "sitemap.xml", content)
 
 
 def main() -> None:

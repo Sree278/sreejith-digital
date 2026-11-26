@@ -1,6 +1,12 @@
 # Sreejith Digital — static website
 
-A deployment-ready, dependency-free static website for **https://sreejithdigital.com**. The repository is designed for Cloudflare Pages with **no build command**: the generated HTML, CSS, JavaScript, images, sitemap, and routing files live in the repository root.
+A deployment-ready static website for **https://sreejithdigital.com**. The deployable files live in [`public/`](public/), with a root-level [`wrangler.toml`](wrangler.toml) so the same repository works with:
+
+- **Cloudflare Workers Builds / static assets** using `npx wrangler deploy`
+- **Cloudflare Pages** with `public` as the build output directory
+- **GitHub Pages** using the committed `public/CNAME` and `public/.nojekyll`
+
+There are no runtime dependencies. `wrangler` is pinned as a development dependency so Cloudflare does not fetch an arbitrary new version on every deployment.
 
 The site implements the recommended consultant-site architecture from the brief:
 
@@ -13,52 +19,57 @@ The site implements the recommended consultant-site architecture from the brief:
 
 ## Quick preview
 
-Root-relative URLs are used throughout, so preview through a server rather than opening `index.html` directly:
+Use a server rather than opening an HTML file directly, because the site uses root-relative URLs:
 
 ```bash
-python3 -m http.server 8000 --bind 0.0.0.0
+python3 -m http.server 8000 --bind 0.0.0.0 --directory public
 ```
 
 Then open `http://localhost:8000/` locally, or use the live preview exposed by the workspace.
+
+Optionally, after `npm install`, `npm run dev` starts Wrangler’s local static-assets server.
 
 ## Repository layout
 
 ```text
 .
-├── index.html                 # Home page
-├── 404.html                   # Cloudflare Pages / GitHub Pages 404
-├── about/                     # About
-├── services/                  # Service hub + 8 service pages
-├── industries/                # Industry hub + 4 industry pages
-├── locations/                 # Location hub + 4 location guides
-├── resources/                 # Resource hub + 4 guides
-├── contact/                   # Static contact form
-├── privacy/                   # Privacy policy
-├── terms/                     # Terms of use
-├── assets/
-│   ├── css/styles.css
-│   ├── js/main.js
-│   └── img/                   # Favicon and social card
-├── scripts/generate_site.py   # Source for all generated HTML and sitemap.xml
-├── sitemap.xml
-├── robots.txt
-├── _headers                   # Cloudflare Pages response headers
-├── _redirects                 # www → apex canonical redirect
-├── CNAME                      # GitHub Pages custom-domain fallback
-├── .nojekyll                  # Prevent Jekyll processing on GitHub Pages
-├── DEPLOYMENT.md              # Cloudflare Pages + custom-domain instructions
+├── public/                    # Deployable static output
+│   ├── index.html              # Home page
+│   ├── 404.html                # Custom not-found page
+│   ├── about/
+│   ├── services/               # Service hub + 8 service pages
+│   ├── industries/             # Industry hub + 4 industry pages
+│   ├── locations/              # Location hub + 4 location guides
+│   ├── resources/              # Resource hub + 4 guides
+│   ├── contact/
+│   ├── privacy/
+│   ├── terms/
+│   ├── assets/
+│   ├── sitemap.xml
+│   ├── robots.txt
+│   ├── _headers
+│   ├── _redirects
+│   ├── CNAME
+│   └── .nojekyll
+├── scripts/generate_site.py    # Source for all generated HTML and sitemap.xml
+├── wrangler.toml               # Workers static-assets configuration
+├── package.json                # Pinned Wrangler development dependency
+├── package-lock.json
+├── DEPLOYMENT.md               # Cloudflare Workers / Pages / domain instructions
 └── README.md
 ```
 
+Cloudflare Workers static assets require an explicit asset directory and explicit 404 / HTML handling; those settings are in `wrangler.toml` and point at `./public/`.
+
 ## Regenerating the site
 
-`scripts/generate_site.py` is the single source of truth for page content and metadata. It uses only the Python standard library.
+`scripts/generate_site.py` is the single source of truth for page content and metadata. It uses only the Python standard library and writes generated files into `public/`.
 
 ```bash
 python3 scripts/generate_site.py
 ```
 
-It rewrites every `index.html`, `404.html`, and `sitemap.xml` from the structured data at the top of the script. **Do not edit generated HTML directly** unless you also remove or update the generator workflow; otherwise the next regeneration will overwrite your changes.
+Do not edit generated HTML directly unless you also remove or update the generator workflow; the next regeneration will overwrite your changes.
 
 Before launch, review these values in `scripts/generate_site.py`:
 
@@ -67,29 +78,39 @@ Before launch, review these values in `scripts/generate_site.py`:
 - `SERVICES`, `INDUSTRIES`, `LOCATIONS`, and `RESOURCES`
 - `LAST_UPDATED`, privacy copy, and terms copy
 
-The location pages explicitly describe remote-first consulting and do **not** claim physical offices. Adjust the locations and market descriptions if they do not match the real service areas.
+The location pages explicitly describe remote-first consulting and do not claim physical offices. Adjust the locations and market descriptions if they do not match the real service areas.
 
-## Deployment
+## Deployment settings
 
-See [`DEPLOYMENT.md`](DEPLOYMENT.md) for the complete Cloudflare Pages setup and custom-domain connection steps.
+See [`DEPLOYMENT.md`](DEPLOYMENT.md) for the complete setup and custom-domain connection steps.
 
-Recommended settings:
+### Workers Builds / `npx wrangler deploy`
+
+| Setting | Value |
+| --- | --- |
+| Root directory | `/` |
+| Build command | Empty |
+| Deploy command | `npx wrangler deploy` |
+| Asset directory | From `wrangler.toml`: `./public/` |
+| Custom 404 | From `wrangler.toml`: `404-page` |
+
+Do **not** set the Workers Build root directory to `public`; Wrangler needs the repository root so it can find `wrangler.toml`.
+
+### Cloudflare Pages
 
 | Setting | Value |
 | --- | --- |
 | Framework preset | None |
-| Build command | Leave empty |
-| Build output directory | `/` (or `.` if the UI rejects `/`) |
+| Build command | Empty |
+| Build output directory | `public` |
 | Root directory | `/` |
-| Primary custom domain | `sreejithdigital.com` |
-| Additional custom domain | `www.sreejithdigital.com` |
+
+### Domain canonicalisation
+
+`public/_redirects` contains only path-level redirects. Host-level `www → apex` redirects are not supported by `_redirects`; configure them with Cloudflare Bulk Redirects or Redirect Rules as described in `DEPLOYMENT.md`.
 
 ## Contact form
 
 The contact form is intentionally static and privacy-friendly: JavaScript builds a `mailto:` link in the visitor’s email application. No data is stored by this website, and no analytics, advertising pixels, or third-party form service are loaded.
 
-For production lead capture without requiring an email app, connect a form endpoint (for example, a Cloudflare Worker or a form service) and update `contact_page()` in the generator. Also update the privacy policy if the new service processes personal data.
-
-## No runtime dependencies
-
-There is no `npm install`, package manager, framework, database, or server-side runtime. Every page is plain HTML with one shared stylesheet and one shared JavaScript file.
+For production lead capture without requiring an email app, connect a form endpoint and update `contact_page()` in the generator. Also update the privacy policy if the new service processes personal data.

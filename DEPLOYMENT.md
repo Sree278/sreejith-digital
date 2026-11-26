@@ -1,136 +1,163 @@
 # Deployment guide — sreejithdigital.com
 
-This repository is ready to host the static site. **Cloudflare Pages is the recommended platform** because the domain is registered through Cloudflare: it can connect the Git repository, create the DNS records, and issue certificates from the same account.
+This repository now supports both Cloudflare deployment paths. Your failed build log came from **Workers Builds / Wrangler**, not classic Cloudflare Pages:
 
-> The Cloudflare account is not connected to this workspace, so no DNS records, Pages project, or custom-domain settings have been changed here. The exact dashboard steps are below.
-
-## 1. Push the site repository
-
-From this checkout, commit and push the current working branch:
-
-```bash
-git add .
-git commit -m "Build static site for sreejithdigital.com"
-git push -u origin HEAD
+```text
+Executing user deploy command: npx wrangler deploy
+✘ [ERROR] Could not detect a directory containing static files
 ```
 
-Deploy this branch for staging, or merge it into `main` first and use `main` as the production branch. If you switch production branches later, update the branch in Cloudflare Pages.
+That happened because `wrangler deploy` ran from the repository root with no Wrangler configuration and no auto-detected `public/` or `dist/` directory. The deployable HTML was also at the repository root.
 
-## 2. Create the Cloudflare Pages project
+## What changed in the repository
 
-In the Cloudflare dashboard:
+- All deployable files were moved into `public/`.
+- A root-level `wrangler.toml` now declares `public/` as the static-assets directory.
+- `not_found_handling = "404-page"` enables the custom `404.html`.
+- `html_handling = "auto-trailing-slash"` preserves clean directory URLs such as `/services/seo-consulting/`.
+- `package.json` and `package-lock.json` pin Wrangler `4.168.0`, matching the version in the build log.
+- `public/_redirects` now contains only supported path-level redirects. Host-level redirects were removed because domain-level redirects are not supported in `_redirects`.
+
+> The Cloudflare account is not connected to this workspace, so DNS records, custom domains, and project settings have not been changed here.
+
+## Path A — keep the current Workers Builds project
+
+This is the fastest fix: no project recreation is required.
+
+1. Push the latest commit to `arena/06fc82b3-sreejith-digital` (already done for this change).
+2. In Cloudflare, open the project’s **Settings → Builds & deployments**.
+3. Confirm these values:
+
+   | Setting | Value |
+   | --- | --- |
+   | Root directory | `/` |
+   | Build command | Empty |
+   | Deploy command | `npx wrangler deploy` |
+   | Production branch | `arena/06fc82b3-sreejith-digital`, or `main` after merging |
+
+4. Trigger **Retry deployment** or push another commit.
+5. Verify that the log no longer contains `Could not detect a directory containing static files`.
+
+Important: the root directory must stay `/`. If it is set to `public`, Wrangler will not find `wrangler.toml`.
+
+If the Worker name `sreejithdigital-com` already exists in your account, change `name` in `wrangler.toml` to an available name and commit the change.
+
+### Attach the apex custom domain
+
+For a Workers project:
+
+1. Open **Workers & Pages → your Worker → Settings → Domains & Routes**.
+2. Select **Add → Custom Domain**.
+3. Enter `sreejithdigital.com`.
+4. Let Cloudflare create the required DNS record. Workers custom domains require the zone’s nameservers to be managed by Cloudflare, which is the case for this Cloudflare-registered domain.
+
+## Path B — classic Cloudflare Pages
+
+If you prefer the older Pages workflow:
 
 1. Go to **Workers & Pages → Create → Pages → Connect to Git**.
-2. Authorize GitHub if prompted and select `Sree278/sreejith-digital`.
-3. Select the branch you want to deploy.
-4. Use these build settings:
+2. Select `Sree278/sreejith-digital` and the desired branch.
+3. Use these settings:
 
-   | Field | Value |
+   | Setting | Value |
    | --- | --- |
-   | Framework preset | **None** |
-   | Build command | **Empty** |
-   | Build output directory | `/` — use `.` only if the UI does not accept `/` |
+   | Framework preset | None |
+   | Build command | Empty |
+   | Build output directory | `public` |
    | Root directory | `/` |
-   | Environment variables | None required |
+   | Deploy command | None — do not use `npx wrangler deploy` |
 
-5. Save and deploy. Cloudflare will provide a temporary `*.pages.dev` URL.
-6. Open the temporary URL and verify the home page, `/services/`, `/contact/`, and a deep link such as `/resources/technical-seo-audit-checklist/`.
+4. Save and deploy.
+5. Under **Custom domains**, add `sreejithdigital.com`.
 
-Because all HTML is already committed, there is no build step and no Node.js dependency.
+Do not mix the two paths: a classic Pages project should not have a Wrangler deploy command, and a Workers Builds project should not set a Pages build output directory.
 
-## 3. Attach the custom domains
+## Redirect `www` to the apex
 
-In the Pages project, open **Custom domains → Set up a custom domain** and add:
+`_redirects` does not support domain-level redirects. Use a zone-level rule instead.
 
-1. `sreejithdigital.com`
-2. `www.sreejithdigital.com`
+Cloudflare’s documented Pages/Workers approach is:
 
-Cloudflare should create the required CNAME records automatically because the domain uses Cloudflare nameservers. The apex record uses Cloudflare CNAME flattening.
+1. Go to **Bulk Redirects** and create a redirect list with:
 
-If records must be added manually, use:
+   | Source URL | Target URL | Status | Parameters |
+   | --- | --- | --- | --- |
+   | `www.sreejithdigital.com` | `https://sreejithdigital.com` | `301` | Preserve query string · Subpath matching · Preserve path suffix · Include subdomains |
 
-| Type | Name | Target | Proxy |
-| --- | --- | --- | --- |
-| `CNAME` | `@` | `<your-project>.pages.dev` | Proxied / orange cloud |
-| `CNAME` | `www` | `<your-project>.pages.dev` | Proxied / orange cloud |
+2. Create a Bulk Redirect rule using that list.
+3. In **DNS**, create this record for `www`:
 
-Remove stale apex `A`/`AAAA` records or old host records if Cloudflare reports a conflict. Do not delete unrelated mail (`MX`), verification (`TXT`), or DMARC/SPF records.
+   | Type | Name | IPv4 address | Proxy status |
+   | --- | --- | --- | --- |
+   | `A` | `www` | `192.0.2.1` | Proxied |
 
-### Canonical domain
+4. If an earlier attempt added a `www` CNAME to `*.pages.dev` or the Worker, remove that conflicting record before adding the dummy proxied `A` record. Do not attach `www` as a second custom domain while using this Bulk Redirect DNS pattern.
+5. Wait for DNS propagation and verify:
 
-The site uses `https://sreejithdigital.com` as the canonical origin in:
+   ```bash
+   curl -I https://www.sreejithdigital.com/services/
+   ```
 
-- canonical tags and Open Graph URLs
-- `sitemap.xml`
-- `robots.txt`
-- structured data
-- `CNAME`
+   The response should be `301` with a `Location` header on `https://sreejithdigital.com/services/`.
 
-`_redirects` redirects `www` and HTTP variants to the apex with a `301`. Both custom domains still need to be attached so the redirect rule is evaluated for `www` traffic.
+Reference: [Cloudflare — Redirecting www to domain apex](https://developers.cloudflare.com/pages/how-to/www-redirect/).
 
-## 4. TLS and Cloudflare settings
-
-Recommended Cloudflare settings for the domain:
+## TLS and Cloudflare settings
 
 - **SSL/TLS → Overview:** Full (strict)
 - **SSL/TLS → Edge Certificates → Always Use HTTPS:** On
-- **SSL/TLS → Edge Certificates → Minimum TLS Version:** 1.2 or higher
-- Wait until both custom domains show an active certificate before announcing the site.
-- Optionally enable HSTS only after confirming every intended subdomain works over HTTPS.
+- **Minimum TLS Version:** 1.2 or higher
+- Wait until the custom-domain certificate is active before announcing the site.
+- Enable HSTS only after confirming every intended subdomain works over HTTPS.
 
-The committed `_headers` file adds `nosniff`, a referrer policy, a permissions policy, and a short cache lifetime for assets. It intentionally avoids frame-blocking headers so browser previews and approved embeds are not broken.
+`public/_headers` adds `nosniff`, a referrer policy, a permissions policy, and a short asset cache lifetime. It intentionally avoids frame-blocking headers so browser previews and approved embeds are not broken.
 
-## 5. Verify the deployment
-
-Run these checks after the certificate is active:
+## Verify the deployment
 
 ```bash
 curl -I https://sreejithdigital.com/
 curl -I https://www.sreejithdigital.com/services/
 curl https://sreejithdigital.com/robots.txt
 curl https://sreejithdigital.com/sitemap.xml
+curl -I https://sreejithdigital.com/this-page-does-not-exist/
 ```
 
 Expected results:
 
-- `https://sreejithdigital.com/` returns `200`.
-- `https://www.sreejithdigital.com/...` returns `301` to the equivalent apex URL.
+- Apex home page returns `200`.
+- `www` returns `301` to the equivalent apex URL.
 - `/robots.txt` lists `https://sreejithdigital.com/sitemap.xml`.
 - `/sitemap.xml` contains the clean directory URLs.
-- A nonexistent path renders the custom `404.html`.
+- A nonexistent path returns `404` and renders `public/404.html`.
+- Deep links such as `/services/seo-consulting/` and `/resources/technical-seo-audit-checklist/` return `200`.
 - Dropdowns and the mobile menu work without console errors.
 - The contact form opens the visitor’s email application with a prefilled enquiry.
 
-Then submit `https://sreejithdigital.com/sitemap.xml` in Google Search Console and request indexing for the home page.
+Then submit `https://sreejithdigital.com/sitemap.xml` in Google Search Console.
 
-## 6. Optional GitHub Pages fallback
+## Optional GitHub Pages fallback
 
-The repository also includes `CNAME` and `.nojekyll`, so it can be served by GitHub Pages if needed:
+`public/CNAME` and `public/.nojekyll` remain available for GitHub Pages. If used, deploy the `public` folder from the production branch and enter `sreejithdigital.com` as the custom domain. At Cloudflare DNS, use GitHub’s current documented apex `A`/`AAAA` records and handle `www` with a Cloudflare Redirect Rule. Use DNS-only mode until GitHub has issued the custom-domain certificate.
 
-1. In GitHub, open **Settings → Pages**.
-2. Choose **Deploy from a branch**.
-3. Select the production branch and the `/(root)` folder.
-4. Enter `sreejithdigital.com` as the custom domain and enforce HTTPS.
-5. At Cloudflare DNS, use GitHub’s current documented apex `A`/`AAAA` records and a `www` CNAME to `<username>.github.io`. Use DNS-only mode until GitHub has issued the custom-domain certificate.
+## Troubleshooting
 
-Cloudflare Pages remains the cleaner option because DNS and TLS are managed in one place, and `_headers` / `_redirects` are natively supported.
+| Symptom | Fix |
+| --- | --- |
+| `Could not detect a directory containing static files` | Keep Workers Build root directory at `/`, ensure `wrangler.toml` is committed, and make sure `public/` contains `index.html`. |
+| Wrangler still installs a random version | Confirm `package.json` and `package-lock.json` are committed; Cloudflare should install the pinned Wrangler before the deploy command. |
+| CSS/JS returns 404 | Workers: check `wrangler.toml` asset directory. Pages: set build output directory to `public`. |
+| Deep link returns 404 | Workers: confirm `html_handling = "auto-trailing-slash"`. Pages: confirm `public` is the output directory. |
+| Custom 404 is ignored | Workers: confirm `not_found_handling = "404-page"`. Pages: confirm `public/404.html` is in the deployed output. |
+| `www` does not redirect | Use Bulk Redirects / Redirect Rules at the zone level; do not rely on domain-level rules in `_redirects`. |
+| Redirect loop | Remove conflicting Bulk Redirects, Page Rules, and old `www` DNS records, then keep one canonical redirect method. |
+| Certificate pending | Confirm Cloudflare nameservers, DNS proxy status, and SSL/TLS mode; allow more time for issuance. |
+| Sitemap shows wrong host | Update `BASE_URL` in `scripts/generate_site.py`, regenerate, commit, and redeploy. |
 
-## 7. Before announcing the site
+## Before announcing the site
 
 - Confirm `hello@sreejithdigital.com` exists, or change `CONTACT_EMAIL` in `scripts/generate_site.py` and regenerate.
-- Confirm the four city guides match the real service areas. Remove or replace any location that should not be marketed.
+- Confirm the four city guides match the real service areas.
 - Review the privacy and terms pages, especially if analytics, a CRM, calendar booking, or a form backend is added later.
 - Connect a real form endpoint if you do not want enquiries to rely on the visitor’s email app.
 - Verify that no fabricated client names, testimonials, rankings, or case-study metrics were added.
 - Purge the Cloudflare cache after a content update if cached HTML does not refresh immediately.
-
-## Troubleshooting
-
-| Symptom | Check |
-| --- | --- |
-| CSS/JS returns 404 | Build output directory must be the repository root; these files use root-relative URLs. |
-| Deep link returns 404 | Ensure the deployed output contains `<page>/index.html` files and that the output directory was not set to `dist`. |
-| `www` does not redirect | Attach `www.sreejithdigital.com` as a custom domain and confirm `_redirects` is at the repository root. |
-| Redirect loop | Check for a conflicting Cloudflare Bulk Redirect or Page Rule that sends apex traffic back to `www`. |
-| Certificate pending | Confirm Cloudflare nameservers, DNS proxy status, and SSL/TLS mode; allow more time for issuance. |
-| Sitemap shows wrong host | Update `BASE_URL` in the generator, regenerate, commit, and redeploy. |
