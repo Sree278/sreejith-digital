@@ -9,6 +9,17 @@ Executing user deploy command: npx wrangler deploy
 
 That happened because `wrangler deploy` ran from the repository root with no Wrangler configuration and no auto-detected `public/` or `dist/` directory. The deployable HTML was also at the repository root.
 
+## Most likely reason the error repeats
+
+If the same log appears after pushing the fix, Cloudflare is almost certainly still connected to **`main`**. At the time of writing, `main` is still the original README-only commit `a167d50`; the site is on `arena/06fc82b3-sreejith-digital`. A Workers Build cloning `main` sees no `wrangler.toml`, no `public/`, and no `package.json`, then fails with the same message.
+
+Do one of the following before retrying:
+
+- Set the Cloudflare production branch to `arena/06fc82b3-sreejith-digital`; or
+- Merge the pull request from that branch into `main`, then keep Cloudflare on `main`.
+
+A repeated `No dependencies detected to cache` line is another signal that Cloudflare is not seeing the committed `package.json`/`package-lock.json`.
+
 ## What changed in the repository
 
 - All deployable files were moved into `public/`.
@@ -16,6 +27,7 @@ That happened because `wrangler deploy` ran from the repository root with no Wra
 - `not_found_handling = "404-page"` enables the custom `404.html`.
 - `html_handling = "auto-trailing-slash"` preserves clean directory URLs such as `/services/seo-consulting/`.
 - `package.json` and `package-lock.json` pin Wrangler `4.168.0`, matching the version in the build log.
+- A mirrored `public/wrangler.toml`, `public/package.json`, and `public/.assetsignore` make the build work even if Cloudflare’s root directory is accidentally set to `/public`. The preferred root directory is still `/`.
 - `public/_redirects` now contains only supported path-level redirects. Host-level redirects were removed because domain-level redirects are not supported in `_redirects`.
 
 > The Cloudflare account is not connected to this workspace, so DNS records, custom domains, and project settings have not been changed here.
@@ -24,7 +36,7 @@ That happened because `wrangler deploy` ran from the repository root with no Wra
 
 This is the fastest fix: no project recreation is required.
 
-1. Push the latest commit to `arena/06fc82b3-sreejith-digital` (already done for this change).
+1. Confirm Cloudflare is deploying a branch that contains the site: `arena/06fc82b3-sreejith-digital`, or `main` after the PR is merged. A build from the current `main` will always fail because it contains only `README.md`.
 2. In Cloudflare, open the project’s **Settings → Builds & deployments**.
 3. Confirm these values:
 
@@ -38,7 +50,7 @@ This is the fastest fix: no project recreation is required.
 4. Trigger **Retry deployment** or push another commit.
 5. Verify that the log no longer contains `Could not detect a directory containing static files`.
 
-Important: the root directory must stay `/`. If it is set to `public`, Wrangler will not find `wrangler.toml`.
+The preferred root directory is `/`. If it is already set to `/public`, the mirrored `public/wrangler.toml` fallback should still deploy, but change it back to `/` when convenient so the root configuration remains the single source of truth.
 
 If the Worker name `sreejithdigital-com` already exists in your account, change `name` in `wrangler.toml` to an available name and commit the change.
 
@@ -143,7 +155,9 @@ Then submit `https://sreejithdigital.com/sitemap.xml` in Google Search Console.
 
 | Symptom | Fix |
 | --- | --- |
-| `Could not detect a directory containing static files` | Keep Workers Build root directory at `/`, ensure `wrangler.toml` is committed, and make sure `public/` contains `index.html`. |
+| Same `Could not detect a directory containing static files` error after a fix | Check the deploy branch first. `main` is README-only until the PR is merged; use `arena/06fc82b3-sreejith-digital` or merge the PR. |
+| `No dependencies detected to cache` plus `npx` installing Wrangler | Usually means Cloudflare is cloning the wrong branch or a subfolder without `package.json`. Verify production branch and root directory `/`. |
+| `Could not detect a directory containing static files` on the correct branch | Ensure `wrangler.toml` is committed, `public/index.html` exists, and the preferred Workers Build root directory is `/`. A `/public` root should work through the mirrored fallback config. |
 | Wrangler still installs a random version | Confirm `package.json` and `package-lock.json` are committed; Cloudflare should install the pinned Wrangler before the deploy command. |
 | CSS/JS returns 404 | Workers: check `wrangler.toml` asset directory. Pages: set build output directory to `public`. |
 | Deep link returns 404 | Workers: confirm `html_handling = "auto-trailing-slash"`. Pages: confirm `public` is the output directory. |

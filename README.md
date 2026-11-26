@@ -94,7 +94,7 @@ See [`DEPLOYMENT.md`](DEPLOYMENT.md) for the complete setup and custom-domain co
 | Asset directory | From `wrangler.toml`: `./public/` |
 | Custom 404 | From `wrangler.toml`: `404-page` |
 
-Do **not** set the Workers Build root directory to `public`; Wrangler needs the repository root so it can find `wrangler.toml`.
+The preferred Workers Build root directory is `/`; Wrangler needs the repository root so it can find `wrangler.toml`. A mirrored `public/wrangler.toml`, `public/package.json`, and `public/.assetsignore` are also included as a fallback if Cloudflare’s root directory was already set to `/public`.
 
 ### Cloudflare Pages
 

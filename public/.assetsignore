@@ -1,0 +1,11 @@
+# Keep build/config files out of the published static-asset manifest.
+wrangler.toml
+package.json
+package-lock.json
+.assetsignore
+node_modules
+**/node_modules
+.wrangler
+**/.wrangler
+**/.git
+**/.DS_Store
