@@ -1,0 +1,10 @@
+# Fallback for Cloudflare Workers Builds projects whose "Root directory" is
+# mistakenly set to /public. The preferred build root remains /.
+name = "sreejithdigital-com"
+compatibility_date = "2026-11-26"
+workers_dev = true
+
+[assets]
+directory = "./"
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"
