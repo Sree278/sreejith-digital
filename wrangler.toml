@@ -1,8 +1,9 @@
 # Cloudflare Workers static-assets configuration.
 # Keep this file at the repository root; Workers Builds must use root directory "/".
-name = "sreejithdigital-com"
+name = "sreejith-digital"
 compatibility_date = "2026-11-26"
 workers_dev = true
+preview_urls = false
 
 [assets]
 directory = "./public/"

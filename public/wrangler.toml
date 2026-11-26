@@ -1,8 +1,9 @@
 # Fallback for Cloudflare Workers Builds projects whose "Root directory" is
 # mistakenly set to /public. The preferred build root remains /.
-name = "sreejithdigital-com"
+name = "sreejith-digital"
 compatibility_date = "2026-11-26"
 workers_dev = true
+preview_urls = false
 
 [assets]
 directory = "./"
