@@ -471,11 +471,26 @@ ol {
     top: calc(100% + 12px);
     left: 0;
     z-index: 130;
-    width: 292px;
+    width: min(292px, calc(100vw - 32px));
     margin: 0;
     padding: 10px;
     border-radius: 18px;
     box-shadow: var(--shadow);
+    max-height: calc(100vh - 98px);
+    max-height: calc(100dvh - 98px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(53, 217, 139, 0.45) transparent;
+  }
+
+  .nav-panel::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .nav-panel::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(53, 217, 139, 0.45);
   }
 
   .nav-panel::before {

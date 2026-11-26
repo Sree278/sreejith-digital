@@ -20,7 +20,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-26"
-SITE_VERSION = "2026-11-26.1"
+SITE_VERSION = "2026-11-26.2"
 DEFAULT_DESCRIPTION = (
     "Independent SEO consultant in India helping businesses grow through technical "
     "SEO, local SEO, strategic content and organic search optimization. Get a "
@@ -983,7 +983,12 @@ SERVICE_SEO_TITLES = {
 
 
 def child_links(root: str, label: str, items: list[dict], overview: str) -> list[dict]:
-    links = [{"label": f"All {label.lower()}", "href": root, "description": overview}]
+    links = [{
+        "label": f"All {label.lower()}",
+        "href": root,
+        "description": overview,
+        "featured": True,
+    }]
     for item in items:
         links.append(
             {
@@ -1002,7 +1007,7 @@ NAV_ITEMS = [
         "label": "Services",
         "href": "/services/",
         "children": child_links(
-            "/services/", "Services", SERVICES[:6], "See the complete service architecture"
+            "/services/", "Services", SERVICES, "See the complete service architecture"
         ),
     },
     {
@@ -1023,7 +1028,7 @@ NAV_ITEMS = [
         "label": "Resources",
         "href": "/resources/",
         "children": child_links(
-            "/resources/", "Resources", RESOURCES[:6], "Browse practical guides and checklists"
+            "/resources/", "Resources", RESOURCES, "Browse practical guides and checklists"
         ),
     },
     {"label": "Contact", "href": "/contact/"},
@@ -1045,8 +1050,13 @@ def render_nav(current: str) -> str:
             children = []
             for child in item["children"]:
                 current_attr = ' aria-current="page"' if current == child["href"] else ""
+                link_class = (
+                    "nav-panel__link nav-panel__link--overview"
+                    if child.get("featured")
+                    else "nav-panel__link"
+                )
                 children.append(
-                    f'<a class="nav-panel__link" href="{e(child["href"])}"{current_attr}>'
+                    f'<a class="{link_class}" href="{e(child["href"])}"{current_attr}>'
                     f'<strong>{e(child["label"])}</strong>'
                     f'<span>{e(child["description"])}</span></a>'
                 )
@@ -1058,9 +1068,6 @@ def render_nav(current: str) -> str:
     </summary>
     <div class="nav-panel">
       <p class="nav-panel__label">Explore {e(item["label"])}</p>
-      <a class="nav-panel__link nav-panel__link--overview" href="{e(item["href"])}">
-        <strong>Overview</strong><span>Open the {e(item["label"].lower())} hub</span>
-      </a>
       {''.join(children)}
     </div>
   </details>
