@@ -20,35 +20,44 @@ Keyword suggestions below are **targets to validate** in Google Keyword Planner,
 The generator now uses:
 
 - **Title:** `SEO Expert & Consultant | Technical & Local SEO India`
-- **Meta description:** `Independent SEO consultant in India helping businesses grow through technical SEO, local SEO, strategic content and organic search optimization. Get a practical SEO growth roadmap.`
-- **H1:** `Independent SEO Consultant in India Helping Businesses Grow Organically`
+- **Meta description:** `SEO Expert & Consultant | Technical & Local SEO India — Independent SEO consultant in India helping businesses grow through technical SEO, local SEO, strategic content and organic search optimization. Get a practical SEO growth roadmap.`
+- **H1:** `SEO Expert & Consultant | Technical & Local SEO India`
 
 The homepage now includes explicit service, industry, India location, approach, trust and FAQ sections with descriptive internal links. FAQ content is mirrored in `FAQPage` structured data. Service, industry, city and resource pages own their own more specific queries.
 
 Canonical domain remains `https://sreejithdigital.com` — no hyphen.
 
-### Site-wide title pattern
+### Site-wide content pattern
 
-Every generated HTML page now follows the owner-requested title theme:
+Per the owner’s selected scope, every generated HTML page uses the pattern once in each of these SEO surfaces:
+
+- Title tag
+- H1
+- Meta description
+- Open Graph and Twitter descriptions
+- Page-level `WebPage`, `Service` and `TechArticle` schema names, headlines and descriptions
+- First hero/intro sentence
+
+The pattern is:
 
 `SEO Expert & Consultant | [page keyword]`
 
-In the HTML source, the ampersand is correctly encoded as `SEO Expert &amp; Consultant | [page keyword]`. Examples:
+In HTML, the ampersand is correctly encoded as `SEO Expert &amp; Consultant | [page keyword]`. Examples:
 
 - Homepage: `SEO Expert & Consultant | Technical & Local SEO India`
 - Kochi: `SEO Expert & Consultant | Kochi SEO`
 - Technical SEO service: `SEO Expert & Consultant | Technical SEO Consultant India`
 - Resource: `SEO Expert & Consultant | Technical SEO Audit Checklist`
 
-H1s, meta descriptions, URLs, canonicals and body copy remain unchanged by this title theme. The brand remains visible in the site header, footer and `og:site_name` metadata.
+Section copy, H2/H3 headings, CTAs, URLs, canonicals and body paragraphs remain unchanged by design. This applies the theme consistently without keyword stuffing. Organization schema, breadcrumb labels and FAQ answers are also unchanged. The brand remains visible in the site header, footer and `og:site_name` metadata.
 
 ### Kochi metadata override
 
-The Kochi location page uses the safer Option A positioning within the site-wide title pattern:
+The Kochi location page uses the safer Option A positioning within the site-wide content pattern:
 
 - **Title:** `SEO Expert & Consultant | Kochi SEO`
-- **Meta:** `Looking for an SEO expert and consultant in Kochi? Get custom local SEO, technical audits and a practical organic growth roadmap. Book a consultation.`
-- **H1:** unchanged as `SEO Consultant in Kochi`
+- **Meta:** `SEO Expert & Consultant | Kochi SEO — Looking for an SEO expert and consultant in Kochi? Get custom local SEO, technical audits and a practical organic growth roadmap. Book a consultation.`
+- **H1:** `SEO Expert & Consultant | Kochi SEO`
 - **Alias:** `/locations/seo-consultant-kochi/` redirects with `301` to `/locations/kochi/`
 
 No ranking promise, free audit claim, free site review claim or unverified “proven strategies” wording was added.
