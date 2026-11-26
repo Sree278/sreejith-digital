@@ -20,6 +20,10 @@
 
   const closeNav = () => setNavState(false);
 
+  const closeNavGroups = () => {
+    navGroups.forEach((group) => group.removeAttribute("open"));
+  };
+
   if (navToggle && nav) {
     navToggle.addEventListener("click", () => {
       setNavState(!nav.classList.contains("is-open"));
@@ -47,7 +51,7 @@
     if (!(target instanceof Element)) return;
 
     if (!target.closest(".nav-group")) {
-      navGroups.forEach((group) => group.removeAttribute("open"));
+      closeNavGroups();
     }
 
     if (
@@ -60,9 +64,14 @@
     }
   });
 
+  document.addEventListener("focusin", (event) => {
+    if (!(event.target instanceof Element)) return;
+    if (!event.target.closest(".nav-group")) closeNavGroups();
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
-    navGroups.forEach((group) => group.removeAttribute("open"));
+    closeNavGroups();
     closeNav();
   });
 
@@ -73,8 +82,14 @@
   const updateHeader = () => {
     if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
   };
+  const handleWindowScroll = () => {
+    updateHeader();
+    if (window.matchMedia("(min-width: 1080px)").matches) {
+      closeNavGroups();
+    }
+  };
   updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  window.addEventListener("scroll", handleWindowScroll, { passive: true });
 
   const contactForm = document.querySelector("[data-contact-form]");
   if (contactForm instanceof HTMLFormElement) {
