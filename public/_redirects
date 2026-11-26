@@ -2,3 +2,12 @@
 # with Cloudflare Bulk Redirects / Redirect Rules; see DEPLOYMENT.md.
 /index.html / 301
 /home / 301
+
+# Keyword-friendly aliases used in the India location strategy.
+/seo-consultant-india / 301
+/locations/seo-consultant-chennai/ /locations/chennai/ 301
+/locations/seo-consultant-bangalore/ /locations/bengaluru/ 301
+/locations/seo-consultant-mumbai/ /locations/mumbai/ 301
+/locations/seo-consultant-delhi/ /locations/delhi-ncr/ 301
+/locations/seo-consultant-hyderabad/ /locations/hyderabad/ 301
+/locations/seo-consultant-pune/ /locations/pune/ 301
