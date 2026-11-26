@@ -1,24 +1,41 @@
 # Deployment guide — sreejithdigital.com
 
-This repository now supports both Cloudflare deployment paths. Your failed build log came from **Workers Builds / Wrangler**, not classic Cloudflare Pages:
+This repository now supports both Cloudflare deployment paths. The original failed build came from **Workers Builds / Wrangler**, not classic Cloudflare Pages:
 
 ```text
 Executing user deploy command: npx wrangler deploy
 ✘ [ERROR] Could not detect a directory containing static files
 ```
 
-That happened because `wrangler deploy` ran from the repository root with no Wrangler configuration and no auto-detected `public/` or `dist/` directory. The deployable HTML was also at the repository root.
+That happened because `wrangler deploy` initially ran from the README-only `main` branch with no Wrangler configuration and no `public/` directory. It has since been fixed: the site is merged into `main`, dependencies are detected, and the Worker deploys successfully to `https://sreejith-digital.sreejithcu2020.workers.dev/`.
 
-## Most likely reason the error repeats
+## Current domain status — read this first
 
-If the same log appears after pushing the fix, Cloudflare is almost certainly still connected to **`main`**. At the time of writing, `main` is still the original README-only commit `a167d50`; the site is on `arena/06fc82b3-sreejith-digital`. A Workers Build cloning `main` sees no `wrangler.toml`, no `public/`, and no `package.json`, then fails with the same message.
+The registered domain is:
 
-Do one of the following before retrying:
+```text
+sreejithdigital.com
+```
 
-- Set the Cloudflare production branch to `arena/06fc82b3-sreejith-digital`; or
-- Merge the pull request from that branch into `main`, then keep Cloudflare on `main`.
+It has **no hyphen**. Public DNS shows Cloudflare nameservers (`algin.ns.cloudflare.com` and `maria.ns.cloudflare.com`) but no apex A/CNAME host record yet. `www.sreejithdigital.com` also has no record yet.
 
-A repeated `No dependencies detected to cache` line is another signal that Cloudflare is not seeing the committed `package.json`/`package-lock.json`.
+The following name is **not delegated** and currently returns `NXDOMAIN`:
+
+```text
+sreejith-digital.com
+```
+
+That hyphenated name is close to the Cloudflare Worker name and temporary `*.workers.dev` URL, but it is not the registered domain. Opening it produces Chrome’s `DNS_PROBE_POSSIBLE` error.
+
+`wrangler.toml` now includes a custom-domain route for `sreejithdigital.com`:
+
+```toml
+[[routes]]
+pattern = "sreejithdigital.com"
+custom_domain = true
+```
+
+On the next successful deploy, Cloudflare should create the custom-domain DNS record and certificate automatically. If it does not, add the same domain manually under **Worker → Settings → Domains & Routes → Add → Custom Domain**.
 
 ## What changed in the repository
 
@@ -28,6 +45,7 @@ A repeated `No dependencies detected to cache` line is another signal that Cloud
 - `html_handling = "auto-trailing-slash"` preserves clean directory URLs such as `/services/seo-consulting/`.
 - `package.json` and `package-lock.json` pin Wrangler `4.168.0`, matching the version in the build log.
 - A mirrored `public/wrangler.toml`, `public/package.json`, and `public/.assetsignore` make the build work even if Cloudflare’s root directory is accidentally set to `/public`. The preferred root directory is still `/`.
+- Both Wrangler configs declare `sreejithdigital.com` as a custom domain so Cloudflare can create its DNS record and certificate during deployment.
 - `public/_redirects` now contains only supported path-level redirects. Host-level redirects were removed because domain-level redirects are not supported in `_redirects`.
 
 > The Cloudflare account is not connected to this workspace, so DNS records, custom domains, and project settings have not been changed here.
@@ -36,7 +54,7 @@ A repeated `No dependencies detected to cache` line is another signal that Cloud
 
 This is the fastest fix: no project recreation is required.
 
-1. Confirm Cloudflare is deploying a branch that contains the site: `arena/06fc82b3-sreejith-digital`, or `main` after the PR is merged. A build from the current `main` will always fail because it contains only `README.md`.
+1. Confirm Cloudflare is deploying `main`. The site has been merged into `main`; the earlier README-only state is resolved.
 2. In Cloudflare, open the project’s **Settings → Builds & deployments**.
 3. Confirm these values:
 
@@ -45,10 +63,10 @@ This is the fastest fix: no project recreation is required.
    | Root directory | `/` |
    | Build command | Empty |
    | Deploy command | `npx wrangler deploy` |
-   | Production branch | `arena/06fc82b3-sreejith-digital`, or `main` after merging |
+   | Production branch | `main` |
 
 4. Trigger **Retry deployment** or push another commit.
-5. Verify that the log no longer contains `Could not detect a directory containing static files`.
+5. Verify that the deployment succeeds, dependencies are detected, assets are read from `public/`, and the custom-domain route is created.
 
 The preferred root directory is `/`. If it is already set to `/public`, the mirrored `public/wrangler.toml` fallback should still deploy, but change it back to `/` when convenient so the root configuration remains the single source of truth.
 
@@ -56,12 +74,16 @@ The preferred root directory is `/`. If it is already set to `/public`, the mirr
 
 ### Attach the apex custom domain
 
-For a Workers project:
+The `[[routes]]` entry in `wrangler.toml` should attach `sreejithdigital.com` automatically during the next deployment. After that deployment, check **DNS** for a newly created apex record and wait for the certificate to become active.
+
+If the custom domain was not created automatically:
 
 1. Open **Workers & Pages → your Worker → Settings → Domains & Routes**.
 2. Select **Add → Custom Domain**.
-3. Enter `sreejithdigital.com`.
-4. Let Cloudflare create the required DNS record. Workers custom domains require the zone’s nameservers to be managed by Cloudflare, which is the case for this Cloudflare-registered domain.
+3. Enter `sreejithdigital.com` — no hyphen.
+4. Select **Add Custom Domain** and let Cloudflare create the required DNS record and certificate. Workers custom domains require the zone’s nameservers to be managed by Cloudflare, which is the case here.
+
+Do **not** enter `sreejith-digital.com`; that name is not delegated.
 
 ## Path B — classic Cloudflare Pages
 
@@ -155,7 +177,9 @@ Then submit `https://sreejithdigital.com/sitemap.xml` in Google Search Console.
 
 | Symptom | Fix |
 | --- | --- |
-| Same `Could not detect a directory containing static files` error after a fix | Check the deploy branch first. `main` is README-only until the PR is merged; use `arena/06fc82b3-sreejith-digital` or merge the PR. |
+| Same `Could not detect a directory containing static files` error after a fix | Check that Cloudflare is connected to this repository and to a branch containing `wrangler.toml`, `public/`, and `package.json`. `main` now contains the site. |
+| `DNS_PROBE_POSSIBLE` on `sreejith-digital.com` | Use `sreejithdigital.com` without the hyphen. The hyphenated name is not delegated. |
+| `sreejithdigital.com` still does not resolve | Attach the apex custom domain in **Domains & Routes**, or redeploy so the `[[routes]] custom_domain = true` entry can create the DNS record. Wait for the certificate to become active. |
 | `No dependencies detected to cache` plus `npx` installing Wrangler | Usually means Cloudflare is cloning the wrong branch or a subfolder without `package.json`. Verify production branch and root directory `/`. |
 | `Could not detect a directory containing static files` on the correct branch | Ensure `wrangler.toml` is committed, `public/index.html` exists, and the preferred Workers Build root directory is `/`. A `/public` root should work through the mirrored fallback config. |
 | Wrangler still installs a random version | Confirm `package.json` and `package-lock.json` are committed; Cloudflare should install the pinned Wrangler before the deploy command. |

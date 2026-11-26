@@ -1,6 +1,6 @@
 # Sreejith Digital — static website
 
-A deployment-ready static website for **https://sreejithdigital.com**. The deployable files live in [`public/`](public/), with a root-level [`wrangler.toml`](wrangler.toml) so the same repository works with:
+A deployment-ready static website for **https://sreejithdigital.com** — no hyphen. `sreejith-digital` is the Cloudflare Worker name used for the temporary `*.workers.dev` URL; it is not the registered domain. The deployable files live in [`public/`](public/), with a root-level [`wrangler.toml`](wrangler.toml) so the same repository works with:
 
 - **Cloudflare Workers Builds / static assets** using `npx wrangler deploy`
 - **Cloudflare Pages** with `public` as the build output directory
