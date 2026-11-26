@@ -20,6 +20,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-26"
+SITE_VERSION = "2026-11-26.1"
 DEFAULT_DESCRIPTION = (
     "Independent SEO consultant in India helping businesses grow through technical "
     "SEO, local SEO, strategic content and organic search optimization. Get a "
@@ -2531,6 +2532,18 @@ def write_sitemap() -> None:
     write_text(SITE_ROOT / "sitemap.xml", content)
 
 
+def write_version_marker() -> None:
+    content = "\n".join([
+        f"release: {SITE_VERSION}",
+        f"updated: {LAST_UPDATED}",
+        f"indexable-pages: {len(sitemap_paths())}",
+        "homepage-title: SEO Consultant India | Technical & Local SEO – Sreejith Digital",
+        "homepage-h1: Independent SEO Consultant in India Helping Businesses Grow Organically",
+        "",
+    ])
+    write_text(SITE_ROOT / "version.txt", content)
+
+
 def main() -> None:
     home_page()
     about_page()
@@ -2551,7 +2564,8 @@ def main() -> None:
     terms_page()
     not_found_page()
     write_sitemap()
-    print(f"Generated {len(sitemap_paths())} indexable pages plus 404.html and sitemap.xml")
+    write_version_marker()
+    print(f"Generated {len(sitemap_paths())} indexable pages plus 404.html, sitemap.xml and version.txt")
 
 
 if __name__ == "__main__":
