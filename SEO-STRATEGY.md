@@ -19,11 +19,11 @@ Keyword suggestions below are **targets to validate** in Google Keyword Planner,
 
 The generator now uses:
 
-- **Title:** `SEO Consultant India | Technical & Local SEO | Sreejith Digital`
-- **Meta description:** independent SEO consultant in India, with technical SEO, local SEO, content strategy and data-driven search growth
-- **H1:** `Independent SEO Consultant Helping Businesses Grow Across India`
+- **Title:** `SEO Consultant India | Technical & Local SEO – Sreejith Digital`
+- **Meta description:** `Independent SEO consultant in India helping businesses grow through technical SEO, local SEO, strategic content and organic search optimization. Get a practical SEO growth roadmap.`
+- **H1:** `Independent SEO Consultant in India Helping Businesses Grow Organically`
 
-The homepage establishes national expertise. Service, industry, city and resource pages own their own more specific queries.
+The homepage now includes explicit service, industry, India location, approach, trust and FAQ sections with descriptive internal links. FAQ content is mirrored in `FAQPage` structured data. Service, industry, city and resource pages own their own more specific queries.
 
 Canonical domain remains `https://sreejithdigital.com` — no hyphen.
 
@@ -157,7 +157,7 @@ Only publish when each article can include original examples, practical recommen
 
 ## 6. E-E-A-T and case studies
 
-No fabricated case studies, testimonials, credentials, client names, rankings or revenue figures were added.
+No fabricated case studies, testimonials, credentials, client names, rankings or revenue figures were added. `Person` structured data and `sameAs` profile links are intentionally omitted until verified details are supplied; the site currently uses Organization/ProfessionalService, Service, WebPage, BreadcrumbList, Article and homepage FAQPage schema.
 
 ### Inputs needed from the owner before publishing an expertise section
 
