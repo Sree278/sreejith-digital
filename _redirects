@@ -1,0 +1,4 @@
+# Keep the apex domain canonical. Attach both custom domains in Cloudflare Pages.
+https://www.sreejithdigital.com/* https://sreejithdigital.com/:splat 301!
+http://www.sreejithdigital.com/* https://sreejithdigital.com/:splat 301!
+http://sreejithdigital.com/* https://sreejithdigital.com/:splat 301!

@@ -1,0 +1,12 @@
+# Local tooling
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+Thumbs.db
+
+# Editor / OS scratch files
+*.swp
+*.swo
+.idea/
+.vscode/
