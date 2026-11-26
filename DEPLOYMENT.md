@@ -17,17 +17,17 @@ The registered domain is:
 sreejithdigital.com
 ```
 
-It has **no hyphen**. Public DNS shows Cloudflare nameservers (`algin.ns.cloudflare.com` and `maria.ns.cloudflare.com`) but no apex A/CNAME host record yet. `www.sreejithdigital.com` also has no record yet.
+It has **no hyphen**. Public DNS shows Cloudflare nameservers (`algin.ns.cloudflare.com` and `maria.ns.cloudflare.com`) and apex `A` records `104.21.65.51` and `172.67.140.170`. The apex homepage resolves and renders. `www.sreejithdigital.com` still needs its own DNS record and zone-level redirect if you want the `www` variant; see the dedicated section below.
 
-The following name is **not delegated** and currently returns `NXDOMAIN`:
+The following name is **not delegated** and returns `NXDOMAIN`:
 
 ```text
 sreejith-digital.com
 ```
 
-That hyphenated name is close to the Cloudflare Worker name and temporary `*.workers.dev` URL, but it is not the registered domain. Opening it produces Chrome’s `DNS_PROBE_POSSIBLE` error.
+That hyphenated name resembles the Cloudflare Worker name and temporary `*.workers.dev` URL, but it is not the registered domain. Opening it produces Chrome’s `DNS_PROBE_POSSIBLE` error. Do not use it as the site URL or as a custom domain.
 
-`wrangler.toml` now includes a custom-domain route for `sreejithdigital.com`:
+`wrangler.toml` includes:
 
 ```toml
 [[routes]]
@@ -35,7 +35,20 @@ pattern = "sreejithdigital.com"
 custom_domain = true
 ```
 
-On the next successful deploy, Cloudflare should create the custom-domain DNS record and certificate automatically. If it does not, add the same domain manually under **Worker → Settings → Domains & Routes → Add → Custom Domain**.
+The custom domain is already live. A new Workers Builds deployment publishes updated static assets to the existing Worker; it does not require creating a new domain.
+
+## Current release to publish
+
+As of `2026-11-26`, the repository contains the India SEO homepage optimization and growth architecture:
+
+- 36 indexable pages and 37 HTML files including `404.html`
+- 7 location guides and 8 India-focused resources
+- Homepage title: `SEO Consultant India | Technical & Local SEO – Sreejith Digital`
+- Homepage H1: `Independent SEO Consultant in India Helping Businesses Grow Organically`
+- `SEO-STRATEGY.md` as the durable keyword map and roadmap
+- `public/version.txt` as a lightweight deployment marker
+
+Check the live domain against `/version.txt` and `/sitemap.xml`. If the live sitemap still has 29 URLs or `/version.txt` returns `404`, Cloudflare is still serving the older build. In that case, open the Workers Builds project, select the latest commit on the configured production branch, and click **Retry deployment**. The Cloudflare account is not connected to this workspace, so this dashboard action cannot be performed here.
 
 ## What changed in the repository
 
@@ -54,7 +67,7 @@ On the next successful deploy, Cloudflare should create the custom-domain DNS re
 
 This is the fastest fix: no project recreation is required.
 
-1. Confirm Cloudflare is deploying `main`. The site has been merged into `main`; the earlier README-only state is resolved.
+1. Confirm Cloudflare is connected to this repository and that the configured production branch contains the latest commit. Production branch should be `main`; if the project is configured to watch `arena/06fc82b3-sreejith-digital`, that branch is also synced to the same commit. The earlier README-only state is resolved.
 2. In Cloudflare, open the project’s **Settings → Builds & deployments**.
 3. Confirm these values:
 
@@ -63,9 +76,9 @@ This is the fastest fix: no project recreation is required.
    | Root directory | `/` |
    | Build command | Empty |
    | Deploy command | `npx wrangler deploy` |
-   | Production branch | `main` |
+   | Production branch | `main` (or the synced active branch, if that is what Cloudflare is configured to watch) |
 
-4. Trigger **Retry deployment** or push another commit.
+4. On the latest commit, trigger **Retry deployment**. A fresh commit to the configured production branch should also trigger auto-deploy if enabled.
 5. Verify that the deployment succeeds, dependencies are detected, assets are read from `public/`, and the custom-domain route is created.
 
 The preferred root directory is `/`. If it is already set to `/public`, the mirrored `public/wrangler.toml` fallback should still deploy, but change it back to `/` when convenient so the root configuration remains the single source of truth.
@@ -74,9 +87,9 @@ The preferred root directory is `/`. If it is already set to `/public`, the mirr
 
 ### Attach the apex custom domain
 
-The `[[routes]]` entry in `wrangler.toml` should attach `sreejithdigital.com` automatically during the next deployment. After that deployment, check **DNS** for a newly created apex record and wait for the certificate to become active.
+The `[[routes]]` entry in `wrangler.toml` should be retained so the custom-domain binding stays attached to the Worker during each deployment. The apex domain is already resolving on Cloudflare; a content deployment does not need a new custom-domain setup.
 
-If the custom domain was not created automatically:
+If the custom domain is ever detached or stops resolving:
 
 1. Open **Workers & Pages → your Worker → Settings → Domains & Routes**.
 2. Select **Add → Custom Domain**.
@@ -150,22 +163,26 @@ Reference: [Cloudflare — Redirecting www to domain apex](https://developers.cl
 
 ```bash
 curl -I https://sreejithdigital.com/
-curl -I https://www.sreejithdigital.com/services/
+curl https://sreejithdigital.com/version.txt
 curl https://sreejithdigital.com/robots.txt
 curl https://sreejithdigital.com/sitemap.xml
+curl -I https://sreejithdigital.com/locations/delhi-ncr/
+curl -I https://sreejithdigital.com/resources/seo-cost-india/
 curl -I https://sreejithdigital.com/this-page-does-not-exist/
 ```
 
 Expected results:
 
 - Apex home page returns `200`.
-- `www` returns `301` to the equivalent apex URL.
+- `/version.txt` shows `release: 2026-11-26.1` and `indexable-pages: 36`.
 - `/robots.txt` lists `https://sreejithdigital.com/sitemap.xml`.
-- `/sitemap.xml` contains the clean directory URLs.
+- `/sitemap.xml` contains 36 clean directory URLs, including Delhi NCR, Hyderabad, Pune and the four India-focused guides.
+- `/locations/delhi-ncr/` and `/resources/seo-cost-india/` return `200`.
 - A nonexistent path returns `404` and renders `public/404.html`.
 - Deep links such as `/services/seo-consulting/` and `/resources/technical-seo-audit-checklist/` return `200`.
 - Dropdowns and the mobile menu work without console errors.
 - The contact form opens the visitor’s email application with a prefilled enquiry.
+- If the `www` redirect has been configured, `https://www.sreejithdigital.com/services/` returns `301` to the equivalent apex URL.
 
 Then submit `https://sreejithdigital.com/sitemap.xml` in Google Search Console.
 
@@ -179,7 +196,8 @@ Then submit `https://sreejithdigital.com/sitemap.xml` in Google Search Console.
 | --- | --- |
 | Same `Could not detect a directory containing static files` error after a fix | Check that Cloudflare is connected to this repository and to a branch containing `wrangler.toml`, `public/`, and `package.json`. `main` now contains the site. |
 | `DNS_PROBE_POSSIBLE` on `sreejith-digital.com` | Use `sreejithdigital.com` without the hyphen. The hyphenated name is not delegated. |
-| `sreejithdigital.com` still does not resolve | Attach the apex custom domain in **Domains & Routes**, or redeploy so the `[[routes]] custom_domain = true` entry can create the DNS record. Wait for the certificate to become active. |
+| `sreejithdigital.com` stops resolving | Check Cloudflare DNS and **Domains & Routes**, then redeploy so the `[[routes]] custom_domain = true` entry can re-create the binding. Wait for the certificate to become active. |
+| Live site shows the old homepage, a 29-URL sitemap, or `/version.txt` returns `404` | Cloudflare has not published the latest commit. Select the latest commit in Workers Builds and click **Retry deployment**; confirm production branch, root `/`, and deploy command `npx wrangler deploy`. Then purge cache and recheck `/version.txt`. |
 | `No dependencies detected to cache` plus `npx` installing Wrangler | Usually means Cloudflare is cloning the wrong branch or a subfolder without `package.json`. Verify production branch and root directory `/`. |
 | `Could not detect a directory containing static files` on the correct branch | Ensure `wrangler.toml` is committed, `public/index.html` exists, and the preferred Workers Build root directory is `/`. A `/public` root should work through the mirrored fallback config. |
 | Wrangler still installs a random version | Confirm `package.json` and `package-lock.json` are committed; Cloudflare should install the pinned Wrangler before the deploy command. |
@@ -194,7 +212,7 @@ Then submit `https://sreejithdigital.com/sitemap.xml` in Google Search Console.
 ## Before announcing the site
 
 - Confirm `hello@sreejithdigital.com` exists, or change `CONTACT_EMAIL` in `scripts/generate_site.py` and regenerate.
-- Confirm the four city guides match the real service areas.
+- Confirm the seven city guides match genuine service areas without implying physical offices.
 - Review the privacy and terms pages, especially if analytics, a CRM, calendar booking, or a form backend is added later.
 - Connect a real form endpoint if you do not want enquiries to rely on the visitor’s email app.
 - Verify that no fabricated client names, testimonials, rankings, or case-study metrics were added.
