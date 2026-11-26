@@ -1,4 +1,4 @@
-release: 2026-11-26.2
+release: 2026-11-26.3
 updated: 2026-11-26
 indexable-pages: 36
 homepage-title: SEO Consultant India | Technical & Local SEO – Sreejith Digital
