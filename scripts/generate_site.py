@@ -20,7 +20,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-26"
-SITE_VERSION = "2026-11-26.2"
+SITE_VERSION = "2026-11-26.3"
 DEFAULT_DESCRIPTION = (
     "Independent SEO consultant in India helping businesses grow through technical "
     "SEO, local SEO, strategic content and organic search optimization. Get a "
