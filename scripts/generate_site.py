@@ -21,9 +21,9 @@ SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-26"
 DEFAULT_DESCRIPTION = (
-    "Looking for an independent SEO consultant in India? Sreejith Digital helps "
-    "businesses improve organic visibility through technical SEO, local SEO, "
-    "content strategy and data-driven search growth."
+    "Independent SEO consultant in India helping businesses grow through technical "
+    "SEO, local SEO, strategic content and organic search optimization. Get a "
+    "practical SEO growth roadmap."
 )
 
 
@@ -1429,53 +1429,65 @@ def service_cards(items: list[dict], columns: int = 3) -> str:
 
 
 def home_page() -> None:
-    cards = [
+    service_cards_data = [
         {
-            "tag": "01 · Discover",
-            "title": "Find the real constraint",
-            "text": "Separate symptoms from root causes across technical health, intent, content, and conversion paths.",
+            "tag": "SEO Consulting",
+            "title": "SEO Consulting",
+            "text": "Get expert SEO direction, actionable recommendations and a clear roadmap to improve organic search performance.",
+            "href": "/services/seo-consulting/",
+            "link_label": "View SEO consulting",
         },
         {
-            "tag": "02 · Prioritise",
-            "title": "Agree on the few moves that matter",
-            "text": "Build a short, owned roadmap with evidence, expected impact, and a clear definition of done.",
+            "tag": "Technical SEO",
+            "title": "Technical SEO",
+            "text": "Identify and resolve crawling, indexing, website architecture, performance and technical issues that affect visibility.",
+            "href": "/services/technical-seo/",
+            "link_label": "View technical SEO",
         },
         {
-            "tag": "03 · Build",
-            "title": "Ship work that compounds",
-            "text": "Improve architecture, pages, content, and measurement in a sequence your team can maintain.",
+            "tag": "Local SEO",
+            "title": "Local SEO",
+            "text": "Improve local search visibility through location-focused optimisation, Business Profile guidance and local strategy.",
+            "href": "/services/local-seo/",
+            "link_label": "View local SEO",
         },
         {
-            "tag": "04 · Measure",
-            "title": "Report decisions, not noise",
-            "text": "Connect activity to outcomes with honest context and a practical next action every cycle.",
-        },
-    ]
-    service_preview = service_cards(SERVICES[:6], 3)
-    architecture = [
-        {
-            "tag": "Services",
-            "title": "A service for every stage",
-            "text": "From technical diagnosis and consulting to local SEO, paid search, design, and reporting.",
-            "href": "/services/",
-            "link_label": "Explore services",
+            "tag": "Content",
+            "title": "SEO Strategy & Content Optimisation",
+            "text": "Develop keyword strategies, improve existing content and create relevant pages aligned with user search intent.",
+            "href": "/services/content-strategy/",
+            "link_label": "View content strategy",
         },
         {
-            "tag": "Industries",
-            "title": "Context for your market",
-            "text": "Search approaches shaped around B2B, professional services, ecommerce, and multi-location teams.",
-            "href": "/industries/",
-            "link_label": "Explore industries",
+            "tag": "Paid Search",
+            "title": "Google Ads Management",
+            "text": "Support organic growth with paid search campaigns designed around relevant enquiries and measurable outcomes.",
+            "href": "/services/google-ads-management/",
+            "link_label": "View Google Ads",
         },
         {
-            "tag": "Locations",
-            "title": "Local relevance, no shortcuts",
-            "text": "A clean location architecture with useful pages instead of thin, duplicated city templates.",
-            "href": "/locations/",
-            "link_label": "Explore locations",
+            "tag": "Website Design",
+            "title": "Website Design & SEO",
+            "text": "Improve websites with clear information architecture, user experience, search-friendly structures and conversion-focused layouts.",
+            "href": "/services/website-design/",
+            "link_label": "View website design",
         },
     ]
-    resource_cards = [
+    industry_cards_data = [
+        {
+            "tag": "Industry",
+            "title": item["name"],
+            "text": item["short"],
+            "href": f'/industries/{item["slug"]}/',
+            "link_label": "View approach",
+        }
+        for item in INDUSTRIES
+    ]
+    location_links_html = '<div class="city-links">' + "".join(
+        f'<a href="/locations/{e(item["slug"])}/">{e(item["name"])}</a>'
+        for item in LOCATIONS
+    ) + "</div>"
+    resource_cards_data = [
         {
             "tag": item["category"],
             "title": item["name"],
@@ -1483,21 +1495,69 @@ def home_page() -> None:
             "href": f'/resources/{item["slug"]}/',
             "link_label": "Read guide",
         }
-        for item in RESOURCES[:3]
+        for item in RESOURCES[4:7]
     ]
+    approach_steps = [
+        ("Discover", "Understand the business, target audience, existing website performance and organic search opportunities."),
+        ("Diagnose", "Review technical SEO, keyword targeting, content quality, competitors and website conversion paths."),
+        ("Prioritise", "Create a practical SEO roadmap with clearly defined priorities and implementation recommendations."),
+        ("Improve and measure", "Implement improvements, monitor search performance and refine the strategy using meaningful data."),
+    ]
+    why_items = [
+        "Independent SEO consulting",
+        "Direct communication and focused attention",
+        "Practical, implementation-ready recommendations",
+        "Technical and strategic SEO expertise",
+        "Transparent performance measurement",
+        "No unrealistic ranking guarantees",
+        "A business-focused approach to organic growth",
+    ]
+    homepage_faqs = [
+        (
+            "What does an independent SEO consultant do?",
+            "An independent SEO consultant evaluates a website’s search performance, identifies optimisation opportunities and develops a strategy to improve organic visibility, qualified traffic and business enquiries.",
+        ),
+        (
+            "Do you provide SEO consulting across India?",
+            "Yes. Sreejith Digital follows a remote-first consulting model and works with businesses across India, including Chennai, Bengaluru, Mumbai, Delhi NCR, Hyderabad, Pune and Kochi.",
+        ),
+        (
+            "What SEO services are available?",
+            "Services include SEO consulting, technical SEO, local SEO, keyword research, content optimisation, website SEO strategy and organic search performance improvement.",
+        ),
+        (
+            "How long does SEO take to show results?",
+            "SEO timelines vary depending on website condition, competition, industry and implementation. Meaningful improvements generally require consistent work over several months. No specific ranking position or timeline can be guaranteed.",
+        ),
+        (
+            "Can you audit my existing website?",
+            "Yes. A website SEO audit can identify technical problems, content gaps, keyword opportunities and improvements to website architecture and organic search performance.",
+        ),
+    ]
+    faq_schema = {
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": question,
+                "acceptedAnswer": {"@type": "Answer", "text": answer},
+            }
+            for question, answer in homepage_faqs
+        ],
+    }
     main = f'''<section class="hero">
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="container hero-grid">
     <div class="hero-copy">
       <p class="eyebrow eyebrow--pill">Independent SEO consultant · India</p>
-      <h1>Independent SEO Consultant <span>Helping Businesses Grow Across India</span></h1>
-      <p class="hero-lede">Technical SEO, local search, content strategy and decision-ready measurement for teams that want qualified enquiries—not generic checklists.</p>
+      <h1>Independent SEO Consultant in India <span>Helping Businesses Grow Organically</span></h1>
+      <p class="hero-lede">Build sustainable organic visibility with a clear SEO strategy, technical expertise and practical execution.</p>
       <div class="hero-actions">
-        <a class="btn btn--primary" href="/contact/">Book a consultation <span aria-hidden="true">→</span></a>
-        <a class="btn btn--secondary" href="/services/">Explore services</a>
+        <a class="btn btn--primary" href="/contact/">Book an SEO consultation <span aria-hidden="true">→</span></a>
+        <a class="btn btn--secondary" href="/services/">Explore SEO services</a>
       </div>
       <ul class="hero-proof">
-        <li><strong>Direct</strong><span>Senior-level attention</span></li>
+        <li><strong>Independent</strong><span>Direct senior-level attention</span></li>
         <li><strong>Practical</strong><span>Implementation-ready work</span></li>
         <li><strong>Transparent</strong><span>No ranking promises</span></li>
       </ul>
@@ -1526,72 +1586,88 @@ def home_page() -> None:
 </section>
 
 <section class="section">
-  <div class="container">
-    {section_header("How the work fits together", "One system, four connected layers", "Search growth is rarely one dramatic fix. It is a sequence of clear decisions, careful implementation, and honest learning.")}
-    {card_grid(cards, 4)}
-  </div>
-</section>
-
-<section class="section section--surface">
-  <div class="container">
-    {section_header("Service architecture", "Start with the right entry point", "Choose a focused service, or connect several into a single programme.", ("View all services", "/services/"))}
-    {service_preview}
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    {section_header("Built for context", "A site structure that scales without becoming messy", "Services, industries, locations, and resources each have their own role—and they link to one another deliberately.")}
-    {card_grid(architecture, 3)}
-    <div class="architecture-note">
-      <p><strong>Why this matters:</strong> a clear hierarchy prevents keyword overlap, makes useful pages easier to find, and gives every new page a defined job.</p>
-      <a class="text-link" href="/about/">Read how I work <span aria-hidden="true">→</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="section section--surface">
-  <div class="container split-section">
-    <div>
-      {section_header("Engagement approach", "Short roadmap. Careful delivery. Plain-language reporting.")}
-      {numbered_steps([
-        ("Understand", "Clarify the business model, audience, constraints, and the decision the site needs to support."),
-        ("Diagnose", "Review technical foundations, search demand, content, competitors, and measurement quality."),
-        ("Prioritise", "Agree on a small set of high-confidence actions, with owners and acceptance criteria."),
-        ("Improve", "Ship, verify, measure, and refine. Keep the roadmap visible and the reporting honest."),
-      ])}
+  <div class="container prose-layout">
+    <div class="prose">
+      <p class="lead">Sreejith Digital provides independent SEO consulting for businesses looking to improve search visibility, attract qualified visitors and turn organic traffic into meaningful business enquiries.</p>
+      <h2>SEO Consulting That Connects Search Visibility With Business Growth</h2>
+      <p>Getting more website traffic is not the only objective of SEO. Your website needs to reach the right audience, answer their search requirements and encourage meaningful action.</p>
+      <p>From technical SEO and website optimisation to local search and content strategy, every recommendation is focused on business objectives, search intent and measurable improvement. Whether you are building a new website, improving existing visibility or expanding into competitive markets, the focus stays on identifying what matters and prioritising the right improvements.</p>
     </div>
     <aside class="aside-panel">
-      <p class="eyebrow">What you can expect</p>
-      <h3>No theatre, no guesswork</h3>
+      <p class="eyebrow">Consultation focus</p>
+      <h3>Qualified enquiries, not just traffic</h3>
       {check_list([
-        "A clear point of contact",
-        "Recommendations written for implementation",
-        "No fabricated metrics or ranking guarantees",
-        "Documentation your team keeps after the engagement",
+        "Clear commercial outcomes",
+        "Search intent mapped to pages",
+        "Technical foundations verified",
+        "Implementation-ready recommendations",
+        "Honest, decision-focused reporting",
       ])}
-      <a class="btn btn--secondary" href="/about/">More about the approach <span aria-hidden="true">→</span></a>
+      <a class="btn btn--secondary btn--full" href="/contact/">Discuss your SEO roadmap <span aria-hidden="true">→</span></a>
     </aside>
   </div>
 </section>
 
-<section class="section">
+<section class="section section--surface">
   <div class="container">
-    {section_header("Practical resources", "The thinking behind the work", "Straightforward guides you can use with your own team.", ("All resources", "/resources/"))}
-    {card_grid(resource_cards, 3)}
+    {section_header("Independent SEO Services for Growing Businesses", "Choose the right entry point", "Use one focused service or connect strategy, technical work, local search, paid media and measurement into a single programme.", ("All services", "/services/"))}
+    {card_grid(service_cards_data, 3)}
   </div>
 </section>
 
-{cta_section()}
+<section class="section">
+  <div class="container">
+    {section_header("SEO Consulting for Different Business Models", "Strategy shaped by how customers search", "SEO strategies should reflect how customers research, compare and decide—not just the industry label.", ("All industries", "/industries/"))}
+    {card_grid(industry_cards_data, 2)}
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    {section_header("SEO Consultant Serving Businesses Across India", "Remote-first, market-aware", "Sreejith Digital provides remote-first independent SEO consulting to businesses across India. Each market strategy is developed around the business, its customers and the search competition—without claiming physical offices.", ("All locations", "/locations/"))}
+    {location_links_html}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split-section">
+    <div>
+      {section_header("A Practical Approach to SEO Growth", "Short roadmap. Careful delivery. Plain-language reporting.")}
+      {numbered_steps(approach_steps)}
+    </div>
+    <aside class="aside-panel">
+      <p class="eyebrow">Why Sreejith Digital</p>
+      <h3>Built around clarity and useful work</h3>
+      {check_list(why_items)}
+      <a class="btn btn--secondary btn--full" href="/about/">More about the approach <span aria-hidden="true">→</span></a>
+    </aside>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    {section_header("Frequently Asked Questions", "Useful answers before you get in touch")}
+    {faq_html(homepage_faqs)}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {section_header("Practical SEO Resources", "Guides for in-house teams", "Straightforward explanations for Indian businesses evaluating SEO, local search, pricing and measurement.", ("All resources", "/resources/"))}
+    {card_grid(resource_cards_data, 3)}
+  </div>
+</section>
+
+{cta_section("Let’s Build a Better Organic Search Strategy", "Your website should attract relevant visitors, communicate your expertise and support business growth. If you need an independent SEO consultant to identify opportunities and develop a practical roadmap, let’s discuss your requirements.")}
 '''
     write_page(
         path="/",
-        title="SEO Consultant India | Technical & Local SEO | Sreejith Digital",
+        title="SEO Consultant India | Technical & Local SEO – Sreejith Digital",
         description=DEFAULT_DESCRIPTION,
         main=main,
         body_class="page-home",
+        schema_extra=[faq_schema],
     )
-
 
 def about_page() -> None:
     principles = [
