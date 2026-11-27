@@ -1,14 +1,61 @@
 # Host-level redirects are not supported by _redirects. Configure www → apex
-# with Cloudflare Bulk Redirects / Redirect Rules; see DEPLOYMENT.md.
+# with Cloudflare Redirect Rules; see DEPLOYMENT.md.
 /index.html / 301
 /home / 301
 
-# Keyword-friendly aliases used in the India location strategy.
+# 27 Nov 2026 — Mumbai and Pune had no local substance.
+# Kerala city pages now live under /locations/kerala/<city>/ (owner decision, 27 Nov 2026).
+/locations/kochi/ /locations/kerala/kochi/ 301
+/locations/kochi /locations/kerala/kochi/ 301
+/locations/cochin/ /locations/kerala/kochi/ 301
+/locations/ernakulam/ /locations/kerala/kochi/ 301
+/locations/kerala/cochin/ /locations/kerala/kochi/ 301
+/locations/kerala/ernakulam/ /locations/kerala/kochi/ 301
+/locations/calicut/ /locations/kerala/calicut/ 301
+/locations/kozhikode/ /locations/kerala/calicut/ 301
+/locations/kerala/kozhikode/ /locations/kerala/calicut/ 301
+/locations/trivandrum/ /locations/kerala/trivandrum/ 301
+/locations/thiruvananthapuram/ /locations/kerala/trivandrum/ 301
+/locations/kerala/thiruvananthapuram/ /locations/kerala/trivandrum/ 301
+/locations/thrissur/ /locations/kerala/thrissur/ 301
+/locations/malappuram/ /locations/kerala/malappuram/ 301
+/locations/kannur/ /locations/kerala/kannur/ 301
+/locations/kollam/ /locations/kerala/kollam/ 301
+/locations/palakkad/ /locations/kerala/palakkad/ 301
+/locations/mumbai/ /locations/ 301
+/locations/mumbai /locations/ 301
+/locations/pune/ /locations/ 301
+/locations/pune /locations/ 301
+
+# Keyword-friendly aliases.
 /seo-consultant-india / 301
+/case-study/ /case-studies/ 301
+/work/ /case-studies/ 301
+/free-audit/ /free-seo-review/ 301
 /locations/seo-consultant-chennai/ /locations/chennai/ 301
 /locations/seo-consultant-bangalore/ /locations/bengaluru/ 301
-/locations/seo-consultant-mumbai/ /locations/mumbai/ 301
+/locations/bangalore/ /locations/bengaluru/ 301
 /locations/seo-consultant-delhi/ /locations/delhi-ncr/ 301
+/locations/gurugram/ /locations/delhi-ncr/ 301
+/locations/noida/ /locations/delhi-ncr/ 301
 /locations/seo-consultant-hyderabad/ /locations/hyderabad/ 301
-/locations/seo-consultant-pune/ /locations/pune/ 301
-/locations/seo-consultant-kochi/ /locations/kochi/ 301
+/locations/seo-consultant-kochi/ /locations/kerala/kochi/ 301
+/locations/seo-consultant-kerala/ /locations/kerala/ 301
+/locations/seo-consultant-mumbai/ /locations/ 301
+/locations/seo-consultant-pune/ /locations/ 301
+
+# Competitor-style URL patterns people may type.
+/seo-expert-in-india/ / 301
+/seo-expert-in-kerala/ /locations/kerala/ 301
+/seo-expert-in-kochi/ /locations/kerala/kochi/ 301
+/seo-expert-in-calicut/ /locations/kerala/calicut/ 301
+/seo-expert-in-trivandrum/ /locations/kerala/trivandrum/ 301
+/seo-expert-in-thrissur/ /locations/kerala/thrissur/ 301
+/seo-expert-in-chennai/ /locations/chennai/ 301
+
+# 27 Nov 2026 — Tamil Nadu state and city hierarchy.
+/locations/coimbatore/ /locations/tamil-nadu/coimbatore/ 301
+/locations/madurai/ /locations/tamil-nadu/madurai/ 301
+/locations/salem/ /locations/tamil-nadu/salem/ 301
+/seo-expert-in-coimbatore/ /locations/tamil-nadu/coimbatore/ 301
+/locations/tamilnadu/ /locations/tamil-nadu/ 301
