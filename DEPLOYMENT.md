@@ -53,11 +53,12 @@ Configured in the Cloudflare dashboard and verified live (SSL Labs A+ on all fou
 | Email Routing | On. `hello@sreejithdigital.com` → owner's verified inbox. MX ×3, SPF `include:_spf.mx.cloudflare.net ~all`, DKIM `cf2024-1`, DMARC `p=reject; sp=reject; adkim=s; aspf=s` |
 | Google Search Console | Domain property verified by DNS TXT; sitemap submitted |
 | Bing Webmaster Tools | Verified by CNAME (DNS only, not proxied); sitemap submitted |
+| Crawler Hints (IndexNow) | On |
 | Registrar | Transfer lock, WHOIS privacy and auto-renew on; expires 26 Nov 2027 |
 
 Keep the `google-site-verification` TXT record and the Bing CNAME (`18cbf232….sreejithdigital.com` → `verify.bing.com`), or the search consoles lose verification.
 
-**Auto-deploy check:** after every merge to `main`, confirm a build ran in Workers & Pages → `sreejith-digital` → Deployments, and that `/version.txt` shows the new release. On 27 Nov 2026 merges after 10:33 UTC did not start a build until one was run by hand. If a merge does not start a build, open Settings → Builds and reconnect the GitHub repository.
+**Auto-deploy check:** after every merge to `main`, confirm a build ran in Workers & Pages → `sreejith-digital` → Deployments, and that `/version.txt` shows the new release. On 27 Nov 2026 merges did not start builds because the Cloudflare Workers and Pages GitHub App had access only to `Sree278/dotmiracle`; `Sree278/sreejith-digital` was added (GitHub → Settings → Installed GitHub Apps → Cloudflare Workers and Pages → Repository access). If a merge ever stops starting a build, check that list first.
 
 ## Current release to publish
 
@@ -78,7 +79,7 @@ These steps need the Cloudflare and Google dashboards, which are not connected t
 
 ### 1. Enquiry form → your inbox (Cloudflare Email Routing, free)
 
-**Status 27 Nov 2026:** steps 1–5 are done (Email Routing on, inbox verified, `hello@` routed, `[[send_email]]` enabled in release `2026-11-27.4`, `ENQUIRY_TO` secret set). Step 6 is the live test.
+**Status 27 Nov 2026:** steps 1–5 are done (Email Routing on, inbox verified, `hello@` routed, `[[send_email]]` enabled in release `2026-11-27.4`, `ENQUIRY_TO` secret set). Step 6 passed on 27 Nov 2026: reference `SD-20261127-6EP28L` arrived in the inbox.
 
 Without the binding or the secret the form still works: it opens the visitor's email app with the enquiry pre-filled.
 
