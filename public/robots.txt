@@ -1,4 +1,9 @@
+# sreejithdigital.com — every page is open to search and AI citation crawlers
+# (Googlebot, Bingbot, OAI-SearchBot, PerplexityBot and others).
+# Note: Cloudflare can block AI crawlers at the edge regardless of this file —
+# check Security → Bots / AI Crawl Control in the dashboard (see DEPLOYMENT.md).
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://sreejithdigital.com/sitemap.xml

@@ -1,14 +1,34 @@
-# Cloudflare Workers static-assets configuration.
+# Cloudflare Workers configuration: static assets + a tiny enquiry endpoint.
 # Keep this file at the repository root; Workers Builds must use root directory "/".
 name = "sreejith-digital"
+main = "worker/index.js"
 compatibility_date = "2026-11-26"
 workers_dev = true
 preview_urls = false
 
 [assets]
 directory = "./public/"
+binding = "ASSETS"
 not_found_handling = "404-page"
 html_handling = "auto-trailing-slash"
+# Only /api/* runs the Worker. Every page and asset is served directly.
+run_worker_first = ["/api/*"]
+
+[vars]
+# Sender address on this domain. Email Routing must be enabled for the zone.
+ENQUIRY_FROM = "website@sreejithdigital.com"
+# ENQUIRY_TO is your verified destination inbox. Set it as a secret so it never
+# appears in this public repository:  npx wrangler secret put ENQUIRY_TO
+
+# Enable after Email Routing is on and your inbox is a verified destination
+# address (Cloudflare dashboard → Email → Email Routing). See DEPLOYMENT.md.
+# [[send_email]]
+# name = "ENQUIRY_EMAIL"
+
+# Optional: keep a 180-day copy of each enquiry in Workers KV.
+# [[kv_namespaces]]
+# binding = "ENQUIRIES"
+# id = "<your KV namespace id>"
 
 # Cloudflare creates this custom-domain DNS record and certificate on deploy.
 [[routes]]

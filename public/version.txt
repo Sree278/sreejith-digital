@@ -1,5 +1,5 @@
-release: 2026-11-26.5
-updated: 2026-11-26
-indexable-pages: 36
-homepage-title: SEO Expert & Consultant | Technical & Local SEO India
-homepage-h1: SEO Expert & Consultant | Technical & Local SEO India
+release: 2026-11-27.1
+updated: 2026-11-27
+indexable-pages: 40
+homepage-title: Independent SEO Consultant in India | Sreejith Digital
+locations: Bengaluru, Delhi NCR, Hyderabad, Chennai, Kerala

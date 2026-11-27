@@ -39,20 +39,51 @@ The custom domain is already live. A new Workers Builds deployment publishes upd
 
 ## Current release to publish
 
-As of `2026-11-26`, the repository contains the India SEO homepage optimization and growth architecture:
+As of `2026-11-27`, the repository contains release `2026-11-27.1` (doorway/spam fixes, case study and conversion layer):
 
-- 36 indexable pages and 37 HTML files including `404.html`
-- 7 location guides and 8 India-focused resources
-- Homepage title: `SEO Expert & Consultant | Technical & Local SEO India`
-- Homepage H1: `SEO Expert & Consultant | Technical & Local SEO India`
-- `SEO-STRATEGY.md` as the durable keyword map and roadmap
-- `public/version.txt` as a lightweight deployment marker, currently `release: 2026-11-26.5`
-- Menu QA: duplicate hub links removed, all services/resources included, viewport-safe dropdown scrolling, and close-on-scroll/focus-out behaviour
-- Secondary button hover: slow background-only breathing animation, with a static reduced-motion fallback
-- Site-wide content pattern: `SEO Expert & Consultant | [page keyword]` in the title, H1, meta/social description, page-level schema and first hero/intro sentence on every generated HTML page; generated HTML encodes `&` as `&amp;`
-- Kochi page: safer Option A title/meta, no free-audit or ranking claims, and `/locations/seo-consultant-kochi/` 301 alias
+- 40 indexable pages plus `/thank-you/` (noindex) and `404.html`
+- 5 project-based location pages (Bengaluru, Delhi NCR, Hyderabad, Chennai, Kerala); Mumbai and Pune redirect to `/locations/`, Kochi redirects to `/locations/kerala/`
+- Unique, intent-matched titles and H1s (the site-wide `SEO Expert & Consultant | …` pattern is gone)
+- New: `/case-studies/`, `/case-studies/mindtech-solutions-mep-seo/`, `/free-seo-review/`, `/services/ai-search-optimization/`, `/industries/construction-mep-contractors/`, `/resources/location-pages-without-doorway-risk/`
+- A Worker (`worker/index.js`) now answers `POST /api/enquiry`; every other request is served straight from `public/` (`run_worker_first = ["/api/*"]`)
+- `public/version.txt` shows `release: 2026-11-27.1`
 
-Check the live domain against `/version.txt` and `/sitemap.xml`. The live marker should show `release: 2026-11-26.5` and the sitemap should contain 36 clean URLs. If it shows an older release, the sitemap still has 29 URLs, or `/version.txt` returns `404`, Cloudflare is still serving an older build. In that case, open Workers Builds, select the latest commit on `main`, and run **New deployment / Retry build**. The Cloudflare account is not connected to this workspace, so this dashboard action cannot be performed here.
+Check the live domain against `/version.txt` and `/sitemap.xml` (40 URLs). If it shows an older release, open Workers Builds, select the latest commit on `main`, and run **New deployment / Retry build**.
+
+## After merging release 2026-11-27.1 — owner checklist
+
+These steps need the Cloudflare and Google dashboards, which are not connected to this workspace.
+
+### 1. Enquiry form → your inbox (Cloudflare Email Routing, free)
+
+Until this is done the form still works: it opens the visitor's email app with the enquiry pre-filled. Once done, enquiries arrive in your inbox without that step.
+
+1. Cloudflare dashboard → `sreejithdigital.com` → **Email → Email Routing** → enable it (Cloudflare adds the MX/TXT records).
+2. **Destination addresses** → add your inbox and click the verification link Cloudflare emails you.
+3. **Routing rules** → create `hello@sreejithdigital.com` → your inbox (this also makes the address shown on the site work).
+4. In `wrangler.toml`, uncomment:
+   ```toml
+   [[send_email]]
+   name = "ENQUIRY_EMAIL"
+   ```
+5. Set the destination as a secret so it never appears in this public repository:
+   ```bash
+   npx wrangler secret put ENQUIRY_TO   # paste your verified inbox address
+   ```
+   (or Workers → `sreejith-digital` → Settings → Variables and Secrets → add secret `ENQUIRY_TO`).
+6. Commit, let Workers Builds deploy, then send a test from `/free-seo-review/`. You should land on `/thank-you/?ref=SD-…` and receive an email with the same reference. Reply-To is the visitor's address.
+7. Optional: create a KV namespace, uncomment the `[[kv_namespaces]]` block with its id, and every enquiry is also kept for 180 days.
+
+### 2. Analytics (only after consent)
+
+Create a GA4 property and a Microsoft Clarity project, put the IDs in `GA4_MEASUREMENT_ID` and `CLARITY_PROJECT_ID` at the top of `scripts/generate_site.py`, and run `python3 scripts/generate_site.py`. A consent banner then appears; nothing loads until a visitor chooses **Allow analytics**. In GA4, mark `generate_lead` as a key event.
+
+### 3. Search engines and crawlers
+
+- Google Search Console → add a **Domain** property for `sreejithdigital.com` (DNS TXT verification in Cloudflare) → submit `https://sreejithdigital.com/sitemap.xml` → request indexing for `/`, `/about/`, the case study and `/free-seo-review/`.
+- Bing Webmaster Tools → **Import from Google Search Console**.
+- Cloudflare → **Security → Bots / AI Crawl Control**: make sure search and citation crawlers (Googlebot, Bingbot, OAI-SearchBot, PerplexityBot) are allowed. Blocking only training crawlers is a valid choice.
+- Add the `www` → apex Redirect Rule described below.
 
 ## What changed in the repository
 
