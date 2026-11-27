@@ -21,9 +21,9 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-27"
-SITE_VERSION = "2026-11-27.2"
+SITE_VERSION = "2026-11-27.3"
 DEFAULT_DESCRIPTION = (
-    "Independent SEO expert in India, based in Chennai. SEO services for technical, "
+    "SEO expert in India, based in Chennai. SEO services for technical, "
     "local and AI search — with dated client results, not ranking promises."
 )
 
@@ -32,7 +32,7 @@ DEFAULT_DESCRIPTION = (
 # nothing while they are empty, so no placeholder ever reaches a live page.
 # ---------------------------------------------------------------------------
 OWNER_NAME = "Sreejith CU"  # as credited publicly on client work ("Site by Sreejith CU")
-OWNER_JOB_TITLE = "Independent SEO consultant"
+OWNER_JOB_TITLE = "SEO consultant"
 OWNER_BASE_CITY = "Chennai"
 OWNER_ORIGIN = "Thrissur, Kerala"  # owner-confirmed home town, 27 Nov 2026
 OWNER_PHOTO = ""  # e.g. "/assets/img/sreejith-cu.jpg" once a real headshot is added
@@ -53,7 +53,7 @@ OWNER_KNOWS_ABOUT = [
 EXPERIENCE: list[dict] = [
     {
         "period": "2026 – present",
-        "role": "SEO, website and release lead (independent)",
+        "role": "SEO, website and release lead",
         "org": "Mindtech Solutions — MEP, HVAC and fit-out contractor",
         "summary": (
             "Run search strategy, the website, privacy-safe lead tracking and "
@@ -150,7 +150,7 @@ SERVICES = [
         "audience": "In-house teams, founders, and agencies that need expertise without a full outsourced programme.",
         "included": [
             ("Strategy sessions", "Working sessions that turn ambiguous goals into a focused search plan."),
-            ("Independent audit", "An unbiased review of current performance, technical debt, and content gaps."),
+            ("Objective audit", "An unbiased review of current performance, technical debt, and content gaps."),
             ("Migration guidance", "Risk reviews and launch checklists for redesigns, replatforms, and domain changes."),
             ("Stakeholder alignment", "Documentation that helps marketing, engineering, and leadership make the same decisions."),
             ("Quality assurance", "Review implementations before they reach production."),
@@ -433,7 +433,7 @@ SERVICES.sort(key=lambda item: SERVICE_ORDER.index(item["slug"]))
 # Answer-first block shown at the top of each service page (40–60 words).
 SERVICE_ANSWERS = {
     "seo-services": "SEO services cover the whole programme: fixing what stops Google crawling and trusting your site, giving each page one clear search intent, improving content and internal links, and measuring enquiries rather than traffic. Expect first movement in two to four months; competitive terms take longer.",
-    "seo-consulting": "SEO consulting gives your team senior direction without outsourcing the work: an independent audit, a prioritised roadmap, review before changes go live, and help when a decision is unclear. It suits teams that already have developers or writers but need someone accountable for search decisions.",
+    "seo-consulting": "SEO consulting gives your team senior direction without outsourcing the work: a senior-led audit, a prioritised roadmap, review before changes go live, and help when a decision is unclear. It suits teams that already have developers or writers but need someone accountable for search decisions.",
     "local-seo": "Local SEO makes a business easy to find for searches in a specific place: a complete Google Business Profile if you meet customers in person, one genuinely useful page per real service area, consistent business details across listings, and a steady flow of honest reviews.",
     "technical-seo": "Technical SEO removes the reasons Google can’t crawl, render or confidently index your pages: broken internal links, duplicate URLs, wrong canonicals, slow templates, blocked resources and schema that doesn’t match the page. The output is a ranked fix list your developers can ship and verify.",
     "ai-search-optimization": "AI search optimisation helps Google AI Overviews, AI Mode, ChatGPT and Perplexity identify your business and cite it. Google says it is still SEO; the emphasis shifts to an unambiguous entity, direct answers on your pages, open crawl access for search bots and mentions in the sources AI answers draw on.",
@@ -675,7 +675,7 @@ LOCATIONS = [
         "status": "Home base",
         "status_key": "home",
         "title": "SEO Expert in Chennai | Sreejith Digital",
-        "description": "SEO expert in Chennai offering SEO services to local, B2B and manufacturing firms: an independent consultant, not an agency, and easy to meet in person.",
+        "description": "SEO expert in Chennai offering SEO services to local, B2B and manufacturing firms: a senior specialist you work with directly, not an agency account team, and easy to meet in person.",
         "h1": "SEO expert in Chennai",
         "lede": "I’m based in south Chennai, on the GST Road side of the city. Chennai clients get the same method as everyone else — plus a consultant in the same city.",
         "short": "My home base, with meetings possible when a project needs one.",
@@ -699,7 +699,7 @@ LOCATIONS = [
             "Close to Tambaram, Perungalathur, Vandalur and Guduvanchery on GST Road",
         ],
         "faqs": [
-            ("Should I hire an SEO company in Chennai or an independent SEO expert?", "Chennai has many SEO companies, and an agency suits you if you want ads, social media, design and SEO handled by one team. An independent expert suits you if you want one accountable person doing the strategy and the hands-on SEO services. I’m independent, based in south Chennai, and I do the work myself."),
+            ("Should I hire an SEO company in Chennai or a dedicated SEO expert?", "Chennai has many SEO companies, and an agency suits you if you want ads, social media, design and SEO handled by one team. A dedicated expert suits you if you want one accountable specialist leading the strategy and the hands-on SEO services. I’m based in south Chennai, and I lead the work myself."),
             ("Do you meet Chennai clients in person?", "Most work happens remotely because it is faster, but I’m based in Chennai, so a meeting is easy to arrange when a workshop, a site walk-through or a kick-off would help."),
             ("Does my Chennai business need a Google Business Profile?", "If you meet customers in person — at your premises or theirs — yes, and it is usually the fastest local win. If you only work online, Google’s guidelines make you ineligible, so the effort goes into your website and directories instead."),
             ("Should my site have Tamil pages?", "Not by default. Commercial service searches in Chennai are still mostly in English or Romanised Tamil, so check your Search Console queries first. Google’s AI Mode has supported Tamil since October 2025, so conversational Tamil questions are worth watching."),
@@ -737,9 +737,9 @@ LOCATIONS = [
             "Reporting that separates in-state, NRI and visitor enquiries",
         ],
         "faqs": [
-            ("Who is the best SEO expert in Kerala?", "There is no independent ranking, and lists in AI answers are assembled from websites and profiles, not verified results. Judge any SEO expert — including me — by dated results you can check: the page that ranked, the date it was recorded and what didn’t work."),
-            ("How much does an SEO expert in Kerala cost?", "Published monthly packages from Kerala freelancers I checked in November 2026 started between about ₹10,000 and ₹15,000, with larger plans up to ₹50,000; one agency advertised from ₹3,000. Compare what is included — technical fixes, content, reporting — not the price alone."),
-            ("Should I hire an SEO company in Kerala or an independent SEO expert?", "An agency suits you if you need many services at once — ads, social media, design and SEO — handled by a team. An independent (freelance) SEO expert suits you if you want one accountable person doing the strategy and the hands-on work. I’m an independent consultant, not an agency, and I say so on every page."),
+            ("Who is the best SEO expert in Kerala?", "There is no official ranking, and lists in AI answers are assembled from websites and profiles, not verified results. Judge any SEO expert — including me — by dated results you can check: the page that ranked, the date it was recorded and what didn’t work."),
+            ("How much does an SEO expert in Kerala cost?", "Published monthly packages from Kerala SEO providers I checked in November 2026 started between about ₹10,000 and ₹15,000, with larger plans up to ₹50,000; one agency advertised from ₹3,000. Compare what is included — technical fixes, content, reporting — not the price alone."),
+            ("Should I hire an SEO company in Kerala or a dedicated SEO expert?", "An agency suits you if you need many services at once — ads, social media, design and SEO — handled by a team. A dedicated SEO expert suits you if you want one accountable specialist leading the strategy and the hands-on work. That is how I work: you deal with me directly, from audit to release."),
             ("What should I look for when hiring an SEO expert in Kerala?", "Dated results you can check — the search term, the page that ranked and the date — a written plan before any work starts, clarity on who does the work, honest timelines without ranking guarantees, and reporting tied to enquiries. Be wary of unverified “No. 1” claims and of Google Maps listings with keywords stuffed into the business name, which Google’s guidelines prohibit."),
             ("Can you improve my local Google rankings in Kerala?", "Local rankings depend mostly on your Google Business Profile, your reviews, your relevance and how close you are to the searcher. I fix the profile, build pages for the places you really serve and clean up listings elsewhere, then report Maps and organic positions separately. Nobody can promise a position; reviews from real customers matter most in the map pack."),
             ("Do you work with ecommerce businesses in Kerala?", "Yes. Kerala stores selling spices, handloom, Ayurveda products, snacks or jewellery usually need national rather than local SEO: category and product pages that can rank across India, product structured data, and fixing the crawl waste that filters and duplicate product URLs create."),
@@ -756,15 +756,15 @@ LOCATIONS = [
         "status": "Same state",
         "status_key": "home",
         "title": "SEO Expert in Tamil Nadu | Sreejith Digital",
-        "description": "SEO expert and independent consultant for Tamil Nadu businesses, based in Chennai, with honest city-level guidance and no invented local results.",
+        "description": "SEO expert and consultant for Tamil Nadu businesses, based in Chennai, with honest city-level guidance and no invented local results.",
         "h1": "SEO expert in Tamil Nadu",
-        "lede": "I’m based in Chennai, in Tamil Nadu. This hub is for businesses comparing an SEO company with an independent expert, and for city-level searches that need more than a name swapped into a template.",
+        "lede": "I’m based in Chennai, in Tamil Nadu. This hub is for businesses comparing an SEO company with a dedicated expert, and for city-level searches that need more than a name swapped into a template.",
         "short": "Same-state hub for Chennai and city-level Tamil Nadu search demand.",
         "delivery": "Based in Chennai, same state",
         "results_city": "",
         "context_heading": "Why this state hub exists",
         "context": [
-            "Tamil Nadu searchers use both “SEO expert” and “SEO company” phrasing. A state hub should make the difference clear: an agency can coordinate ads, design and social, while an independent consultant gives one accountable person for strategy and technical SEO.",
+            "Tamil Nadu searchers use both “SEO expert” and “SEO company” phrasing. A state hub should make the difference clear: an agency can coordinate ads, design and social, while a dedicated consultant gives one accountable specialist for strategy and technical SEO.",
             "Chennai keeps its own home-base page at /locations/chennai/. Its schema already sits inside Tamil Nadu, so the state hub links to it rather than duplicating it.",
             "A separate city page is published only when it has distinct sectors, search behaviour, localities and FAQs. Swapping the city name must make the copy false; otherwise the page stays a doorway page and does not ship.",
         ],
@@ -780,7 +780,7 @@ LOCATIONS = [
             "No local office or local client result claimed",
         ],
         "faqs": [
-            ("Should I hire an SEO company in Tamil Nadu or an independent expert?", "A company fits if you want ads, design, social media and SEO coordinated by one team. An independent expert fits if you want one accountable person doing the strategy, technical audit and reporting. I’m an independent consultant based in Chennai, not an agency."),
+            ("Should I hire an SEO company in Tamil Nadu or a dedicated expert?", "A company fits if you want ads, design, social media and SEO coordinated by one team. A dedicated expert fits if you want one accountable specialist leading the strategy, technical audit and reporting. I’m based in Chennai and lead every engagement myself."),
             ("Do you have an office outside Chennai in Tamil Nadu?", "No. I’m based in Chennai and can meet in person when travelling in the same state, but I don’t list offices in other cities. A fake address is a trust risk and a Google Business Profile risk."),
             ("Do you have published client results from Coimbatore, Madurai or Salem?", "No. I don’t have a published local client result from those cities, and I won’t invent one. The dated case study on this site is from other markets, with both wins and misses written up."),
             ("Can we work in Tamil?", "I consult in English or Malayalam. Tamil-language consulting is not claimed, so content and calls should be planned around those confirmed languages."),
@@ -851,13 +851,13 @@ STATE_CITIES = {
         ],
         "areas": ["Kakkanad", "Edappally", "Vyttila", "Palarivattom", "Kaloor", "MG Road", "Fort Kochi", "Kalamassery", "Aluva", "Tripunithura"],
         "landscape": [
-            "An AI Overview sat at the top, listing four freelance consultants drawn from their own websites and profiles.",
+            "An AI Overview sat at the top, listing four individual consultants drawn from their own websites and profiles.",
             "The map pack showed three providers with between 10 and 80 Google reviews.",
             "Below that: personal-brand sites with a page for each city, a LinkedIn profile and free-hosted sites.",
         ],
         "faqs": [
             ("Should my Kochi business target “Kochi”, “Cochin” or “Ernakulam”?", "All three are searched. Lead with the name your customers use (check your Search Console queries), mention the others once where it reads naturally, and use locality names like Kakkanad or Edappally where you actually serve. Don’t build a separate page for each name; that is duplication."),
-            ("Should I hire an SEO company in Kochi or an independent expert?", "If you want ads, social media, design and SEO run by one team, an agency fits. If you want one accountable person doing the strategy and the hands-on SEO, an independent expert fits. I’m independent, not an agency, and I work with Kochi businesses remotely."),
+            ("Should I hire an SEO company in Kochi or a dedicated expert?", "If you want ads, social media, design and SEO run by one team, an agency fits. If you want one accountable person doing the strategy and the hands-on SEO, a dedicated expert fits. I lead every engagement myself and work with Kochi businesses remotely."),
             ("Can an Infopark company rank outside Kerala?", "Yes, and that is usually the right goal. Product and service firms in Kochi rarely need the city in their keywords. They need pages built around what buyers in Bengaluru, the Gulf or overseas type, plus proof those buyers trust."),
             ("How long does SEO take for a Kochi business?", "With a sound site, local service terms often move within two to three months and settle over four to six. In my published case study, five commercial terms reached page 1 in about three months — in other markets, so treat it as a reference, not a promise."),
             ("Do you have an office in Kochi?", "No. I’m from Thrissur and based in Chennai. I work with Kochi businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
@@ -890,14 +890,14 @@ STATE_CITIES = {
         ],
         "areas": ["Kazhakkoottam", "Technopark", "Pattom", "Kowdiar", "Vazhuthacaud", "Thampanoor", "Kesavadasapuram", "Peroorkada", "Kovalam", "Varkala"],
         "landscape": [
-            "An AI Overview listed eight freelancers and pointed to directories for agencies.",
+            "An AI Overview listed eight individual consultants and pointed to directories for agencies.",
             "The map pack showed providers with between 3 and 128 Google reviews, the top one in business for 15+ years.",
             "Google noted that two results had been removed from the page after copyright (DMCA) complaints.",
         ],
         "faqs": [
             ("Trivandrum or Thiruvananthapuram — which should my website use?", "Use “Trivandrum” in titles if that is what your customers type (check Search Console), and the official name in your address, body copy and structured data. Search engines understand both refer to the same city; your job is to match the words buyers use."),
             ("Do hospitals and clinics in Trivandrum need a different approach?", "Yes. Health pages are held to a higher standard. Show who wrote and reviewed each page, list doctors’ qualifications, avoid outcome promises, and keep department and doctor pages consistent with your Google Business Profile."),
-            ("Is an SEO company in Trivandrum better than a freelance expert?", "It depends on what you need. Agencies bundle SEO with ads, social media and design; a freelance or independent expert gives you one person who owns the strategy and does the work. Ask either for dated results and who will actually work on your site."),
+            ("Is an SEO company in Trivandrum better than a dedicated SEO expert?", "It depends on what you need. Agencies bundle SEO with ads, social media and design; a dedicated expert gives you one specialist who owns the strategy and leads the work. Ask either for dated results and who will actually work on your site."),
             ("When should a coaching centre start SEO?", "At least three to four months before admissions open. Course pages need time to be crawled and ranked, and results pages from earlier batches need dates and specifics to be believed."),
             ("Do you have an office in Trivandrum?", "No. I’m from Thrissur and based in Chennai. I work with Trivandrum businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
         ],
@@ -968,8 +968,8 @@ STATE_CITIES = {
         ],
         "areas": ["Swaraj Round", "Punkunnam", "Ayyanthole", "Poonkunnam", "Guruvayur", "Kunnamkulam", "Irinjalakuda", "Chalakudy", "Kodungallur", "Wadakkanchery"],
         "landscape": [
-            "An AI Overview listed five freelancers and four agencies; the agencies had between 114 and 329 Google reviews.",
-            "Organic results mixed freelancer sites with Justdial and Sortlist directories.",
+            "An AI Overview listed five individual consultants and four agencies; the agencies had between 114 and 329 Google reviews.",
+            "Organic results mixed consultant sites with Justdial and Sortlist directories.",
             "Two map-pack listings used the search phrase itself in the business name — a practice Google’s business-profile guidelines prohibit.",
         ],
         "faqs": [
@@ -1116,9 +1116,9 @@ STATE_CITIES = {
         ],
         "areas": ["Palakkad town", "Kanjikode", "Ottapalam", "Shoranur", "Chittur", "Mannarkkad", "Alathur", "Pattambi", "Kalpathy", "Walayar"],
         "landscape": [
-            "No AI Overview appeared; the map pack showed three freelancers with 5 to 17 reviews.",
+            "No AI Overview appeared; the map pack showed three individual consultants with 5 to 17 reviews.",
             "A directory on page 1 listed 36+ SEO consultants in Palakkad.",
-            "Most organic results were one-person freelancer sites, one on a free hosting subdomain.",
+            "Most organic results were individual consultant sites, one on a free hosting subdomain.",
         ],
         "faqs": [
             ("Should a Palakkad manufacturer target Coimbatore too?", "If you sell there, yes. Name the areas you really supply on your service and product pages, and make sure the specifications Coimbatore buyers compare are on the page, not only in a brochure."),
@@ -1186,12 +1186,12 @@ STATE_CITIES = {
                         '293) and CLOUD DREAMS (4.8, 493); the company query showed BAA GROUPS, Webnox Technologies '
                         '(4.8, 451) and CLOUD DREAMS.',
                         'AI Mode replies summarised local agencies, while web results included Webnox’s AI SEO '
-                        'services page, an Upwork freelance listing and a OneCity local comparison page. Results '
+                        'services page, an Upwork consultant listing and a OneCity local comparison page. Results '
                         'change daily, so the checklist beside this asks for dated evidence.'],
-          'faqs': [('Should I hire an SEO company in Coimbatore or an independent expert?',
+          'faqs': [('Should I hire an SEO company in Coimbatore or a dedicated expert?',
                     'If a textile machinery exporter needs a new website, ads, social media and SEO coordinated by '
                     'one team, a company can fit. If a pump manufacturer wants one person to audit specification '
-                    'pages, fix indexation and report enquiries, an independent expert fits. I work independently '
+                    'pages, fix indexation and report enquiries, a dedicated expert fits. I lead the work '
                     'from Chennai.'),
                    ('Can a TIDEL Park software firm target buyers outside Coimbatore?',
                     'Yes, and that is usually the right goal. Buyers in Chennai, Bengaluru or overseas rarely search '
@@ -1210,7 +1210,7 @@ STATE_CITIES = {
                     'and reporting are planned around the confirmed languages rather than an unverified '
                     'capability.')],
           'nearby': ['madurai', 'salem'],
-          'answer': 'Sreejith CU is an independent SEO consultant based in Chennai who works with Coimbatore textile '
+          'answer': 'Sreejith CU is an SEO consultant based in Chennai who works with Coimbatore textile '
                     'mills, pump and motor exporters, TIDEL Park teams and hospital departments remotely in English '
                     'or Malayalam. His dated case study is from Bengaluru, not Coimbatore. No Coimbatore office, '
                     'local client result or Tamil-language consulting is claimed.'},
@@ -1222,7 +1222,7 @@ STATE_CITIES = {
           'status_label': 'Same state',
           'title': 'SEO Company in Madurai | Sreejith Digital',
           'description': 'SEO company in Madurai advice for temple tourism, textiles, eye care and colleges, with '
-                         'verified local context and an independent consultant based in Chennai.',
+                         'verified local context and a consultant based in Chennai.',
           'h1': 'SEO company in Madurai',
           'lede': 'Madurai’s search demand is shaped by visitors planning a temple trip, families comparing colleges '
                   'and hospitals, and textile buyers checking product detail. I help those organisations separate '
@@ -1270,11 +1270,11 @@ STATE_CITIES = {
                         'AI Mode replies named local agencies, while web results included Lavish Technologies’ '
                         'specialist page, a Moris Media small-business guide and a 10SEOS directory page. Results '
                         'change daily; that is why this page asks for the URL, date and method behind any claim.'],
-          'faqs': [('Should I hire an SEO company in Madurai or an independent expert?',
+          'faqs': [('Should I hire an SEO company in Madurai or a dedicated expert?',
                     'A company suits a hotel group that wants design, paid campaigns, social content and SEO '
-                    'coordinated together. An independent expert suits a textile exporter or college that wants one '
-                    'accountable person for structure, technical fixes and reporting. I am an independent consultant '
-                    'based in Chennai.'),
+                    'coordinated together. A dedicated expert suits a textile exporter or college that wants one '
+                    'accountable specialist for structure, technical fixes and reporting. I lead every engagement '
+                    'from Chennai.'),
                    ('Can a hotel near Meenakshi Temple rank for visitor searches?',
                     'Yes, but the page has to answer the visitor’s actual questions: distance and route to the '
                     'temple, check-in times, parking, family rooms and festival dates. A page that only repeats the '
@@ -1292,7 +1292,7 @@ STATE_CITIES = {
                     'and reporting are planned around the confirmed languages rather than an unverified '
                     'capability.')],
           'nearby': ['coimbatore', 'salem'],
-          'answer': 'Sreejith CU is an independent SEO consultant based in Chennai who works with Madurai visitor, '
+          'answer': 'Sreejith CU is an SEO consultant based in Chennai who works with Madurai visitor, '
                     'textile, eye-care and education pages remotely in English or Malayalam. The Meenakshi Temple '
                     'visitor economy, cotton textile units, Aravind Eye Hospital and university colleges shape the '
                     'page structure here. No Madurai office, local client result or Tamil-language consulting is '
@@ -1350,16 +1350,16 @@ STATE_CITIES = {
                         'company in salem” detected Salem, Tamil Nadu and reported about 43 and 54 results '
                         'respectively.',
                         'The local pack for the expert query showed First Success Technologies (4.8, 1.8K reviews), '
-                        'SEO Freelancer Salem - Vijay SEO Expert (5.0, 3) and SEO Expert with no reviews; the '
+                        'a local SEO consultant listing, Vijay SEO Expert (5.0, 3) and SEO Expert with no reviews; the '
                         'company query showed First Success Technologies, OctaDigi (5.0, 56) and Vijay Digital India '
                         '(5.0, 3).',
                         'An AI Overview was unavailable on both queries, while web results included a Justdial '
                         'directory listing, a Moris Media small-business guide and Doozy Info’s company page. Dated '
                         'observations are useful context, not a ranking promise.'],
-          'faqs': [('Should I hire an SEO company in Salem or an independent expert?',
+          'faqs': [('Should I hire an SEO company in Salem or a dedicated expert?',
                     'A company fits a textile retailer that wants website design, paid ads, social media and SEO run '
-                    'by one team. An independent expert fits a sago exporter or steel supplier that wants one person '
-                    'to fix product-page architecture, indexation and enquiry tracking. I work independently from '
+                    'by one team. A dedicated expert fits a sago exporter or steel supplier that wants one person '
+                    'to fix product-page architecture, indexation and enquiry tracking. I lead the work from '
                     'Chennai.'),
                    ('Can a Salem sago or mango brand rank outside the district?',
                     'Yes, if the page answers the buyer’s commercial checks: origin, variety, pack sizes, season, '
@@ -1378,7 +1378,7 @@ STATE_CITIES = {
                     'and reporting are planned around the confirmed languages rather than an unverified '
                     'capability.')],
           'nearby': ['coimbatore', 'madurai'],
-          'answer': 'Sreejith CU is an independent SEO consultant based in Chennai who works with Salem steel, sago, '
+          'answer': 'Sreejith CU is an SEO consultant based in Chennai who works with Salem steel, sago, '
                     'handloom, mango and transport businesses remotely in English or Malayalam. Product '
                     'specifications, dispatch regions and route pages matter more here than a repeated city name. No '
                     'Salem office, local client result or Tamil-language consulting is claimed.'}],
@@ -1980,7 +1980,7 @@ CASE_STUDIES = [
             ("Oct–Nov 2026", "Design system and safe releases", "A design-token system with automated consistency checks, then release automation with a tested rollback, so SEO changes could ship often without breaking the site."),
             ("Nov 2026", "City pages that pass the test", "Hyderabad, Chennai and Delhi NCR pages built on local authorities, local sectors and an honest line about where work was done. Thin service × city combinations were held back or redirected instead of published."),
             ("Nov 2026", "Home page goes national", "Retargeted the home page to India with a headline that names no city, so it stopped competing with the Bengaluru page for the same searches."),
-            ("Nov 2026", "AI search corroboration", "When a business directory appeared among the sources of the AI Overview, the client was submitted to it to strengthen independent corroboration."),
+            ("Nov 2026", "AI search corroboration", "When a business directory appeared among the sources of the AI Overview, the client was submitted to it to strengthen third-party corroboration."),
         ],
         "method": [
             {"tag": "01", "title": "One page per intent", "text": "Each service and city page has a single job. The home page claims India; each city page claims its city."},
@@ -2006,7 +2006,7 @@ LOCATION_BY_SLUG = {item["slug"]: item for item in LOCATIONS}
 RESOURCE_BY_SLUG = {item["slug"]: item for item in RESOURCES}
 
 SERVICE_SEO_TITLES = {
-    "seo-consulting": "SEO Consulting Services India | Independent SEO Consultant",
+    "seo-consulting": "SEO Consulting Services India | Senior SEO Consultant",
     "technical-seo": "Technical SEO Consultant India | Audits & Implementation",
     "local-seo": "Local SEO Services India | Profiles & Location Pages",
     "ai-search-optimization": "AI SEO Expert India | AI Search Optimisation (AEO, GEO)",
@@ -2194,7 +2194,7 @@ def render_footer() -> str:
         <span class="brand__mark" aria-hidden="true"><span></span></span>
         <span class="brand__text">SREEJITH <span>DIGITAL</span></span>
       </a>
-      <p>Independent SEO consulting by {e(OWNER_NAME)}. Based in {e(OWNER_BASE_CITY)}, working with businesses across India. Dated results, no ranking promises.</p>
+      <p>Senior SEO consulting by {e(OWNER_NAME)}. Based in {e(OWNER_BASE_CITY)}, working with businesses across India. Dated results, no ranking promises.</p>
       <a class="footer-email" href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>
     </div>
     <div class="footer-column">
@@ -2437,7 +2437,7 @@ def render_page(
   <meta property="og:image" content="{BASE_URL}{OG_IMAGE}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Sreejith Digital — independent SEO consulting, Chennai and across India">
+  <meta property="og:image:alt" content="Sreejith Digital — SEO consulting, Chennai and across India">
 {article_meta}  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{e(title)}">
   <meta name="twitter:description" content="{e(description)}">
@@ -2802,7 +2802,7 @@ def home_page() -> None:
         "No ranking guarantees, no invented case studies",
     ]
     homepage_faqs = [
-        ("What does an independent SEO consultant do?", "An independent SEO consultant finds what is stopping a website from being found and trusted, sets priorities, and helps ship the fixes — technical, content and local — then measures the effect on enquiries. You deal with one accountable person rather than an account manager."),
+        ("What does an SEO consultant do?", "An SEO consultant finds what is stopping a website from being found and trusted, sets priorities, and helps ship the fixes — technical, content and local — then measures the effect on enquiries. You deal with one accountable specialist rather than an account manager."),
         ("Do you work with businesses outside Chennai?", "Yes. I’m based in Chennai and work remotely with businesses across India. I have pages for Bengaluru, Delhi NCR, Hyderabad, Chennai, Kerala and Tamil Nadu — plus eight Kerala cities and Coimbatore, Madurai and Salem — each with an honest status."),
         ("Do you guarantee rankings?", "No. Nobody controls Google’s rankings. What I show instead is dated client results — including the terms that haven’t reached page 1 yet — and the method behind them."),
         ("How long does SEO take for a business like mine?", "Brand searches and niche long-tail terms can move within weeks to a few months; competitive city terms usually take six months or more. The case study shows one client reaching page 1 for five terms in about three months, but every market is different."),
@@ -2816,8 +2816,8 @@ def home_page() -> None:
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow eyebrow--pill">Independent SEO consultant · Chennai · Across India</p>
-      <h1>Independent SEO expert in India</h1>
+      <p class="eyebrow eyebrow--pill">Senior SEO consultant · Chennai · Across India</p>
+      <h1>SEO expert in India</h1>
       <p class="hero-tagline">For businesses that need enquiries, not just traffic.</p>
       <p class="hero-lede">I’m {e(OWNER_NAME)} — originally from Thrissur, Kerala, based in Chennai. I combine SEO strategy with hands-on technical work, and I show dated results instead of ranking promises.</p>
       <div class="hero-actions">
@@ -2935,7 +2935,7 @@ def home_page() -> None:
 '''
     write_page(
         path="/",
-        title="Independent SEO Expert in India | Sreejith Digital",
+        title="SEO Expert in India | Sreejith Digital",
         description=DEFAULT_DESCRIPTION,
         main=main,
         body_class="page-home",
@@ -2975,9 +2975,9 @@ def about_page() -> None:
     main = f'''{page_hero(
         path="/about/",
         eyebrow="About",
-        title=f"{OWNER_NAME}, independent SEO consultant",
+        title=f"{OWNER_NAME}, SEO consultant",
         lede=f"I run {SITE_NAME}: SEO strategy plus the technical work that makes it stick — site structure, structured data, enquiry tracking and careful releases. From {OWNER_ORIGIN}, based in {OWNER_BASE_CITY}, working with businesses across India.",
-        meta=[f"From {OWNER_ORIGIN} · based in {OWNER_BASE_CITY}", "Independent practice", "Strategy + delivery"],
+        meta=[f"From {OWNER_ORIGIN} · based in {OWNER_BASE_CITY}", "Senior-led practice", "Strategy + delivery"],
     )}
 
 <section class="section">
@@ -3026,8 +3026,8 @@ def about_page() -> None:
 '''
     write_page(
         path="/about/",
-        title=f"About {OWNER_NAME} — Independent SEO Consultant, Chennai",
-        description=f"{OWNER_NAME} runs {SITE_NAME}, an independent SEO practice based in Chennai: strategy, technical SEO and careful releases for businesses across India.",
+        title=f"About {OWNER_NAME} — SEO Consultant, Chennai",
+        description=f"{OWNER_NAME} runs {SITE_NAME}, an SEO practice based in Chennai: strategy, technical SEO and careful releases for businesses across India.",
         main=main,
         page_type="ProfilePage",
         about_id=PERSON_ID,
@@ -3075,7 +3075,7 @@ def services_hub() -> None:
     write_page(
         path="/services/",
         title="SEO Services: Consulting, Technical, Local & AI Search",
-        description="SEO services from an independent consultant: consulting, technical, local and AI search, content strategy, reporting, Google Ads and website builds.",
+        description="SEO services from a senior consultant: consulting, technical, local and AI search, content strategy, reporting, Google Ads and website builds.",
         main=main,
         page_type="CollectionPage",
     )
@@ -3541,7 +3541,7 @@ def city_answer(city: dict) -> str:
     """Entity-first answer for AI Overviews and assistants (about 55 words)."""
     label = city_label(city)
     return (
-        f"{OWNER_NAME} is an independent SEO consultant from Thrissur, Kerala, based in Chennai, who works with "
+        f"{OWNER_NAME} is an SEO consultant from Thrissur, Kerala, based in Chennai, who works with "
         f"{label} businesses remotely, in Malayalam or English. His published work took an MEP contractor to #1 on Google India "
         f"in Bengaluru ({RESULTS_DATE}) and into Google’s AI Overview for “MEP contractors in India” "
         f"({AI_CITATION_DATE}). No {label} client result is published yet."
@@ -3811,7 +3811,7 @@ def resource_page(resource: dict) -> None:
 <section class="section">
   <div class="container article-layout">
     <article class="prose article-prose">
-      <p class="byline">By <a href="/about/">{e(OWNER_NAME)}</a>, independent SEO consultant · Updated {e(LAST_UPDATED)}</p>
+      <p class="byline">By <a href="/about/">{e(OWNER_NAME)}</a>, SEO consultant · Updated {e(LAST_UPDATED)}</p>
       {''.join(sections)}
       <div class="article-end"><span aria-hidden="true">✦</span><p>Written by <a href="/about/"><strong>{e(OWNER_NAME)}</strong></a> · Practical SEO guidance from real client work.</p></div>
     </article>
@@ -3900,7 +3900,7 @@ def case_studies_hub() -> None:
     write_page(
         path="/case-studies/",
         title="SEO Case Studies: Work, Method & Results | Sreejith Digital",
-        description="SEO case studies from an independent consultant in India: where I worked, what we did, how, and dated outcomes — including what hasn’t moved yet.",
+        description="SEO case studies from a senior consultant in India: where I worked, what we did, how, and dated outcomes — including what hasn’t moved yet.",
         main=main,
         page_type="CollectionPage",
     )
@@ -4091,7 +4091,7 @@ def free_review_page() -> None:
     write_page(
         path="/free-seo-review/",
         title="Free SEO Review for Indian Businesses | Sreejith Digital",
-        description="Get a free, written SEO review from an independent consultant: the three changes to make first and an honest view on whether SEO is right for you now.",
+        description="Get a free, written SEO review from a senior consultant: the three changes to make first and an honest view on whether SEO is right for you now.",
         main=main,
         schema_extra=[faq_schema(faqs)],
         show_mobile_cta=False,
@@ -4139,7 +4139,7 @@ def contact_page() -> None:
 '''
     write_page(
         path="/contact/",
-        title="Contact an Independent SEO Consultant | Sreejith Digital",
+        title="Contact an SEO Consultant | Sreejith Digital",
         description=f"Contact {OWNER_NAME} about SEO consulting, technical SEO, local or AI search, or a website project. Based in Chennai, working across India.",
         main=main,
         page_type="ContactPage",
@@ -4329,7 +4329,7 @@ def write_version_marker() -> None:
         f"release: {SITE_VERSION}",
         f"updated: {LAST_UPDATED}",
         f"indexable-pages: {len(sitemap_paths())}",
-        "homepage-title: Independent SEO Expert in India | Sreejith Digital",
+        "homepage-title: SEO Expert in India | Sreejith Digital",
         f"locations: {', '.join(item['name'] for item in LOCATIONS)}",
         f"kerala-cities: {', '.join(city_label(item) for item in KERALA_CITIES)}",
         f"tamil-nadu-cities: {', '.join(city_label(item) for item in STATE_CITIES['tamil-nadu'])}",
