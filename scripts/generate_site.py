@@ -750,6 +750,45 @@ LOCATIONS = [
         "services": ["local-seo", "content-strategy", "seo-consulting"],
         "industries": ["professional-services", "local-multi-location"],
     },
+    {
+        "slug": "tamil-nadu",
+        "name": "Tamil Nadu",
+        "status": "Same state",
+        "status_key": "home",
+        "title": "SEO Expert in Tamil Nadu | Sreejith Digital",
+        "description": "SEO expert and independent consultant for Tamil Nadu businesses, based in Chennai, with honest city-level guidance and no invented local results.",
+        "h1": "SEO expert in Tamil Nadu",
+        "lede": "I’m based in Chennai, in Tamil Nadu. This hub is for businesses comparing an SEO company with an independent expert, and for city-level searches that need more than a name swapped into a template.",
+        "short": "Same-state hub for Chennai and city-level Tamil Nadu search demand.",
+        "delivery": "Based in Chennai, same state",
+        "results_city": "",
+        "context_heading": "Why this state hub exists",
+        "context": [
+            "Tamil Nadu searchers use both “SEO expert” and “SEO company” phrasing. A state hub should make the difference clear: an agency can coordinate ads, design and social, while an independent consultant gives one accountable person for strategy and technical SEO.",
+            "Chennai keeps its own home-base page at /locations/chennai/. Its schema already sits inside Tamil Nadu, so the state hub links to it rather than duplicating it.",
+            "A separate city page is published only when it has distinct sectors, search behaviour, localities and FAQs. Swapping the city name must make the copy false; otherwise the page stays a doorway page and does not ship.",
+        ],
+        "work_heading": "Work connected to Tamil Nadu",
+        "work": [
+            "I don’t have a published client result from Coimbatore, Madurai or Salem yet, and I won’t imply one. The published case study is from Bengaluru, where an MEP contractor reached page-one commercial positions on Google India and was cited in Google’s AI Overview for a sector query.",
+            "The method is the same across states: a written baseline, one page per intent, approved proof next to each claim, clean internal links and dated reporting. When there is a Tamil Nadu city result, it will be dated and shown on that city’s page.",
+        ],
+        "engage_heading": "Working with Tamil Nadu teams",
+        "engage": [
+            "Calls in English or Malayalam",
+            "Based in Chennai, same state; meetings when travelling",
+            "No local office or local client result claimed",
+        ],
+        "faqs": [
+            ("Should I hire an SEO company in Tamil Nadu or an independent expert?", "A company fits if you want ads, design, social media and SEO coordinated by one team. An independent expert fits if you want one accountable person doing the strategy, technical audit and reporting. I’m an independent consultant based in Chennai, not an agency."),
+            ("Do you have an office outside Chennai in Tamil Nadu?", "No. I’m based in Chennai and can meet in person when travelling in the same state, but I don’t list offices in other cities. A fake address is a trust risk and a Google Business Profile risk."),
+            ("Do you have published client results from Coimbatore, Madurai or Salem?", "No. I don’t have a published local client result from those cities, and I won’t invent one. The dated case study on this site is from other markets, with both wins and misses written up."),
+            ("Can we work in Tamil?", "I consult in English or Malayalam. Tamil-language consulting is not claimed, so content and calls should be planned around those confirmed languages."),
+            ("Do you have separate pages for every Tamil Nadu city?", "No. Chennai has its own home-base page. A separate city page is added only when there is real local substance, distinct demand and copy that would become false if the city name were swapped."),
+        ],
+        "services": ["local-seo", "technical-seo", "seo-consulting"],
+        "industries": ["professional-services", "local-multi-location"],
+    },
 ]
 
 LOCATION_STATUS_NOTE = {
@@ -777,6 +816,7 @@ LOCATION_PLACES = {
     "hyderabad": {"@type": "City", "name": "Hyderabad", "sameAs": WIKI + "Hyderabad", "containedInPlace": STATE_PLACES["Telangana"]},
     "chennai": {"@type": "City", "name": "Chennai", "alternateName": "Madras", "sameAs": WIKI + "Chennai", "containedInPlace": STATE_PLACES["Tamil Nadu"]},
     "kerala": STATE_PLACES["Kerala"],
+    "tamil-nadu": STATE_PLACES["Tamil Nadu"],
 }
 
 SERP_DATE = "27 November 2026"
@@ -3122,6 +3162,13 @@ def location_page(location: dict) -> None:
     {state_city_cards("kerala", KERALA_CITIES, 4)}
   </div>
 </section>'''
+    elif location["slug"] == "tamil-nadu":
+        cities_html = f'''<section class="section section--surface">
+  <div class="container">
+    {section_header("Across the state", "Tamil Nadu locations", "Chennai remains the home-base city; separate city pages are published only when each one has distinct local substance.")}
+    <div class="prose"><p><a class="text-link" href="/locations/chennai/">Read the Chennai home-base page <span aria-hidden="true">→</span></a></p></div>
+  </div>
+</section>'''
     results_html = ""
     if results:
         results_html = rankings_table(results, f"Client pages, Google India, recorded {RESULTS_DATE}.")
@@ -3159,7 +3206,7 @@ def location_page(location: dict) -> None:
 
 {cities_html}
 
-<section class="section{' section--surface' if location['slug'] != 'kerala' else ''}">
+<section class="section{' section--surface' if location['slug'] not in {'kerala', 'tamil-nadu'} else ''}">
   <div class="container split-section split-section--reverse">
     <aside class="aside-panel">
       <p class="eyebrow">{e(location["engage_heading"])}</p>
