@@ -784,7 +784,8 @@ SERP_DATE = "27 November 2026"
 # Kerala city pages. Gate: Google India autocomplete shows "seo expert in <city>"
 # as a popular suggestion (checked 27 Nov 2026). Each page must pass the
 # city-name test: swap the city name and the page becomes false.
-KERALA_CITIES = [
+STATE_CITIES = {
+    "kerala": [
     {
         "slug": "kochi",
         "name": "Kochi",
@@ -1087,11 +1088,23 @@ KERALA_CITIES = [
         ],
         "nearby": ["thrissur", "malappuram", "kochi"],
     },
-]
-KERALA_CITY_BY_SLUG = {city["slug"]: city for city in KERALA_CITIES}
+    ],
+    "tamil-nadu": [],
+}
+
+KERALA_CITIES = STATE_CITIES["kerala"]
+STATE_CITY_STATE_NAMES = {
+    "kerala": "Kerala",
+    "tamil-nadu": "Tamil Nadu",
+}
+STATE_CITY_BY_SLUG = {
+    state_slug: {city["slug"]: city for city in cities}
+    for state_slug, cities in STATE_CITIES.items()
+}
+KERALA_CITY_BY_SLUG = STATE_CITY_BY_SLUG["kerala"]
 
 
-def city_place(city: dict) -> dict:
+def city_place(city: dict, state_slug: str = "kerala") -> dict:
     """Country > State > District > City, for Service.areaServed."""
     place = {
         "@type": "City",
@@ -1101,7 +1114,7 @@ def city_place(city: dict) -> dict:
             "@type": "AdministrativeArea",
             "name": f'{city["district"]} district',
             "sameAs": WIKI + f'{city["district"]}_district',
-            "containedInPlace": STATE_PLACES["Kerala"],
+            "containedInPlace": STATE_PLACES[STATE_CITY_STATE_NAMES[state_slug]],
         },
     }
     if city.get("alt_names"):
@@ -3038,7 +3051,7 @@ def locations_hub() -> None:
 <section class="section">
   <div class="container">
     {section_header("Kerala", "Kerala, city by city", "Pages for the eight Kerala cities where Google’s autocomplete shows steady demand for an SEO expert.", ("Kerala overview", "/locations/kerala/"))}
-    {kerala_city_cards(KERALA_CITIES, 4)}
+    {state_city_cards("kerala", KERALA_CITIES, 4)}
   </div>
 </section>
 
@@ -3106,7 +3119,7 @@ def location_page(location: dict) -> None:
         cities_html = f'''<section class="section section--surface">
   <div class="container">
     {section_header("Across the state", "SEO expert in each Kerala city", "Eight city pages, each with that city’s industries, how its customers search and what page 1 looked like on " + SERP_DATE + ".")}
-    {kerala_city_cards(KERALA_CITIES, 4)}
+    {state_city_cards("kerala", KERALA_CITIES, 4)}
   </div>
 </section>'''
     results_html = ""
@@ -3195,14 +3208,14 @@ def location_page(location: dict) -> None:
     )
 
 
-def kerala_city_cards(items: list[dict], columns: int = 4) -> str:
+def state_city_cards(state_slug: str, items: list[dict], columns: int = 4) -> str:
     return card_grid(
         [
             {
                 "tag": f'{item["district"]} district',
                 "title": city_label(item),
                 "text": item["short"],
-                "href": f'/locations/kerala/{item["slug"]}/',
+                "href": f'/locations/{state_slug}/{item["slug"]}/',
                 "link_label": f"SEO expert in {city_label(item)}",
             }
             for item in items
@@ -3222,9 +3235,23 @@ def city_answer(city: dict) -> str:
     )
 
 
-def kerala_city_page(city: dict) -> None:
-    path = f'/locations/kerala/{city["slug"]}/'
+def state_city_answer(state_slug: str, city: dict) -> str:
+    """Entity-first answer; Kerala keeps its original wording."""
+    if state_slug == "kerala":
+        return city_answer(city)
     label = city_label(city)
+    return (
+        f"{OWNER_NAME} is an independent SEO consultant based in Chennai, Tamil Nadu, who works with {label} "
+        f"businesses remotely in English or Malayalam. His published work took an MEP contractor to page-one "
+        f"commercial positions in Bengaluru ({RESULTS_DATE}) and into Google’s AI Overview for “MEP contractors "
+        f"in India” ({AI_CITATION_DATE}). No {label} client result is published yet, and there is no {label} office."
+    )
+
+
+def state_city_page(state_slug: str, city: dict) -> None:
+    path = f'/locations/{state_slug}/{city["slug"]}/'
+    label = city_label(city)
+    state_label = STATE_CITY_STATE_NAMES[state_slug]
     other_names = [name for name in [city["name"], *city.get("alt_names", [])] if name != label]
     aka = f' ({", ".join(other_names)})' if other_names else ""
     service_schema = {
@@ -3234,27 +3261,60 @@ def kerala_city_page(city: dict) -> None:
         "serviceType": "Search engine optimization",
         "description": city["description"],
         "provider": {"@id": BUSINESS_ID},
-        "areaServed": city_place(city),
+        "areaServed": city_place(city, state_slug),
         "url": BASE_URL + path,
     }
-    nearby = [KERALA_CITY_BY_SLUG[slug] for slug in city["nearby"]]
+    nearby = [STATE_CITY_BY_SLUG[state_slug][slug] for slug in city["nearby"]]
     district_heading = (
         f'Across {city["district"]} district' if city["district"] != city["name"] else f"Across {label} and nearby towns"
     )
     economy_cards = [{"tag": "Sector", "title": title, "text": text} for title, text in city["economy"]]
     search_paragraphs = "".join(f"<p>{e(paragraph)}</p>" for paragraph in city["search"])
+    if state_slug == "kerala":
+        serp_intro = f"Google India, logged out, with Google placing the search in {label}, checked on {SERP_DATE}:"
+        gap_html = (
+            f'<p>I don’t have a published {e(label)} client result yet, and I won’t invent one. My published work is in other markets: '
+            f'an MEP contractor’s pages reached #1, #3, #4, #5 and #8 on Google India for commercial terms ({e(RESULTS_DATE)}), '
+            f'and the client was cited in Google’s AI Overview for “MEP contractors in India” ({e(AI_CITATION_DATE)}).</p>'
+        )
+        working_together_items = [
+            "A written baseline before any change",
+            "Calls in Malayalam or English; meetings when I’m in Kerala",
+            "Reporting that separates local, NRI and visitor enquiries",
+        ]
+        nearby_heading = "Other Kerala cities"
+        nearby_intro = "Each city page has its own market, search patterns and page-1 snapshot."
+    else:
+        serp_intro = (
+            f"Google India, logged out (gl=in, pws=0), with the location detected as {label}, "
+            f"{state_label}, checked on {SERP_DATE}:"
+        )
+        gap_html = (
+            f'<p>I don’t have a published {e(label)} client result yet, and I won’t invent one. The published case study is '
+            f'from Bengaluru, where an MEP contractor reached page-one commercial positions on Google India '
+            f'({e(RESULTS_DATE)}) and was cited in Google’s AI Overview for “MEP contractors in India” '
+            f'({e(AI_CITATION_DATE)}). There is no {e(label)} office, and no local result is implied.</p>'
+        )
+        working_together_items = [
+            "A written baseline before any change",
+            "Calls in English or Malayalam; no Tamil-language claim",
+            "Based in Chennai, same state; meetings when travelling",
+            "Reporting that separates city, state and national enquiries",
+        ]
+        nearby_heading = "Other Tamil Nadu cities"
+        nearby_intro = "Each city page has its own market, search patterns and dated page-1 observations."
     main = f'''{page_hero(
         path=path,
-        eyebrow=f"Kerala · {label}{aka}",
+        eyebrow=f"{state_label} · {label}{aka}",
         title=city["h1"],
         lede=city["lede"],
-        meta=[f'{city["district"]} district', "Remote from Chennai", "Dated, honest reporting"],
+        meta=[f'{city["district"]} district', "Remote from Chennai" if state_slug == "kerala" else "Chennai, same state", "Dated, honest reporting"],
         tag_html=status_tag("home", city.get("status_label", "Home state")),
     )}
 
 <section class="section section--tight">
   <div class="container">
-    {answer_block(city_answer(city))}
+    {answer_block(state_city_answer(state_slug, city))}
   </div>
 </section>
 
@@ -3290,7 +3350,7 @@ def kerala_city_page(city: dict) -> None:
     </aside>
     <div class="prose">
       <h2>What page 1 looked like for “SEO expert in {e(label)}”</h2>
-      <p>Google India, logged out, with Google placing the search in {e(label)}, checked on {e(SERP_DATE)}:</p>
+      <p>{e(serp_intro)}</p>
       {dash_list(city["landscape"])}
       <p>Results change daily, and lists in AI answers are assembled from websites and profiles, not verified results. That is why the checklist beside this asks for evidence rather than adjectives.</p>
     </div>
@@ -3301,13 +3361,13 @@ def kerala_city_page(city: dict) -> None:
   <div class="container prose-layout">
     <div class="prose">
       <h2>Published results — and the honest gap</h2>
-      <p>I don’t have a published {e(label)} client result yet, and I won’t invent one. My published work is in other markets: an MEP contractor’s pages reached #1, #3, #4, #5 and #8 on Google India for commercial terms ({e(RESULTS_DATE)}), and the client was cited in Google’s AI Overview for “MEP contractors in India” ({e(AI_CITATION_DATE)}).</p>
+      {gap_html}
       <p><a href="{CASE_STUDY_URL}">Read how it was done, including what hasn’t reached page 1 →</a></p>
     </div>
     <aside class="aside-panel">
       <p class="eyebrow">Working together</p>
       <h3>SEO services in {e(label)}, from Chennai</h3>
-      {check_list(["A written baseline before any change", "Calls in Malayalam or English; meetings when I’m in Kerala", "Reporting that separates local, NRI and visitor enquiries"])}
+      {check_list(working_together_items)}
     </aside>
   </div>
 </section>
@@ -3321,8 +3381,8 @@ def kerala_city_page(city: dict) -> None:
 
 <section class="section section--surface">
   <div class="container">
-    {section_header("Nearby", "Other Kerala cities", "Each city page has its own market, search patterns and page-1 snapshot.", ("Kerala overview", "/locations/kerala/"))}
-    {kerala_city_cards(nearby, 3)}
+    {section_header("Nearby", nearby_heading, nearby_intro, (f"{state_label} overview", f"/locations/{state_slug}/"))}
+    {state_city_cards(state_slug, nearby, 3)}
   </div>
 </section>
 
@@ -3997,8 +4057,9 @@ def main() -> None:
     locations_hub()
     for location in LOCATIONS:
         location_page(location)
-    for city in KERALA_CITIES:
-        kerala_city_page(city)
+    for state_slug, cities in STATE_CITIES.items():
+        for city in cities:
+            state_city_page(state_slug, city)
     resources_hub()
     for resource in RESOURCES:
         resource_page(resource)
