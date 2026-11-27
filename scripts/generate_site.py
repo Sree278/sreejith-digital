@@ -21,7 +21,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-27"
-SITE_VERSION = "2026-11-27.1"
+SITE_VERSION = "2026-11-27.2"
 DEFAULT_DESCRIPTION = (
     "Independent SEO expert in India, based in Chennai. SEO services for technical, "
     "local and AI search — with dated client results, not ranking promises."
@@ -1209,7 +1209,11 @@ STATE_CITIES = {
                     'I consult in English or Malayalam. Tamil-language consulting is not claimed, so content, calls '
                     'and reporting are planned around the confirmed languages rather than an unverified '
                     'capability.')],
-          'nearby': ['madurai', 'salem']},
+          'nearby': ['madurai', 'salem'],
+          'answer': 'Sreejith CU is an independent SEO consultant based in Chennai who works with Coimbatore textile '
+                    'mills, pump and motor exporters, TIDEL Park teams and hospital departments remotely in English '
+                    'or Malayalam. His dated case study is from Bengaluru, not Coimbatore. No Coimbatore office, '
+                    'local client result or Tamil-language consulting is claimed.'},
          {'slug': 'madurai',
           'name': 'Madurai',
           'crumb': 'Madurai',
@@ -1217,8 +1221,8 @@ STATE_CITIES = {
           'district': 'Madurai',
           'status_label': 'Same state',
           'title': 'SEO Company in Madurai | Sreejith Digital',
-          'description': 'SEO company in Madurai advice for temple tourism, textile, eye-care and education pages, '
-                         'with verified local context and an independent consultant based in Chennai.',
+          'description': 'SEO company in Madurai advice for temple tourism, textiles, eye care and colleges, with '
+                         'verified local context and an independent consultant based in Chennai.',
           'h1': 'SEO company in Madurai',
           'lede': 'Madurai’s search demand is shaped by visitors planning a temple trip, families comparing colleges '
                   'and hospitals, and textile buyers checking product detail. I help those organisations separate '
@@ -1287,7 +1291,12 @@ STATE_CITIES = {
                     'I consult in English or Malayalam. Tamil-language consulting is not claimed, so content, calls '
                     'and reporting are planned around the confirmed languages rather than an unverified '
                     'capability.')],
-          'nearby': ['coimbatore', 'salem']},
+          'nearby': ['coimbatore', 'salem'],
+          'answer': 'Sreejith CU is an independent SEO consultant based in Chennai who works with Madurai visitor, '
+                    'textile, eye-care and education pages remotely in English or Malayalam. The Meenakshi Temple '
+                    'visitor economy, cotton textile units, Aravind Eye Hospital and university colleges shape the '
+                    'page structure here. No Madurai office, local client result or Tamil-language consulting is '
+                    'claimed.'},
          {'slug': 'salem',
           'name': 'Salem',
           'crumb': 'Salem',
@@ -1368,7 +1377,11 @@ STATE_CITIES = {
                     'I consult in English or Malayalam. Tamil-language consulting is not claimed, so content, calls '
                     'and reporting are planned around the confirmed languages rather than an unverified '
                     'capability.')],
-          'nearby': ['coimbatore', 'madurai']}],
+          'nearby': ['coimbatore', 'madurai'],
+          'answer': 'Sreejith CU is an independent SEO consultant based in Chennai who works with Salem steel, sago, '
+                    'handloom, mango and transport businesses remotely in English or Malayalam. Product '
+                    'specifications, dispatch regions and route pages matter more here than a repeated city name. No '
+                    'Salem office, local client result or Tamil-language consulting is claimed.'}],
 }
 
 KERALA_CITIES = STATE_CITIES["kerala"]
@@ -1983,7 +1996,7 @@ CASE_STUDIES = [
 ]
 
 LABEL_LOOKUP = dict(STATIC_LABELS)
-for collection in (SERVICES, INDUSTRIES, LOCATIONS, RESOURCES, CASE_STUDIES, KERALA_CITIES):
+for collection in (SERVICES, INDUSTRIES, LOCATIONS, RESOURCES, CASE_STUDIES, *STATE_CITIES.values()):
     for item in collection:
         LABEL_LOOKUP[item["slug"]] = item.get("crumb", item["name"])
 
@@ -2292,7 +2305,8 @@ def business_node() -> dict:
             for place in [COUNTRY_PLACE, *LOCATION_PLACES.values()]
         ] + [
             {"@type": "City", "name": city["name"], "sameAs": WIKI + city["wiki"]}
-            for city in KERALA_CITIES
+            for cities in STATE_CITIES.values()
+            for city in cities
         ],
         "knowsAbout": OWNER_KNOWS_ABOUT,
     }
@@ -2789,7 +2803,7 @@ def home_page() -> None:
     ]
     homepage_faqs = [
         ("What does an independent SEO consultant do?", "An independent SEO consultant finds what is stopping a website from being found and trusted, sets priorities, and helps ship the fixes — technical, content and local — then measures the effect on enquiries. You deal with one accountable person rather than an account manager."),
-        ("Do you work with businesses outside Chennai?", "Yes. I’m based in Chennai and work remotely with businesses across India. I have pages for Bengaluru, Delhi NCR, Hyderabad, Chennai and Kerala — plus eight Kerala cities from Kochi to Kannur — each with an honest status of the work there."),
+        ("Do you work with businesses outside Chennai?", "Yes. I’m based in Chennai and work remotely with businesses across India. I have pages for Bengaluru, Delhi NCR, Hyderabad, Chennai, Kerala and Tamil Nadu — plus eight Kerala cities and Coimbatore, Madurai and Salem — each with an honest status."),
         ("Do you guarantee rankings?", "No. Nobody controls Google’s rankings. What I show instead is dated client results — including the terms that haven’t reached page 1 yet — and the method behind them."),
         ("How long does SEO take for a business like mine?", "Brand searches and niche long-tail terms can move within weeks to a few months; competitive city terms usually take six months or more. The case study shows one client reaching page 1 for five terms in about three months, but every market is different."),
         ("What is AI search optimisation, and do I need it?", "It is making sure Google’s AI Overviews and assistants like ChatGPT can identify your business and cite it. Google says it is still SEO; the extra emphasis is entity clarity and third-party mentions. If your buyers ask AI tools for shortlists, it matters."),
@@ -2874,9 +2888,10 @@ def home_page() -> None:
 
 <section class="section section--surface">
   <div class="container">
-    {section_header("Where I work", "Five markets, each with an honest status", "Client results, work in progress or home ground — every city page says which. I work remotely with businesses anywhere in India.", ("All locations", "/locations/"))}
+    {section_header("Where I work", "Six markets, each with an honest status", "Client results, work in progress, home ground or same-state hub — every location page says which. I work remotely with businesses anywhere in India.", ("All locations", "/locations/"))}
     {location_cards(LOCATIONS, 3)}
     <p class="section-intro">SEO expert in Kerala, city by city: {" · ".join(f'<a href="/locations/kerala/{city["slug"]}/">{e(city_label(city))}</a>' for city in KERALA_CITIES)}</p>
+    <p class="section-intro">SEO company intent in Tamil Nadu, city by city: {" · ".join(f'<a href="/locations/tamil-nadu/{city["slug"]}/">{e(city_label(city))}</a>' for city in STATE_CITIES["tamil-nadu"])}</p>
   </div>
 </section>
 
@@ -3299,7 +3314,11 @@ def industry_page(industry: dict) -> None:
 def locations_item_list() -> dict:
     """Every location page, in hierarchy order, for search engines and AI systems."""
     entries = [(f'SEO expert in {item["name"]}', f'/locations/{item["slug"]}/') for item in LOCATIONS]
-    entries += [(f"SEO expert in {city_label(city)}", f'/locations/kerala/{city["slug"]}/') for city in KERALA_CITIES]
+    entries += [
+        (f"SEO expert in {city_label(city)}", f'/locations/{state_slug}/{city["slug"]}/')
+        for state_slug, cities in STATE_CITIES.items()
+        for city in cities
+    ]
     return {
         "@type": "ItemList",
         "@id": BASE_URL + "/locations/#list",
@@ -3316,7 +3335,7 @@ def locations_hub() -> None:
         path="/locations/",
         eyebrow="Locations",
         title="Where I work — and what I’ve done there",
-        lede="India first, then states and cities: five markets with an honest status each, and eight Kerala cities with their own pages. A city gets a page only when people search for it and there is something true and useful to say.",
+        lede="India first, then states and cities: six markets with an honest status each, eight Kerala cities and three Tamil Nadu cities with their own pages. A city gets a page only when people search for it and there is something true and useful to say.",
         meta=["Based in Chennai", "Remote across India", "No invented local offices"],
     )}
 
@@ -3335,13 +3354,20 @@ def locations_hub() -> None:
 </section>
 
 <section class="section section--surface">
+  <div class="container">
+    {section_header("Tamil Nadu", "Tamil Nadu, city by city", "Three city pages where “SEO company” intent is common, each with its own sectors, localities, FAQs and dated page-1 observations.", ("Tamil Nadu overview", "/locations/tamil-nadu/"))}
+    {state_city_cards("tamil-nadu", STATE_CITIES["tamil-nadu"], 3)}
+  </div>
+</section>
+
+<section class="section">
   <div class="container prose-layout">
     <div class="prose">
       <p class="lead">I work remotely with businesses anywhere in India. These pages exist because each one has real work or real local knowledge behind it.</p>
       <h2>The rule behind these pages</h2>
       <p>Before a city page is published, I swap the city name for another city and read it again. If it is still true, it isn’t a city page — it is a doorway page wearing a city name, and it doesn’t go live. The same rule applies to client sites.</p>
       <h2>Honest status, always</h2>
-      <p>Bengaluru and Delhi NCR show client results with dates. Hyderabad shows work in progress. Chennai and Kerala are home ground; the Kerala city pages say plainly that no local client result is published yet. When the status changes, the page changes.</p>
+      <p>Bengaluru and Delhi NCR show client results with dates. Hyderabad shows work in progress. Chennai and Kerala are home ground; the Kerala city pages and the new Tamil Nadu city pages say plainly that no local client result is published yet. When the status changes, the page changes.</p>
       <p><a href="/resources/location-pages-without-doorway-risk/">Read the full city-page guide →</a></p>
     </div>
     <aside class="aside-panel">
@@ -3363,7 +3389,7 @@ def locations_hub() -> None:
     write_page(
         path="/locations/",
         title="Where I Work: SEO Consulting by City | Sreejith Digital",
-        description="SEO expert pages for India by state and city: Chennai, Bengaluru, Delhi NCR, Hyderabad, Kerala and eight Kerala cities, each with an honest status.",
+        description="SEO pages for India by state and city: Chennai, Bengaluru, Delhi NCR, Hyderabad, Kerala, Tamil Nadu and eleven city guides with an honest status.",
         main=main,
         page_type="CollectionPage",
         schema_extra=[locations_item_list()],
@@ -3404,7 +3430,8 @@ def location_page(location: dict) -> None:
     elif location["slug"] == "tamil-nadu":
         cities_html = f'''<section class="section section--surface">
   <div class="container">
-    {section_header("Across the state", "Tamil Nadu locations", "Chennai remains the home-base city; separate city pages are published only when each one has distinct local substance.")}
+    {section_header("Across the state", "SEO company in each Tamil Nadu city", "Three city pages, each with that city’s sectors, search behaviour, localities, FAQs and dated page-1 observations.")}
+    {state_city_cards("tamil-nadu", STATE_CITIES["tamil-nadu"], 3)}
     <div class="prose"><p><a class="text-link" href="/locations/chennai/">Read the Chennai home-base page <span aria-hidden="true">→</span></a></p></div>
   </div>
 </section>'''
@@ -3525,13 +3552,7 @@ def state_city_answer(state_slug: str, city: dict) -> str:
     """Entity-first answer; Kerala keeps its original wording."""
     if state_slug == "kerala":
         return city_answer(city)
-    label = city_label(city)
-    return (
-        f"{OWNER_NAME} is an independent SEO consultant based in Chennai, Tamil Nadu, who works with {label} "
-        f"businesses remotely in English or Malayalam. His published work took an MEP contractor to page-one "
-        f"commercial positions in Bengaluru ({RESULTS_DATE}) and into Google’s AI Overview for “MEP contractors "
-        f"in India” ({AI_CITATION_DATE}). No {label} client result is published yet, and there is no {label} office."
-    )
+    return str(city["answer"])
 
 
 def state_city_page(state_slug: str, city: dict) -> None:
@@ -4142,7 +4163,7 @@ def thank_you_page() -> None:
     write_page(
         path="/thank-you/",
         title="Thank You — Enquiry Received | Sreejith Digital",
-        description="Your enquiry has been received.",
+        description="Thanks for sending your enquiry. Keep the reference number shown below and check your inbox for the next step.",
         main=main,
         robots="noindex, follow",
         body_class="page-thank-you",
@@ -4266,7 +4287,7 @@ def not_found_page() -> None:
     {card_grid([
         {"tag": "Services", "title": "What I do", "text": "Consulting, technical, local and AI search.", "href": "/services/", "link_label": "Open services"},
         {"tag": "Work", "title": "What I’ve done", "text": "Case studies with dated results.", "href": "/case-studies/", "link_label": "Open case studies"},
-        {"tag": "Locations", "title": "Where I work", "text": "Five markets, each with an honest status.", "href": "/locations/", "link_label": "Open locations"},
+        {"tag": "Locations", "title": "Where I work", "text": "Six markets, each with an honest status.", "href": "/locations/", "link_label": "Open locations"},
     ], 3)}
   </div>
 </section>'''
@@ -4311,6 +4332,7 @@ def write_version_marker() -> None:
         "homepage-title: Independent SEO Expert in India | Sreejith Digital",
         f"locations: {', '.join(item['name'] for item in LOCATIONS)}",
         f"kerala-cities: {', '.join(city_label(item) for item in KERALA_CITIES)}",
+        f"tamil-nadu-cities: {', '.join(city_label(item) for item in STATE_CITIES['tamil-nadu'])}",
         "",
     ])
     write_text(SITE_ROOT / "version.txt", content)
