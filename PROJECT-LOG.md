@@ -6,6 +6,7 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 | --- | --- |
 | Strategy, milestones, KPIs | [`SEO-STRATEGY.md`](SEO-STRATEGY.md) |
 | Live tracker (milestones, actions, KPIs, 20 keywords) | https://claude.ai/artifact/Vf1ESoPRJQ3FEnYbBuLxpG |
+| Case study deck (updated after each task) | https://claude.ai/artifact/QNtkQzmRkkaafw8Jju5Kae |
 | Deployment and owner checklist | [`DEPLOYMENT.md`](DEPLOYMENT.md) |
 
 ---
@@ -39,6 +40,10 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 ### Baseline
 
 Indexed pages 0 · rankings none · referring domains 0 · reviews 0 · enquiries 0.
+
+### Tracking
+
+The tracker and the 12-slide case study deck were created for this project (links above).
 
 ### Next
 
