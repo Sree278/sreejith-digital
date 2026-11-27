@@ -11,6 +11,18 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-27 — Domain hardening (Cloudflare) + release 2026-11-27.4
+
+- **Changed in Cloudflare:** Always Use HTTPS on; minimum TLS 1.2; SSL Full (strict); HSTS 6 months with includeSubDomains (no preload); Certificate Transparency alerts on; `www` record + 301 Redirect Rule to the apex (path and query kept); DNSSEC on; Email Routing `hello@` → owner inbox with SPF, DKIM and DMARC `p=reject`; Google Search Console Domain property and Bing Webmaster Tools verified by DNS, sitemap submitted to both; Worker secret `ENQUIRY_TO` added.
+- **Changed in the repo (release 2026-11-27.4):** `[[send_email]]` binding enabled so the form emails enquiries directly; favicon set added (`/favicon.ico` 16/32/48, `/apple-touch-icon.png` 180, 192 and 512 PNG icons, `/site.webmanifest`) and linked on every page; `logo` ImageObject added to the ProfessionalService schema; DEPLOYMENT.md records the hardened settings.
+- **Why:** `http://` and `https://` both returned 200 (every page existed twice); `www` did not resolve; TLS 1.0 was accepted; the site and schema listed `hello@sreejithdigital.com` while the domain had no MX, so enquiries bounced; nothing was verified in a search console; Google needs a crawlable favicon that is a multiple of 48 px; production was two releases behind `main`.
+- **Root cause of stale deploys:** the Workers Builds project shows "disconnected from your Git account", so merges to `main` do not start builds. Manual builds from the dashboard still work. Reconnecting needs the owner's GitHub passkey (Settings → Installed GitHub Apps → Cloudflare Workers and Pages → repository access).
+- **Evidence:** SSL Labs A+ on all four edge IPs (TLS 1.2/1.3 only, HSTS present). DNS-over-HTTPS: DS + AD=true, MX ×3, SPF, DMARC. `http://sreejithdigital.com/about/?a=1` → 301 `https://sreejithdigital.com/about/?a=1`; `https://www.sreejithdigital.com/services/local-seo/?utm_source=x` → 301 to the apex with the query. Release 27.2 on production: 52 sitemap URLs all 200, self-canonical, one H1, unique titles and descriptions, valid JSON-LD, 0 broken internal links; 390 px and 1280 px renders with no overflow or console errors (Tamil Nadu brief section 4 item 4: PASS). Release 27.4 locally: 54 HTML files, valid JSON-LD, icon links on every page, `wrangler deploy --dry-run` lists `env.ENQUIRY_EMAIL (Send Email)`.
+- **Registrar:** transfer lock, WHOIS privacy and auto-renew on; expires 26 Nov 2027.
+- **Next (owner):** reconnect GitHub in Workers Builds; settle the Cloudflare billing notices so auto-renew can charge; request indexing for `/`, `/about/`, the case study and `/free-seo-review/` in Search Console.
+
+---
+
 ## 2026-11-27 — Positioning reworded: no "independent" / "freelancer"
 
 **Why:** the site should read as a senior, master-level SEO specialist, not a solo freelancer.

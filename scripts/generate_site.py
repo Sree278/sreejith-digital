@@ -21,7 +21,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-27"
-SITE_VERSION = "2026-11-27.3"
+SITE_VERSION = "2026-11-27.4"
 DEFAULT_DESCRIPTION = (
     "SEO expert in India, based in Chennai. SEO services for technical, "
     "local and AI search — with dated client results, not ranking promises."
@@ -2293,6 +2293,12 @@ def business_node() -> dict:
         "description": DEFAULT_DESCRIPTION,
         "email": CONTACT_EMAIL,
         "image": BASE_URL + OG_IMAGE,
+        "logo": {
+            "@type": "ImageObject",
+            "url": BASE_URL + "/assets/img/icon-512.png",
+            "width": 512,
+            "height": 512,
+        },
         "founder": {"@id": PERSON_ID},
         "address": {
             "@type": "PostalAddress",
@@ -2442,7 +2448,10 @@ def render_page(
   <meta name="twitter:title" content="{e(title)}">
   <meta name="twitter:description" content="{e(description)}">
   <meta name="twitter:image" content="{BASE_URL}{OG_IMAGE}">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="/assets/css/styles.css?v={SITE_VERSION}">
   <script type="application/ld+json">
 {structured_data}

@@ -37,6 +37,28 @@ custom_domain = true
 
 The custom domain is already live. A new Workers Builds deployment publishes updated static assets to the existing Worker; it does not require creating a new domain.
 
+## Domain hardening status — done 27 Nov 2026
+
+Configured in the Cloudflare dashboard and verified live (SSL Labs A+ on all four edge IPs):
+
+| Setting | State |
+| --- | --- |
+| Always Use HTTPS | On (`http://` → `https://` 301) |
+| Minimum TLS | 1.2 (TLS 1.2 and 1.3 only) |
+| SSL/TLS mode | Full (strict) |
+| HSTS | `max-age=15552000; includeSubDomains`, no preload. Sent by Cloudflare — do not add it to `public/_headers` |
+| Certificate Transparency alerts | On |
+| `www` | Proxied A record `192.0.2.1` + Redirect Rule `https://www.sreejithdigital.com/*` → `https://sreejithdigital.com/${1}` (301, query kept) |
+| DNSSEC | Active; DS published by Cloudflare Registrar |
+| Email Routing | On. `hello@sreejithdigital.com` → owner's verified inbox. MX ×3, SPF `include:_spf.mx.cloudflare.net ~all`, DKIM `cf2024-1`, DMARC `p=reject; sp=reject; adkim=s; aspf=s` |
+| Google Search Console | Domain property verified by DNS TXT; sitemap submitted |
+| Bing Webmaster Tools | Verified by CNAME (DNS only, not proxied); sitemap submitted |
+| Registrar | Transfer lock, WHOIS privacy and auto-renew on; expires 26 Nov 2027 |
+
+Keep the `google-site-verification` TXT record and the Bing CNAME (`18cbf232….sreejithdigital.com` → `verify.bing.com`), or the search consoles lose verification.
+
+**Auto-deploy check:** after every merge to `main`, confirm a build ran in Workers & Pages → `sreejith-digital` → Deployments, and that `/version.txt` shows the new release. On 27 Nov 2026 merges after 10:33 UTC did not start a build until one was run by hand. If a merge does not start a build, open Settings → Builds and reconnect the GitHub repository.
+
 ## Current release to publish
 
 As of `2026-11-27`, the repository contains release `2026-11-27.1` (doorway/spam fixes, case study and conversion layer):
@@ -56,7 +78,9 @@ These steps need the Cloudflare and Google dashboards, which are not connected t
 
 ### 1. Enquiry form → your inbox (Cloudflare Email Routing, free)
 
-Until this is done the form still works: it opens the visitor's email app with the enquiry pre-filled. Once done, enquiries arrive in your inbox without that step.
+**Status 27 Nov 2026:** steps 1–5 are done (Email Routing on, inbox verified, `hello@` routed, `[[send_email]]` enabled in release `2026-11-27.4`, `ENQUIRY_TO` secret set). Step 6 is the live test.
+
+Without the binding or the secret the form still works: it opens the visitor's email app with the enquiry pre-filled.
 
 1. Cloudflare dashboard → `sreejithdigital.com` → **Email → Email Routing** → enable it (Cloudflare adds the MX/TXT records).
 2. **Destination addresses** → add your inbox and click the verification link Cloudflare emails you.
@@ -79,6 +103,8 @@ Until this is done the form still works: it opens the visitor's email app with t
 Create a GA4 property and a Microsoft Clarity project, put the IDs in `GA4_MEASUREMENT_ID` and `CLARITY_PROJECT_ID` at the top of `scripts/generate_site.py`, and run `python3 scripts/generate_site.py`. A consent banner then appears; nothing loads until a visitor chooses **Allow analytics**. In GA4, mark `generate_lead` as a key event.
 
 ### 3. Search engines and crawlers
+
+**Status 27 Nov 2026:** Search Console, Bing Webmaster Tools and the `www` redirect are done (see the hardening table above). Still to do: request indexing for the key pages.
 
 - Google Search Console → add a **Domain** property for `sreejithdigital.com` (DNS TXT verification in Cloudflare) → submit `https://sreejithdigital.com/sitemap.xml` → request indexing for `/`, `/about/`, the case study and `/free-seo-review/`.
 - Bing Webmaster Tools → **Import from Google Search Console**.
