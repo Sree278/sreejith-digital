@@ -1,5 +1,6 @@
 release: 2026-11-27.1
 updated: 2026-11-27
-indexable-pages: 40
-homepage-title: Independent SEO Consultant in India | Sreejith Digital
+indexable-pages: 48
+homepage-title: Independent SEO Expert in India | Sreejith Digital
 locations: Bengaluru, Delhi NCR, Hyderabad, Chennai, Kerala
+kerala-cities: Kochi, Trivandrum, Calicut, Thrissur, Malappuram, Kannur, Kollam, Palakkad

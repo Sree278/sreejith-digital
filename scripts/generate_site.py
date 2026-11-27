@@ -23,8 +23,8 @@ CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-27"
 SITE_VERSION = "2026-11-27.1"
 DEFAULT_DESCRIPTION = (
-    "Independent SEO consultant based in Chennai, working across India. Technical "
-    "SEO, local SEO and AI search — with dated client results, not ranking promises."
+    "Independent SEO expert in India, based in Chennai. SEO services for technical, "
+    "local and AI search — with dated client results, not ranking promises."
 )
 
 # ---------------------------------------------------------------------------
@@ -34,10 +34,10 @@ DEFAULT_DESCRIPTION = (
 OWNER_NAME = "Sreejith CU"  # as credited publicly on client work ("Site by Sreejith CU")
 OWNER_JOB_TITLE = "Independent SEO consultant"
 OWNER_BASE_CITY = "Chennai"
-OWNER_ORIGIN = "Kerala"
+OWNER_ORIGIN = "Thrissur, Kerala"  # owner-confirmed home town, 27 Nov 2026
 OWNER_PHOTO = ""  # e.g. "/assets/img/sreejith-cu.jpg" once a real headshot is added
 OWNER_PROFILES: list[str] = []  # verified profile URLs, e.g. LinkedIn — feeds schema sameAs + About page
-OWNER_LANGUAGES: list[str] = []  # e.g. ["English", "Malayalam", "Tamil"] — shown only when confirmed
+OWNER_LANGUAGES: list[str] = ["English", "Malayalam"]  # owner-confirmed 27 Nov 2026
 OWNER_KNOWS_ABOUT = [
     "Search engine optimization",
     "Technical SEO",
@@ -563,9 +563,9 @@ LOCATIONS = [
         "name": "Bengaluru",
         "status": "Client results",
         "status_key": "results",
-        "title": "SEO Consultant for Bengaluru Businesses | Sreejith Digital",
+        "title": "SEO Expert in Bengaluru | Sreejith Digital",
         "description": "SEO consultant with page-1 client results in Bengaluru: an MEP contractor reached #1, #3, #5 and #8 on Google for commercial terms (Nov 2026).",
-        "h1": "SEO consultant for Bengaluru businesses",
+        "h1": "SEO expert in Bengaluru",
         "lede": "Bengaluru is where my client results are strongest. An MEP contractor’s Bengaluru pages reached Google’s first page for four commercial terms within about three months of the recorded baseline.",
         "short": "Where my client results are strongest: four page-1 positions, including #1.",
         "delivery": "Remote delivery from Chennai",
@@ -600,9 +600,9 @@ LOCATIONS = [
         "name": "Delhi NCR",
         "status": "Client results",
         "status_key": "results",
-        "title": "SEO Consultant for Delhi NCR — Delhi, Gurugram, Noida",
+        "title": "SEO Expert in Delhi NCR — Delhi, Gurugram, Noida",
         "description": "SEO for Delhi NCR businesses with one regional strategy for Delhi, Gurugram and Noida. A client MEP page reached #4 on Google for its main NCR term (Nov 2026).",
-        "h1": "SEO consultant for Delhi NCR businesses",
+        "h1": "SEO expert in Delhi NCR",
         "lede": "Delhi NCR is a region, not a city: Delhi, Gurugram and Noida sit in three different states. My client’s Delhi NCR page reached #4 on Google for its main term with one regional page — not three thin city pages.",
         "short": "One regional page, #4 on Google for the client’s main NCR term.",
         "delivery": "Remote delivery from Chennai",
@@ -637,9 +637,9 @@ LOCATIONS = [
         "name": "Hyderabad",
         "status": "In progress",
         "status_key": "progress",
-        "title": "SEO Consultant for Hyderabad Businesses | Sreejith Digital",
+        "title": "SEO Expert in Hyderabad | Sreejith Digital",
         "description": "Remote SEO consulting for Hyderabad and Secunderabad businesses: technical SEO, B2B search and honest, dated reporting on work in progress.",
-        "h1": "SEO consultant for Hyderabad businesses",
+        "h1": "SEO expert in Hyderabad",
         "lede": "Hyderabad is active in my client work right now: a dedicated page built on the client’s Telangana projects. It is not on page 1 yet, and this page will say so until it is.",
         "short": "Active client work, not on page 1 yet — reported honestly.",
         "delivery": "Remote delivery from Chennai",
@@ -674,9 +674,9 @@ LOCATIONS = [
         "name": "Chennai",
         "status": "Home base",
         "status_key": "home",
-        "title": "SEO Consultant in Chennai | Sreejith Digital",
-        "description": "Chennai-based independent SEO consultant for local, B2B and manufacturing businesses: technical SEO, local SEO and dated, honest reporting.",
-        "h1": "SEO consultant in Chennai",
+        "title": "SEO Expert in Chennai | Sreejith Digital",
+        "description": "SEO expert in Chennai offering SEO services to local, B2B and manufacturing firms: an independent consultant, not an agency, and easy to meet in person.",
+        "h1": "SEO expert in Chennai",
         "lede": "I’m based in south Chennai, on the GST Road side of the city. Chennai clients get the same method as everyone else — plus a consultant in the same city.",
         "short": "My home base, with meetings possible when a project needs one.",
         "delivery": "Based in Chennai",
@@ -699,6 +699,7 @@ LOCATIONS = [
             "Close to Tambaram, Perungalathur, Vandalur and Guduvanchery on GST Road",
         ],
         "faqs": [
+            ("Should I hire an SEO company in Chennai or an independent SEO expert?", "Chennai has many SEO companies, and an agency suits you if you want ads, social media, design and SEO handled by one team. An independent expert suits you if you want one accountable person doing the strategy and the hands-on SEO services. I’m independent, based in south Chennai, and I do the work myself."),
             ("Do you meet Chennai clients in person?", "Most work happens remotely because it is faster, but I’m based in Chennai, so a meeting is easy to arrange when a workshop, a site walk-through or a kick-off would help."),
             ("Does my Chennai business need a Google Business Profile?", "If you meet customers in person — at your premises or theirs — yes, and it is usually the fastest local win. If you only work online, Google’s guidelines make you ineligible, so the effort goes into your website and directories instead."),
             ("Should my site have Tamil pages?", "Not by default. Commercial service searches in Chennai are still mostly in English or Romanised Tamil, so check your Search Console queries first. Google’s AI Mode has supported Tamil since October 2025, so conversational Tamil questions are worth watching."),
@@ -711,11 +712,11 @@ LOCATIONS = [
         "name": "Kerala",
         "status": "Home state",
         "status_key": "home",
-        "title": "SEO Expert for Kerala Businesses — Kochi, Trivandrum, Calicut",
-        "description": "SEO consultant from Kerala for businesses in Kochi, Thiruvananthapuram, Kozhikode and Thrissur — including brands that sell to NRIs and visitors.",
-        "h1": "SEO expert for Kerala businesses",
-        "lede": "I’m from Kerala and now work from Chennai. I know how Kerala businesses sell — often to people who are searching from somewhere else.",
-        "short": "Where I’m from: one Kerala page covering Kochi, Thiruvananthapuram, Kozhikode and Thrissur.",
+        "title": "SEO Expert in Kerala — Kochi, Trivandrum, Calicut",
+        "description": "SEO expert from Thrissur, consulting in Malayalam or English, for Kochi, Trivandrum, Calicut, Thrissur, Malappuram, Kannur, Kollam and Palakkad.",
+        "h1": "SEO expert in Kerala",
+        "lede": "I’m from Thrissur and now work from Chennai, consulting in Malayalam or English. I know how Kerala businesses sell — often to people who are searching from somewhere else.",
+        "short": "Where I’m from: a Kerala hub with pages for eight cities.",
         "delivery": "Remote delivery from Chennai",
         "results_city": "",
         "context_heading": "What makes Kerala search different",
@@ -724,12 +725,6 @@ LOCATIONS = [
             "That changes the work. Pages need to answer questions asked from abroad — prices, documents, visits — business details must stay consistent across every profile, and reporting should separate in-state enquiries from NRI and visitor enquiries.",
             "Healthcare, education, hospitality and real estate dominate commercial searches in the state, alongside exporters of spices, seafood and coir, and the IT parks in Thiruvananthapuram, Kochi and Kozhikode.",
         ],
-        "cities": [
-            ("Kochi", "The commercial centre: retail, real estate, the port and Infopark. “SEO expert Kochi” is the most contested Kerala search, so verifiable proof matters more than claims."),
-            ("Thiruvananthapuram", "The capital: Technopark, government, education and healthcare. Buyers compare carefully and look for credentials."),
-            ("Kozhikode (Calicut)", "Trade, food and hospitality, and Cyberpark. Many businesses still rely on referrals and are early in search."),
-            ("Thrissur", "Gold and jewellery, finance and cultural tourism. Reviews and trust signals carry unusual weight."),
-        ],
         "work_heading": "Work connected to Kerala",
         "work": [
             "I don’t have a published Kerala client result yet, and I won’t invent one.",
@@ -737,14 +732,20 @@ LOCATIONS = [
         ],
         "engage_heading": "Working with Kerala businesses",
         "engage": [
-            "Remote delivery, scheduled around your working day",
-            "One Kerala page with city sections until a city earns its own",
+            "Calls in Malayalam or English; meetings in Kerala when I travel",
+            "City pages for eight Kerala cities; towns only where search demand exists",
             "Reporting that separates in-state, NRI and visitor enquiries",
         ],
         "faqs": [
-            ("Do you work with Kerala businesses remotely?", "Yes. Kerala clients work with me the same way Chennai and Bengaluru clients do: shared documents, scheduled calls and a written roadmap."),
+            ("Who is the best SEO expert in Kerala?", "There is no independent ranking, and lists in AI answers are assembled from websites and profiles, not verified results. Judge any SEO expert — including me — by dated results you can check: the page that ranked, the date it was recorded and what didn’t work."),
+            ("How much does an SEO expert in Kerala cost?", "Published monthly packages from Kerala freelancers I checked in November 2026 started between about ₹10,000 and ₹15,000, with larger plans up to ₹50,000; one agency advertised from ₹3,000. Compare what is included — technical fixes, content, reporting — not the price alone."),
+            ("Should I hire an SEO company in Kerala or an independent SEO expert?", "An agency suits you if you need many services at once — ads, social media, design and SEO — handled by a team. An independent (freelance) SEO expert suits you if you want one accountable person doing the strategy and the hands-on work. I’m an independent consultant, not an agency, and I say so on every page."),
+            ("What should I look for when hiring an SEO expert in Kerala?", "Dated results you can check — the search term, the page that ranked and the date — a written plan before any work starts, clarity on who does the work, honest timelines without ranking guarantees, and reporting tied to enquiries. Be wary of unverified “No. 1” claims and of Google Maps listings with keywords stuffed into the business name, which Google’s guidelines prohibit."),
+            ("Can you improve my local Google rankings in Kerala?", "Local rankings depend mostly on your Google Business Profile, your reviews, your relevance and how close you are to the searcher. I fix the profile, build pages for the places you really serve and clean up listings elsewhere, then report Maps and organic positions separately. Nobody can promise a position; reviews from real customers matter most in the map pack."),
+            ("Do you work with ecommerce businesses in Kerala?", "Yes. Kerala stores selling spices, handloom, Ayurveda products, snacks or jewellery usually need national rather than local SEO: category and product pages that can rank across India, product structured data, and fixing the crawl waste that filters and duplicate product URLs create."),
+            ("Do you work with Kerala businesses remotely?", "Yes. Kerala clients work with me the same way Chennai and Bengaluru clients do — shared documents, scheduled calls in Malayalam or English and a written roadmap. I’m from Thrissur and based in Chennai, and I can meet in person when I travel to Kerala."),
             ("Should a Kerala business target NRI searches?", "If NRIs are a real share of your customers — common in real estate, jewellery, education and healthcare — yes. That usually means pages that answer questions asked from abroad and reporting by country, not a separate website."),
-            ("One page for Kerala, or one per city?", "Start with one strong Kerala page that covers each city properly. A city earns its own page once it has distinct demand, distinct content and real proof; before that, separate city pages are near-duplicates Google treats as doorways."),
+            ("Do you have pages for individual Kerala cities?", "Yes — for the eight cities where Google’s autocomplete shows steady demand for an SEO expert: Kochi, Trivandrum, Calicut, Thrissur, Malappuram, Kannur, Kollam and Palakkad. Each covers that city’s industries, how its customers search and what page 1 looks like there. A town gets its own page only when people search for it."),
         ],
         "services": ["local-seo", "content-strategy", "seo-consulting"],
         "industries": ["professional-services", "local-multi-location"],
@@ -756,6 +757,361 @@ LOCATION_STATUS_NOTE = {
     "progress": "Work in progress",
     "home": "Home ground",
 }
+
+# ---------------------------------------------------------------------------
+# Place hierarchy: Country > State > District > City.
+# Wikipedia URLs disambiguate each place for search engines and AI systems.
+# ---------------------------------------------------------------------------
+WIKI = "https://en.wikipedia.org/wiki/"
+COUNTRY_PLACE = {"@type": "Country", "name": "India", "sameAs": WIKI + "India"}
+STATE_PLACES = {
+    "Kerala": {"@type": "State", "name": "Kerala", "sameAs": WIKI + "Kerala", "containedInPlace": COUNTRY_PLACE},
+    "Tamil Nadu": {"@type": "State", "name": "Tamil Nadu", "sameAs": WIKI + "Tamil_Nadu", "containedInPlace": COUNTRY_PLACE},
+    "Karnataka": {"@type": "State", "name": "Karnataka", "sameAs": WIKI + "Karnataka", "containedInPlace": COUNTRY_PLACE},
+    "Telangana": {"@type": "State", "name": "Telangana", "sameAs": WIKI + "Telangana", "containedInPlace": COUNTRY_PLACE},
+}
+# Places for the top-level location pages (used in Service.areaServed).
+LOCATION_PLACES = {
+    "bengaluru": {"@type": "City", "name": "Bengaluru", "alternateName": "Bangalore", "sameAs": WIKI + "Bengaluru", "containedInPlace": STATE_PLACES["Karnataka"]},
+    "delhi-ncr": {"@type": "Place", "name": "Delhi NCR", "alternateName": ["National Capital Region", "Delhi", "Gurugram", "Noida"], "sameAs": WIKI + "National_Capital_Region_(India)", "containedInPlace": COUNTRY_PLACE},
+    "hyderabad": {"@type": "City", "name": "Hyderabad", "sameAs": WIKI + "Hyderabad", "containedInPlace": STATE_PLACES["Telangana"]},
+    "chennai": {"@type": "City", "name": "Chennai", "alternateName": "Madras", "sameAs": WIKI + "Chennai", "containedInPlace": STATE_PLACES["Tamil Nadu"]},
+    "kerala": STATE_PLACES["Kerala"],
+}
+
+SERP_DATE = "27 November 2026"
+
+# Kerala city pages. Gate: Google India autocomplete shows "seo expert in <city>"
+# as a popular suggestion (checked 27 Nov 2026). Each page must pass the
+# city-name test: swap the city name and the page becomes false.
+KERALA_CITIES = [
+    {
+        "slug": "kochi",
+        "name": "Kochi",
+        "crumb": "Kochi",
+        "alt_names": ["Cochin", "Ernakulam"],
+        "wiki": "Kochi",
+        "district": "Ernakulam",
+        "title": "SEO Expert in Kochi (Ernakulam) | Sreejith Digital",
+        "description": "SEO for Kochi and Ernakulam businesses: Infopark tech firms, exporters, retailers, hospitals and Fort Kochi stays. Remote, with dated results, not promises.",
+        "h1": "SEO expert in Kochi",
+        "lede": "Kochi is Kerala’s busiest commercial market, and many of its businesses sell well beyond the city. I help Kochi firms — from Infopark product companies to Edappally retailers and Fort Kochi stays — win the searches that bring enquiries, with dated, verifiable reporting.",
+        "short": "Kerala’s commercial centre: Infopark, the port, retail and tourism.",
+        "economy_heading": "What Kochi businesses need from search",
+        "economy": [
+            ("IT and startups", "Infopark in Kakkanad and the startup campus at Kalamassery are full of firms whose buyers are in Bengaluru, the Gulf or abroad. They rarely need “Kochi” in their keywords; they need pages built around what those buyers search."),
+            ("Port, logistics and exports", "Cochin Port, the Vallarpadam container terminal and the Spices Board and MPEDA head offices make Kochi an export city. Overseas buyers search by product, grade and certification, so specification pages matter more than a home page."),
+            ("Retail and real estate", "From Edappally to Kakkanad, apartment projects and large stores compete for the same local searches. Project pages with registration details, and answers for NRI buyers, convert better than generic listings."),
+            ("Tourism and healthcare", "Fort Kochi and Mattancherry stays compete with booking platforms, and large hospitals draw patients from across Kerala and the Gulf. Both win with their own detailed pages and a well-kept Google profile."),
+        ],
+        "search": [
+            "Customers use three names for the same place: Kochi, Cochin and Ernakulam. A page should lead with the one your customers use — your Search Console queries will tell you — and mention the others naturally, not repeat all three in every heading.",
+            "For local services, the locality often carries more intent than the city: “Kakkanad”, “Edappally” or “Vyttila” searches come from people ready to visit. Those belong in service pages and in your Google Business Profile service areas.",
+        ],
+        "areas": ["Kakkanad", "Edappally", "Vyttila", "Palarivattom", "Kaloor", "MG Road", "Fort Kochi", "Kalamassery", "Aluva", "Tripunithura"],
+        "landscape": [
+            "An AI Overview sat at the top, listing four freelance consultants drawn from their own websites and profiles.",
+            "The map pack showed three providers with between 10 and 80 Google reviews.",
+            "Below that: personal-brand sites with a page for each city, a LinkedIn profile and free-hosted sites.",
+        ],
+        "faqs": [
+            ("Should my Kochi business target “Kochi”, “Cochin” or “Ernakulam”?", "All three are searched. Lead with the name your customers use (check your Search Console queries), mention the others once where it reads naturally, and use locality names like Kakkanad or Edappally where you actually serve. Don’t build a separate page for each name; that is duplication."),
+            ("Should I hire an SEO company in Kochi or an independent expert?", "If you want ads, social media, design and SEO run by one team, an agency fits. If you want one accountable person doing the strategy and the hands-on SEO, an independent expert fits. I’m independent, not an agency, and I work with Kochi businesses remotely."),
+            ("Can an Infopark company rank outside Kerala?", "Yes, and that is usually the right goal. Product and service firms in Kochi rarely need the city in their keywords. They need pages built around what buyers in Bengaluru, the Gulf or overseas type, plus proof those buyers trust."),
+            ("How long does SEO take for a Kochi business?", "With a sound site, local service terms often move within two to three months and settle over four to six. In my published case study, five commercial terms reached page 1 in about three months — in other markets, so treat it as a reference, not a promise."),
+            ("Do you have an office in Kochi?", "No. I’m from Thrissur and based in Chennai. I work with Kochi businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
+        ],
+        "nearby": ["thrissur", "trivandrum", "calicut"],
+    },
+    {
+        "slug": "trivandrum",
+        "name": "Thiruvananthapuram",
+        "crumb": "Trivandrum",
+        "query_name": "Trivandrum",
+        "alt_names": ["Trivandrum", "TVM"],
+        "wiki": "Thiruvananthapuram",
+        "district": "Thiruvananthapuram",
+        "title": "SEO Expert in Trivandrum (Thiruvananthapuram)",
+        "description": "SEO for Trivandrum businesses: Technopark firms, hospitals, coaching institutes and Kovalam and Varkala stays. Remote, with dated results, no promises.",
+        "h1": "SEO expert in Trivandrum",
+        "lede": "Buyers in Thiruvananthapuram compare carefully: students choosing institutes, patients choosing hospitals, Technopark firms choosing vendors. I help Trivandrum businesses earn that trust in search, with clear service pages, credentials beside every claim and Google profiles that match.",
+        "short": "The capital: Technopark, healthcare, coaching and coastal tourism.",
+        "economy_heading": "What Trivandrum businesses need from search",
+        "economy": [
+            ("Technopark firms", "Technopark in Kazhakkoottam, one of India’s first IT parks, houses companies that sell to clients worldwide. Their search work is national and international B2B content, not local listings."),
+            ("Healthcare and medical travel", "The city’s large hospitals and specialist centres draw patients from across south Kerala and abroad. Google holds health pages to a higher standard, so doctor credentials, reviewed content and honest claims come first."),
+            ("Coaching and education", "As the state capital, Trivandrum has a deep market for civil-service, entrance and professional coaching. Demand is seasonal, so course pages with fees, schedules and results need to be live months before admissions open."),
+            ("Coastal tourism and the new port", "Kovalam, Varkala and Poovar stays compete with booking platforms for direct bookings, and the Vizhinjam seaport, commissioned in 2025 and now handling export-import cargo, adds a logistics market in the south of the district."),
+        ],
+        "search": [
+            "Searches use “Trivandrum”, “Thiruvananthapuram” and “TVM”. For searches like this one, Google’s autocomplete offers “Trivandrum”, so it belongs in titles, with the official name in the body and the structured data.",
+            "Locality matters: Kazhakkoottam for Technopark-area services, Pattom, Kowdiar and Vazhuthacaud for central offices and clinics. Patients and parents often search the locality plus the specialty, not the city name.",
+        ],
+        "areas": ["Kazhakkoottam", "Technopark", "Pattom", "Kowdiar", "Vazhuthacaud", "Thampanoor", "Kesavadasapuram", "Peroorkada", "Kovalam", "Varkala"],
+        "landscape": [
+            "An AI Overview listed eight freelancers and pointed to directories for agencies.",
+            "The map pack showed providers with between 3 and 128 Google reviews, the top one in business for 15+ years.",
+            "Google noted that two results had been removed from the page after copyright (DMCA) complaints.",
+        ],
+        "faqs": [
+            ("Trivandrum or Thiruvananthapuram — which should my website use?", "Use “Trivandrum” in titles if that is what your customers type (check Search Console), and the official name in your address, body copy and structured data. Search engines understand both refer to the same city; your job is to match the words buyers use."),
+            ("Do hospitals and clinics in Trivandrum need a different approach?", "Yes. Health pages are held to a higher standard. Show who wrote and reviewed each page, list doctors’ qualifications, avoid outcome promises, and keep department and doctor pages consistent with your Google Business Profile."),
+            ("Is an SEO company in Trivandrum better than a freelance expert?", "It depends on what you need. Agencies bundle SEO with ads, social media and design; a freelance or independent expert gives you one person who owns the strategy and does the work. Ask either for dated results and who will actually work on your site."),
+            ("When should a coaching centre start SEO?", "At least three to four months before admissions open. Course pages need time to be crawled and ranked, and results pages from earlier batches need dates and specifics to be believed."),
+            ("Do you have an office in Trivandrum?", "No. I’m from Thrissur and based in Chennai. I work with Trivandrum businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
+        ],
+        "nearby": ["kollam", "kochi", "thrissur"],
+    },
+    {
+        "slug": "calicut",
+        "name": "Kozhikode",
+        "crumb": "Calicut",
+        "query_name": "Calicut",
+        "alt_names": ["Calicut"],
+        "wiki": "Kozhikode",
+        "district": "Kozhikode",
+        "title": "SEO Expert in Calicut (Kozhikode) | Sreejith Digital",
+        "description": "SEO for Calicut (Kozhikode) businesses: hospitals, traders, food brands and Cyberpark firms, many selling to the Gulf. Remote, with dated, honest reporting.",
+        "h1": "SEO expert in Calicut",
+        "lede": "Calicut businesses often sell to two audiences at once: customers in Kozhikode and Malayalis working in the Gulf. I help Kozhikode hospitals, traders, food brands and Cyberpark firms rank for both — on Google Maps locally and in search further afield — with dated reporting.",
+        "short": "Trade, food, hospitals and Cyberpark — with a large Gulf audience.",
+        "economy_heading": "What Calicut businesses need from search",
+        "economy": [
+            ("Trade and retail", "SM Street, the wholesale markets and the textile and timber trade still run largely on reputation and referrals. A complete Google Business Profile, category pages and WhatsApp-friendly enquiry paths turn that reputation into searches."),
+            ("Hospitals", "Kozhikode’s private hospitals serve the whole of north Kerala and families in the Gulf who arrange treatment for relatives. Doctor and department pages, and booking that works across time zones, are what those searchers need."),
+            ("Food brands", "Kozhikode’s halwa, banana chips and biryani have a following far beyond the city — and the city is a UNESCO City of Literature. Brands that ship need product pages that can rank nationally, not just a listing on a marketplace."),
+            ("Education and IT", "IIM Kozhikode, NIT Calicut and the Cyberpark campuses bring B2B firms and training providers whose buyers are outside Kerala. Their search work is national content, not local listings."),
+        ],
+        "search": [
+            "In English searches, people type “Calicut” far more than “Kozhikode”: on 27 November 2026, Google’s autocomplete offered “seo expert in calicut” as a popular suggestion and “kozhikode” only as a minor one. Titles should use Calicut; addresses and structured data should use Kozhikode.",
+            "Gulf-based customers search on Gulf time and in English or Manglish. Pages that answer remote questions — price, delivery, appointments, documents — capture demand that “near me” targeting misses.",
+        ],
+        "areas": ["Mavoor Road", "Palayam", "Nadakkavu", "Eranhipalam", "West Hill", "Feroke", "Ramanattukara", "Vadakara", "Koyilandy", "Thamarassery"],
+        "landscape": [
+            "No AI Overview appeared; the first organic result was a consultant who also trains SEO students.",
+            "The map pack’s leader had 83 Google reviews; the other two had one or two.",
+            "A directory on page 1 listed 367 SEO service providers in Kozhikode.",
+        ],
+        "faqs": [
+            ("Should my site say Calicut or Kozhikode?", "Both, in different places. Searchers mostly type “Calicut”, so use it in titles and headings where it reads naturally. Use “Kozhikode” in your address, Google Business Profile and structured data, which follow the official name."),
+            ("Most of my customers’ decision-makers are in the Gulf. Can SEO reach them?", "Yes. Build pages that answer questions asked from abroad, make enquiry and payment easy across time zones, and report enquiries by country so you can see what the Gulf audience is worth."),
+            ("Do I need an SEO company in Calicut, or will one expert do?", "For SEO alone, one experienced expert is usually enough for a Calicut business, and you deal directly with the person doing the work. If you also need ads, social media and design run together, a company with a team may suit you better."),
+            ("Does a Calicut shop need a Google Business Profile?", "If customers visit you or you visit them, yes — it is usually the fastest local win. Keep the name exactly as it appears on your signboard; adding keywords to the name breaks Google’s guidelines and can get the profile suspended."),
+            ("Do you have an office in Calicut?", "No. I’m from Thrissur and based in Chennai. I work with Calicut businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
+        ],
+        "nearby": ["malappuram", "kannur", "thrissur"],
+    },
+    {
+        "slug": "thrissur",
+        "name": "Thrissur",
+        "crumb": "Thrissur",
+        "alt_names": ["Trichur"],
+        "wiki": "Thrissur",
+        "district": "Thrissur",
+        "title": "SEO Expert in Thrissur | Sreejith Digital",
+        "description": "SEO expert from Thrissur for jewellers, banks, hospitals and Guruvayur-area hospitality. Malayalam or English, with dated, honest reporting.",
+        "h1": "SEO expert in Thrissur",
+        "lede": "Thrissur is my home town — and home to some of India’s best-known jewellery and banking brands, so local businesses compete with big names and big budgets. I help Thrissur firms win where size doesn’t decide: specific product and service pages, Google Maps and the trust signals buyers check.",
+        "status_label": "Home town",
+        "short": "My home town: jewellery, banking, hospitals and temple towns.",
+        "economy_heading": "What Thrissur businesses need from search",
+        "economy": [
+            ("Gold and jewellery", "Thrissur is a jewellery-making centre and the headquarters of national chains. A smaller jeweller won’t outrank them for “jewellery”, but can win specific searches — bridal sets, temple jewellery, a landmark — with detailed product pages and hallmark information."),
+            ("Banking and finance", "South Indian Bank, CSB Bank, Dhanlaxmi Bank, ESAF Small Finance Bank and KSFE are all headquartered in Thrissur, alongside many gold-loan and chit-fund firms. Financial pages are held to a higher standard: clear terms, regulator details and consistent branch information."),
+            ("Temple towns and festivals", "Guruvayur weddings and Thrissur Pooram create sharp, predictable search peaks for hotels, halls, caterers and photographers. Pages need to be live and ranking before the season, not during it."),
+            ("Healthcare and institutions", "Medical colleges, hospitals and institutions like Kerala Kalamandalam draw people from across central Kerala. Department pages and accurate profiles matter more than a long home page."),
+        ],
+        "search": [
+            "Thrissur searchers lean heavily on Google Maps: “gold loan near me”, “jewellery shop near me” and hospital searches are decided in the map pack, where reviews and an accurate profile carry unusual weight.",
+            "Searches spread across the district’s towns — Guruvayur, Chalakudy, Irinjalakuda, Kunnamkulam, Kodungallur — so a business serving them should cover each town where it really operates, not only the city.",
+        ],
+        "areas": ["Swaraj Round", "Punkunnam", "Ayyanthole", "Poonkunnam", "Guruvayur", "Kunnamkulam", "Irinjalakuda", "Chalakudy", "Kodungallur", "Wadakkanchery"],
+        "landscape": [
+            "An AI Overview listed five freelancers and four agencies; the agencies had between 114 and 329 Google reviews.",
+            "Organic results mixed freelancer sites with Justdial and Sortlist directories.",
+            "Two map-pack listings used the search phrase itself in the business name — a practice Google’s business-profile guidelines prohibit.",
+        ],
+        "faqs": [
+            ("Can a small Thrissur jeweller compete with the national chains?", "Not for “jewellery”, but yes for specific searches: product types, bridal collections, hallmark questions and your locality. Detailed product pages, real photos and a strong Google profile can beat a chain’s generic page."),
+            ("Is SEO different for banks and finance companies?", "Yes. Google treats financial pages as high-stakes, so they need clear terms, named authors or reviewers, regulator details and consistent branch information. Every claim should be checked by compliance before it goes live."),
+            ("When should Guruvayur hotels and wedding services start?", "Several months before the main wedding dates. Pages need time to rank, and the useful ones answer specific questions — packages, capacity, distance from the temple — rather than describing the town."),
+            ("Do you have an office in Thrissur?", "No office — Thrissur is my home town. I’m now based in Chennai, work with Thrissur businesses remotely in Malayalam or English, and meet in person when I’m back in Kerala. I won’t list an address I don’t have."),
+        ],
+        "nearby": ["kochi", "palakkad", "malappuram"],
+    },
+    {
+        "slug": "malappuram",
+        "name": "Malappuram",
+        "crumb": "Malappuram",
+        "alt_names": [],
+        "wiki": "Malappuram",
+        "district": "Malappuram",
+        "title": "SEO Expert in Malappuram | Sreejith Digital",
+        "description": "SEO for Malappuram businesses: education, Ayurveda, hospitals and trade, with customers at home and in the Gulf. Remote from Chennai, with dated reporting.",
+        "h1": "SEO expert in Malappuram",
+        "lede": "Kerala’s migration surveys have repeatedly found more emigrants from Malappuram than from any other district, so many customers here search from Dubai, Riyadh or Doha. I help Malappuram institutes, hospitals, Ayurveda brands and traders reach both the family at home and the earner abroad.",
+        "short": "Education, Ayurveda, hospitals and a large Gulf audience.",
+        "economy_heading": "What Malappuram businesses need from search",
+        "economy": [
+            ("Ayurveda", "Kottakkal, home to the Arya Vaidya Sala since 1902, anchors a cluster of Ayurveda hospitals, clinics and product makers. Treatment pages need to answer international enquiries; product pages need to rank nationally."),
+            ("Education", "The University of Calicut sits in Malappuram district, and colleges, schools and job-oriented course providers compete for the same students. Course pages with fees, intakes and outcomes win over brochure-style pages."),
+            ("Hospitals", "Perinthalmanna is known as a hospital town, and patients travel from neighbouring districts. Department and doctor pages, plus profiles that match, help those patients choose before they travel."),
+            ("Trade, property and construction", "Gulf earnings fund much of the district’s construction and property market, and the international airport at Karipur is in the district. Buyers abroad need clear project details and remote-friendly enquiry paths."),
+        ],
+        "search": [
+            "Many decisions are made by family members in the Gulf, on Gulf time. Pages should answer what a remote decision-maker asks — fees, documents, timelines — and enquiry forms should work well on a phone.",
+            "Searches spread across the district’s towns rather than centring on Malappuram town: Manjeri, Tirur, Perinthalmanna, Kottakkal and Kondotty all have their own demand. Kottakkal already shows up in Google’s suggestions for SEO searches.",
+        ],
+        "areas": ["Malappuram town", "Manjeri", "Tirur", "Perinthalmanna", "Kottakkal", "Kondotty", "Nilambur", "Ponnani", "Valanchery", "Tirurangadi"],
+        "landscape": [
+            "An AI Overview listed seven providers, mostly with ratings and phone numbers quoted from their business profiles.",
+            "Ads from national SEO companies ran above the organic results.",
+            "Many page-1 titles described their owner as the “best” or “No. 1” SEO expert in Malappuram.",
+        ],
+        "faqs": [
+            ("My customers’ families decide from the Gulf. What should the website do?", "Answer their questions without a phone call: prices or fee ranges, documents, timelines and how payment works from abroad. Then track enquiries by country, so you can see how much of your business the Gulf audience drives."),
+            ("Is Malayalam content worth it in Malappuram?", "Check your Search Console queries first. If people search in Malayalam or Manglish for your services, a few well-written Malayalam pages can work; translating the whole site rarely pays off."),
+            ("Do you work with businesses in Tirur, Manjeri and Perinthalmanna?", "Yes. A business that genuinely serves several towns should cover each one properly on its own site. A town gets its own page only when people search for it and the page has something specific to say."),
+            ("Do you have an office in Malappuram?", "No. I’m from Thrissur and based in Chennai. I work with Malappuram businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
+        ],
+        "nearby": ["calicut", "palakkad", "thrissur"],
+    },
+    {
+        "slug": "kannur",
+        "name": "Kannur",
+        "crumb": "Kannur",
+        "alt_names": ["Cannanore"],
+        "wiki": "Kannur",
+        "district": "Kannur",
+        "title": "SEO Expert in Kannur | Sreejith Digital",
+        "description": "SEO for Kannur businesses: handloom makers, homestays, hospitals and institutes, from Thalassery to Payyanur. Remote from Chennai, with dated, honest reporting.",
+        "h1": "SEO expert in Kannur",
+        "lede": "Kannur’s handlooms already sell far beyond Kerala, and its international airport has opened the district to more visitors. I help Kannur makers, homestays, hospitals and institutes turn that reach into search visibility — from Thalassery to Payyanur.",
+        "short": "Handloom, Theyyam-season tourism, hospitals and education.",
+        "economy_heading": "What Kannur businesses need from search",
+        "economy": [
+            ("Handloom and home furnishings", "Kannur’s woven home furnishings are exported worldwide, but many weavers and cooperatives depend on buyers who already know them. Product pages with materials, sizes and care details can reach retail and trade buyers directly."),
+            ("Theyyam season and beaches", "Visitors plan trips around the Theyyam season and beaches like Muzhappilangad. Homestays that publish useful, dated guides before the season can win bookings directly instead of paying platform commissions."),
+            ("Hospitals and education", "The medical college at Pariyaram, Kannur University and private hospitals serve north Kerala. Accurate department, course and doctor pages matter more than a long home page."),
+            ("Gulf-linked trade and property", "Like much of north Kerala, Kannur has a large Gulf diaspora, which shapes demand for property, gold and construction. Pages need to answer buyers who are not in Kannur when they search."),
+        ],
+        "search": [
+            "Kannur district searches spread across several towns — Thalassery, Payyanur, Taliparamba and Mattannur near the airport — and many people search the town, not the district.",
+            "Tourism searches are strongly seasonal and timed around festivals. Content published after the season starts is usually too late to rank for it.",
+        ],
+        "areas": ["Kannur town", "Thalassery", "Payyanur", "Taliparamba", "Mattannur", "Iritty", "Kuthuparamba", "Payyambalam", "Azhikode", "Chirakkal"],
+        "landscape": [
+            "An AI Overview listed seven consultants and quoted packages starting around ₹10,000 a month.",
+            "The map pack showed three providers with 0 to 34 reviews; all three used the search phrase in their business name.",
+            "Ads from national and overseas SEO agencies ran on the page.",
+        ],
+        "faqs": [
+            ("Can a Kannur handloom unit sell online through search?", "Yes, if the product pages do the selling: real photos, materials, sizes, care instructions, wholesale terms and shipping details. Marketplaces help with reach; your own site builds the brand and the margin."),
+            ("When should homestays publish Theyyam content?", "Well before the season — a guide that is live by early autumn has time to rank. Keep it factual and dated, and link it to the rooms and booking page."),
+            ("Do you cover Thalassery, Payyanur and Taliparamba?", "Yes. I work with businesses anywhere in Kannur district, remotely. If you serve several towns, each needs proper coverage on your site, not a copied page."),
+            ("Do you have an office in Kannur?", "No. I’m from Thrissur and based in Chennai. I work with Kannur businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
+        ],
+        "nearby": ["calicut", "malappuram", "thrissur"],
+    },
+    {
+        "slug": "kollam",
+        "name": "Kollam",
+        "crumb": "Kollam",
+        "alt_names": ["Quilon"],
+        "wiki": "Kollam",
+        "district": "Kollam",
+        "title": "SEO Expert in Kollam | Sreejith Digital",
+        "description": "SEO for Kollam businesses: cashew exporters, hospitals, institutes and Ashtamudi backwater stays. Remote from Chennai, with dated, honest reporting.",
+        "h1": "SEO expert in Kollam",
+        "lede": "Kollam is known as India’s cashew capital, and many of its firms sell to buyers who never search for “Kollam”. I help Kollam exporters, hospitals, institutes and backwater stays get found by the people who actually buy from them.",
+        "short": "Cashew exports, backwaters, minerals and education.",
+        "economy_heading": "What Kollam businesses need from search",
+        "economy": [
+            ("Cashew processing and export", "The Cashew Export Promotion Council of India is headquartered in Kollam, and processors here sell to buyers across India and overseas. Those buyers search by grade, certification and packing — so specification pages beat a company profile."),
+            ("Backwater tourism", "Ashtamudi Lake and the Kollam–Alappuzha backwater route bring visitors who plan weeks ahead. Resorts and homestays win direct bookings with detailed pages on routes, timings and what is included."),
+            ("Minerals and industry", "The mineral-sands industry at Chavara and industrial units around Kundara sell B2B, often nationally. Their buyers want technical detail and evidence, not local listings."),
+            ("Education and healthcare", "Engineering colleges, the Amritapuri campus and the district’s hospitals draw students and patients from across south Kerala. Course and department pages need facts, fees and dates."),
+        ],
+        "search": [
+            "Exporters’ buyers rarely type a city at all; they search the product. For them, Kollam belongs in the company story and the structured data, while titles carry the product and grade.",
+            "Local searches spread across Karunagappally, Kottarakkara and Punalur, so district businesses should cover the towns they genuinely serve.",
+        ],
+        "areas": ["Chinnakada", "Kollam town", "Karunagappally", "Kottarakkara", "Punalur", "Paravur", "Chavara", "Kundara", "Kadappakada", "Ashtamudi"],
+        "landscape": [
+            "No AI Overview appeared; Google led with the map pack.",
+            "Two of the three map-pack businesses were agencies with 163 and 182 Google reviews.",
+            "One page-1 agency advertised SEO from ₹3,000 a month.",
+        ],
+        "faqs": [
+            ("We export cashews. Should our website mention Kollam at all?", "Yes, in your story, address and structured data — it is part of your credibility. But your titles should carry what buyers search: the product, grade and certification. Kollam is rarely in an importer’s query."),
+            ("Can a backwater homestay rank against booking platforms?", "For specific searches, yes: routes, houseboat timings, Ashtamudi activities and questions a guest asks before booking. A well-kept Google profile and your own detailed pages can win direct bookings."),
+            ("Is very cheap SEO worth it?", "Check what is included. Very low monthly fees usually cover reports and a few posts, not technical fixes or content. Ask for the specific pages that will change and how results will be measured."),
+            ("Do you have an office in Kollam?", "No. I’m from Thrissur and based in Chennai. I work with Kollam businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
+        ],
+        "nearby": ["trivandrum", "kochi", "thrissur"],
+    },
+    {
+        "slug": "palakkad",
+        "name": "Palakkad",
+        "crumb": "Palakkad",
+        "alt_names": ["Palghat"],
+        "wiki": "Palakkad",
+        "district": "Palakkad",
+        "title": "SEO Expert in Palakkad | Sreejith Digital",
+        "description": "SEO for Palakkad businesses: Kanjikode manufacturers, rice and agri brands, hospitals and institutes, with Coimbatore next door. Remote, with dated reporting.",
+        "h1": "SEO expert in Palakkad",
+        "lede": "Palakkad sits on the Palakkad Gap, the main road and rail route between Kerala and Tamil Nadu, and its businesses often sell into Coimbatore as much as Kochi. I help Palakkad manufacturers, agri brands, hospitals and institutes rank across that corridor.",
+        "short": "Manufacturing, agri brands and the Coimbatore corridor.",
+        "economy_heading": "What Palakkad businesses need from search",
+        "economy": [
+            ("Manufacturing at Kanjikode", "The Kanjikode industrial area hosts public-sector and private manufacturers that sell to buyers across south India. B2B buyers search by product and specification, so technical pages and downloadable data sheets matter."),
+            ("Rice and agri brands", "Palakkad is known as Kerala’s rice bowl, and Palakkadan Matta rice carries a geographical indication. Brands that pack and ship need product pages that rank nationally and explain origin and quality."),
+            ("Education", "IIT Palakkad and the district’s colleges and coaching centres draw students from both sides of the border. Course pages with fees, intakes and outcomes win over brochures."),
+            ("Healthcare and Ayurveda", "Hospitals and Ayurveda centres serve patients from Palakkad and western Tamil Nadu. Pages need to answer both audiences clearly."),
+        ],
+        "search": [
+            "Palakkad’s market runs across a state border. Many customers are in Coimbatore, Pollachi or Tiruppur, so service pages should name the areas you really serve on both sides.",
+            "Parts of the district are bilingual, and some searches are in Tamil as well as Malayalam and English. Check Search Console before adding language pages; build them only where real queries exist.",
+        ],
+        "areas": ["Palakkad town", "Kanjikode", "Ottapalam", "Shoranur", "Chittur", "Mannarkkad", "Alathur", "Pattambi", "Kalpathy", "Walayar"],
+        "landscape": [
+            "No AI Overview appeared; the map pack showed three freelancers with 5 to 17 reviews.",
+            "A directory on page 1 listed 36+ SEO consultants in Palakkad.",
+            "Most organic results were one-person freelancer sites, one on a free hosting subdomain.",
+        ],
+        "faqs": [
+            ("Should a Palakkad manufacturer target Coimbatore too?", "If you sell there, yes. Name the areas you really supply on your service and product pages, and make sure the specifications Coimbatore buyers compare are on the page, not only in a brochure."),
+            ("Is Tamil content useful in Palakkad?", "Sometimes. Parts of the district are bilingual and some buyers search in Tamil. Check your Search Console queries first and add Tamil pages only where people are searching that way."),
+            ("Can a rice or agri brand sell online through search?", "Yes, with proper product pages: origin, variety, packing sizes, shipping and certifications. Product structured data helps search engines understand prices and availability."),
+            ("Do you have an office in Palakkad?", "No. I’m from Thrissur and based in Chennai. I work with Palakkad businesses remotely, in Malayalam or English, and can meet in person when I travel to Kerala. I won’t list an address I don’t have."),
+        ],
+        "nearby": ["thrissur", "malappuram", "kochi"],
+    },
+]
+KERALA_CITY_BY_SLUG = {city["slug"]: city for city in KERALA_CITIES}
+
+
+def city_place(city: dict) -> dict:
+    """Country > State > District > City, for Service.areaServed."""
+    place = {
+        "@type": "City",
+        "name": city["name"],
+        "sameAs": WIKI + city["wiki"],
+        "containedInPlace": {
+            "@type": "AdministrativeArea",
+            "name": f'{city["district"]} district',
+            "sameAs": WIKI + f'{city["district"]}_district',
+            "containedInPlace": STATE_PLACES["Kerala"],
+        },
+    }
+    if city.get("alt_names"):
+        place["alternateName"] = city["alt_names"]
+    return place
+
+
+def city_label(city: dict) -> str:
+    """The name searchers use, e.g. Calicut rather than Kozhikode."""
+    return city.get("query_name", city["name"])
 
 RESOURCES = [
     {
@@ -1335,7 +1691,7 @@ CASE_STUDIES = [
 ]
 
 LABEL_LOOKUP = dict(STATIC_LABELS)
-for collection in (SERVICES, INDUSTRIES, LOCATIONS, RESOURCES, CASE_STUDIES):
+for collection in (SERVICES, INDUSTRIES, LOCATIONS, RESOURCES, CASE_STUDIES, KERALA_CITIES):
     for item in collection:
         LABEL_LOOKUP[item["slug"]] = item.get("crumb", item["name"])
 
@@ -1348,7 +1704,7 @@ SERVICE_SEO_TITLES = {
     "seo-consulting": "SEO Consulting Services India | Independent SEO Consultant",
     "technical-seo": "Technical SEO Consultant India | Audits & Implementation",
     "local-seo": "Local SEO Services India | Profiles & Location Pages",
-    "ai-search-optimization": "AI Search Optimisation (AEO, GEO) Consultant India",
+    "ai-search-optimization": "AI SEO Expert India | AI Search Optimisation (AEO, GEO)",
     "seo-services": "SEO Services India | Organic Growth Programme",
     "content-strategy": "SEO Content Strategy India | Topic Clusters & Briefs",
     "analytics-reporting": "SEO Analytics & Reporting India | GA4 & Search Console",
@@ -1640,12 +1996,11 @@ def business_node() -> dict:
             "addressCountry": "IN",
         },
         "areaServed": [
-            {"@type": "Country", "name": "India"},
-            {"@type": "City", "name": "Chennai"},
-            {"@type": "State", "name": "Kerala"},
-            {"@type": "City", "name": "Bengaluru"},
-            {"@type": "City", "name": "Hyderabad"},
-            {"@type": "Place", "name": "Delhi NCR"},
+            {"@type": place["@type"], "name": place["name"], "sameAs": place["sameAs"]}
+            for place in [COUNTRY_PLACE, *LOCATION_PLACES.values()]
+        ] + [
+            {"@type": "City", "name": city["name"], "sameAs": WIKI + city["wiki"]}
+            for city in KERALA_CITIES
         ],
         "knowsAbout": OWNER_KNOWS_ABOUT,
     }
@@ -2142,7 +2497,7 @@ def home_page() -> None:
     ]
     homepage_faqs = [
         ("What does an independent SEO consultant do?", "An independent SEO consultant finds what is stopping a website from being found and trusted, sets priorities, and helps ship the fixes — technical, content and local — then measures the effect on enquiries. You deal with one accountable person rather than an account manager."),
-        ("Do you work with businesses outside Chennai?", "Yes. I’m based in Chennai and work remotely with businesses across India. I have dedicated pages for Bengaluru, Delhi NCR, Hyderabad, Chennai and Kerala, each with an honest status of the work there."),
+        ("Do you work with businesses outside Chennai?", "Yes. I’m based in Chennai and work remotely with businesses across India. I have pages for Bengaluru, Delhi NCR, Hyderabad, Chennai and Kerala — plus eight Kerala cities from Kochi to Kannur — each with an honest status of the work there."),
         ("Do you guarantee rankings?", "No. Nobody controls Google’s rankings. What I show instead is dated client results — including the terms that haven’t reached page 1 yet — and the method behind them."),
         ("How long does SEO take for a business like mine?", "Brand searches and niche long-tail terms can move within weeks to a few months; competitive city terms usually take six months or more. The case study shows one client reaching page 1 for five terms in about three months, but every market is different."),
         ("What is AI search optimisation, and do I need it?", "It is making sure Google’s AI Overviews and assistants like ChatGPT can identify your business and cite it. Google says it is still SEO; the extra emphasis is entity clarity and third-party mentions. If your buyers ask AI tools for shortlists, it matters."),
@@ -2156,9 +2511,9 @@ def home_page() -> None:
   <div class="container hero-grid">
     <div class="hero-copy">
       <p class="eyebrow eyebrow--pill">Independent SEO consultant · Chennai · Across India</p>
-      <h1>Independent SEO consultant in India</h1>
+      <h1>Independent SEO expert in India</h1>
       <p class="hero-tagline">For businesses that need enquiries, not just traffic.</p>
-      <p class="hero-lede">I’m {e(OWNER_NAME)} — originally from Kerala, based in Chennai. I combine SEO strategy with hands-on technical work, and I show dated results instead of ranking promises.</p>
+      <p class="hero-lede">I’m {e(OWNER_NAME)} — originally from Thrissur, Kerala, based in Chennai. I combine SEO strategy with hands-on technical work, and I show dated results instead of ranking promises.</p>
       <div class="hero-actions">
         <a class="btn btn--primary" href="/free-seo-review/">Get a free SEO review <span aria-hidden="true">→</span></a>
         <a class="btn btn--secondary" href="{CASE_STUDY_URL}">See the case study</a>
@@ -2229,6 +2584,7 @@ def home_page() -> None:
   <div class="container">
     {section_header("Where I work", "Five markets, each with an honest status", "Client results, work in progress or home ground — every city page says which. I work remotely with businesses anywhere in India.", ("All locations", "/locations/"))}
     {location_cards(LOCATIONS, 3)}
+    <p class="section-intro">SEO expert in Kerala, city by city: {" · ".join(f'<a href="/locations/kerala/{city["slug"]}/">{e(city_label(city))}</a>' for city in KERALA_CITIES)}</p>
   </div>
 </section>
 
@@ -2272,7 +2628,7 @@ def home_page() -> None:
 '''
     write_page(
         path="/",
-        title="Independent SEO Consultant in India | Sreejith Digital",
+        title="Independent SEO Expert in India | Sreejith Digital",
         description=DEFAULT_DESCRIPTION,
         main=main,
         body_class="page-home",
@@ -2648,12 +3004,27 @@ def industry_page(industry: dict) -> None:
     )
 
 
+def locations_item_list() -> dict:
+    """Every location page, in hierarchy order, for search engines and AI systems."""
+    entries = [(f'SEO expert in {item["name"]}', f'/locations/{item["slug"]}/') for item in LOCATIONS]
+    entries += [(f"SEO expert in {city_label(city)}", f'/locations/kerala/{city["slug"]}/') for city in KERALA_CITIES]
+    return {
+        "@type": "ItemList",
+        "@id": BASE_URL + "/locations/#list",
+        "name": "Location pages",
+        "itemListElement": [
+            {"@type": "ListItem", "position": index, "name": name, "url": BASE_URL + href}
+            for index, (name, href) in enumerate(entries, start=1)
+        ],
+    }
+
+
 def locations_hub() -> None:
     main = f'''{page_hero(
         path="/locations/",
         eyebrow="Locations",
         title="Where I work — and what I’ve done there",
-        lede="Five markets, each with an honest status: client results, work in progress or home ground. A city gets a page here only when there is something true and useful to say about it.",
+        lede="India first, then states and cities: five markets with an honest status each, and eight Kerala cities with their own pages. A city gets a page only when people search for it and there is something true and useful to say.",
         meta=["Based in Chennai", "Remote across India", "No invented local offices"],
     )}
 
@@ -2664,14 +3035,21 @@ def locations_hub() -> None:
   </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    {section_header("Kerala", "Kerala, city by city", "Pages for the eight Kerala cities where Google’s autocomplete shows steady demand for an SEO expert.", ("Kerala overview", "/locations/kerala/"))}
+    {kerala_city_cards(KERALA_CITIES, 4)}
+  </div>
+</section>
+
 <section class="section section--surface">
   <div class="container prose-layout">
     <div class="prose">
-      <p class="lead">I work remotely with businesses anywhere in India. These five pages exist because each one has real work or real local knowledge behind it.</p>
+      <p class="lead">I work remotely with businesses anywhere in India. These pages exist because each one has real work or real local knowledge behind it.</p>
       <h2>The rule behind these pages</h2>
       <p>Before a city page is published, I swap the city name for another city and read it again. If it is still true, it isn’t a city page — it is a doorway page wearing a city name, and it doesn’t go live. The same rule applies to client sites.</p>
       <h2>Honest status, always</h2>
-      <p>Bengaluru and Delhi NCR show client results with dates. Hyderabad shows work in progress. Chennai and Kerala are home ground. When the status changes, the page changes.</p>
+      <p>Bengaluru and Delhi NCR show client results with dates. Hyderabad shows work in progress. Chennai and Kerala are home ground; the Kerala city pages say plainly that no local client result is published yet. When the status changes, the page changes.</p>
       <p><a href="/resources/location-pages-without-doorway-risk/">Read the full city-page guide →</a></p>
     </div>
     <aside class="aside-panel">
@@ -2693,9 +3071,10 @@ def locations_hub() -> None:
     write_page(
         path="/locations/",
         title="Where I Work: SEO Consulting by City | Sreejith Digital",
-        description="SEO consulting for Bengaluru, Delhi NCR, Hyderabad, Chennai and Kerala — each page with local context and an honest status of the work there.",
+        description="SEO expert pages for India by state and city: Chennai, Bengaluru, Delhi NCR, Hyderabad, Kerala and eight Kerala cities, each with an honest status.",
         main=main,
         page_type="CollectionPage",
+        schema_extra=[locations_item_list()],
     )
 
 
@@ -2709,7 +3088,7 @@ def location_page(location: dict) -> None:
         "serviceType": "SEO consulting",
         "description": location["description"],
         "provider": {"@id": BUSINESS_ID},
-        "areaServed": {"@type": "State" if location["slug"] == "kerala" else "Place", "name": location["name"]},
+        "areaServed": LOCATION_PLACES[location["slug"]],
         "url": BASE_URL + path,
     }
     if results:
@@ -2723,11 +3102,11 @@ def location_page(location: dict) -> None:
 {check_list(location["engage"])}
 <a class="btn btn--secondary btn--full" href="{CASE_STUDY_URL}">See the method in action <span aria-hidden="true">→</span></a>'''
     cities_html = ""
-    if location.get("cities"):
+    if location["slug"] == "kerala":
         cities_html = f'''<section class="section section--surface">
   <div class="container">
-    {section_header("Across the state", "City by city", "One Kerala page covers each city properly until a city has the demand and content to justify its own page.")}
-    {card_grid([{"tag": "City", "title": name, "text": text} for name, text in location["cities"]], 4)}
+    {section_header("Across the state", "SEO expert in each Kerala city", "Eight city pages, each with that city’s industries, how its customers search and what page 1 looked like on " + SERP_DATE + ".")}
+    {kerala_city_cards(KERALA_CITIES, 4)}
   </div>
 </section>'''
     results_html = ""
@@ -2767,7 +3146,7 @@ def location_page(location: dict) -> None:
 
 {cities_html}
 
-<section class="section{' section--surface' if not location.get('cities') else ''}">
+<section class="section{' section--surface' if location['slug'] != 'kerala' else ''}">
   <div class="container split-section split-section--reverse">
     <aside class="aside-panel">
       <p class="eyebrow">{e(location["engage_heading"])}</p>
@@ -2813,6 +3192,148 @@ def location_page(location: dict) -> None:
         description=location["description"],
         main=main,
         schema_extra=[service_schema, faq_schema(location["faqs"])],
+    )
+
+
+def kerala_city_cards(items: list[dict], columns: int = 4) -> str:
+    return card_grid(
+        [
+            {
+                "tag": f'{item["district"]} district',
+                "title": city_label(item),
+                "text": item["short"],
+                "href": f'/locations/kerala/{item["slug"]}/',
+                "link_label": f"SEO expert in {city_label(item)}",
+            }
+            for item in items
+        ],
+        columns,
+    )
+
+
+def city_answer(city: dict) -> str:
+    """Entity-first answer for AI Overviews and assistants (about 55 words)."""
+    label = city_label(city)
+    return (
+        f"{OWNER_NAME} is an independent SEO consultant from Thrissur, Kerala, based in Chennai, who works with "
+        f"{label} businesses remotely, in Malayalam or English. His published work took an MEP contractor to #1 on Google India "
+        f"in Bengaluru ({RESULTS_DATE}) and into Google’s AI Overview for “MEP contractors in India” "
+        f"({AI_CITATION_DATE}). No {label} client result is published yet."
+    )
+
+
+def kerala_city_page(city: dict) -> None:
+    path = f'/locations/kerala/{city["slug"]}/'
+    label = city_label(city)
+    other_names = [name for name in [city["name"], *city.get("alt_names", [])] if name != label]
+    aka = f' ({", ".join(other_names)})' if other_names else ""
+    service_schema = {
+        "@type": "Service",
+        "@id": BASE_URL + path + "#service",
+        "name": f"SEO services in {label}",
+        "serviceType": "Search engine optimization",
+        "description": city["description"],
+        "provider": {"@id": BUSINESS_ID},
+        "areaServed": city_place(city),
+        "url": BASE_URL + path,
+    }
+    nearby = [KERALA_CITY_BY_SLUG[slug] for slug in city["nearby"]]
+    district_heading = (
+        f'Across {city["district"]} district' if city["district"] != city["name"] else f"Across {label} and nearby towns"
+    )
+    economy_cards = [{"tag": "Sector", "title": title, "text": text} for title, text in city["economy"]]
+    search_paragraphs = "".join(f"<p>{e(paragraph)}</p>" for paragraph in city["search"])
+    main = f'''{page_hero(
+        path=path,
+        eyebrow=f"Kerala · {label}{aka}",
+        title=city["h1"],
+        lede=city["lede"],
+        meta=[f'{city["district"]} district', "Remote from Chennai", "Dated, honest reporting"],
+        tag_html=status_tag("home", city.get("status_label", "Home state")),
+    )}
+
+<section class="section section--tight">
+  <div class="container">
+    {answer_block(city_answer(city))}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {section_header("Local market", city["economy_heading"], f"The search work that pays off depends on how {label} businesses sell — and to whom.")}
+    {card_grid(economy_cards, 4)}
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container split-section">
+    <div class="prose">
+      <h2>How people in {e(label)} search</h2>
+      {search_paragraphs}
+    </div>
+    <aside class="aside-panel">
+      <p class="eyebrow">Areas covered</p>
+      <h3>{e(district_heading)}</h3>
+      {check_list(city["areas"])}
+      <p class="table-note">A town gets its own page only when people search for it and there is something specific to say.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split-section split-section--reverse">
+    <aside class="aside-panel">
+      <p class="eyebrow">Hiring checklist</p>
+      <h3>Ask any SEO expert — including me</h3>
+      {check_list(["The URL that ranked", "The date it was recorded", "What didn’t work, and why"])}
+      <a class="btn btn--primary btn--full" href="/free-seo-review/">Get a free SEO review <span aria-hidden="true">→</span></a>
+    </aside>
+    <div class="prose">
+      <h2>What page 1 looked like for “SEO expert in {e(label)}”</h2>
+      <p>Google India, logged out, with Google placing the search in {e(label)}, checked on {e(SERP_DATE)}:</p>
+      {dash_list(city["landscape"])}
+      <p>Results change daily, and lists in AI answers are assembled from websites and profiles, not verified results. That is why the checklist beside this asks for evidence rather than adjectives.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container prose-layout">
+    <div class="prose">
+      <h2>Published results — and the honest gap</h2>
+      <p>I don’t have a published {e(label)} client result yet, and I won’t invent one. My published work is in other markets: an MEP contractor’s pages reached #1, #3, #4, #5 and #8 on Google India for commercial terms ({e(RESULTS_DATE)}), and the client was cited in Google’s AI Overview for “MEP contractors in India” ({e(AI_CITATION_DATE)}).</p>
+      <p><a href="{CASE_STUDY_URL}">Read how it was done, including what hasn’t reached page 1 →</a></p>
+    </div>
+    <aside class="aside-panel">
+      <p class="eyebrow">Working together</p>
+      <h3>SEO services in {e(label)}, from Chennai</h3>
+      {check_list(["A written baseline before any change", "Calls in Malayalam or English; meetings when I’m in Kerala", "Reporting that separates local, NRI and visitor enquiries"])}
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {section_header("Questions", f"SEO in {label}: common questions")}
+    {faq_html(city["faqs"])}
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    {section_header("Nearby", "Other Kerala cities", "Each city page has its own market, search patterns and page-1 snapshot.", ("Kerala overview", "/locations/kerala/"))}
+    {kerala_city_cards(nearby, 3)}
+  </div>
+</section>
+
+{cta_section(f"Growing in {label}?", "Send your website and the areas you serve. You’ll get the three changes I’d make first.")}
+'''
+    write_page(
+        path=path,
+        title=city["title"],
+        description=city["description"],
+        main=main,
+        schema_extra=[service_schema, faq_schema(city["faqs"])],
     )
 
 
@@ -3439,8 +3960,9 @@ def write_version_marker() -> None:
         f"release: {SITE_VERSION}",
         f"updated: {LAST_UPDATED}",
         f"indexable-pages: {len(sitemap_paths())}",
-        "homepage-title: Independent SEO Consultant in India | Sreejith Digital",
+        "homepage-title: Independent SEO Expert in India | Sreejith Digital",
         f"locations: {', '.join(item['name'] for item in LOCATIONS)}",
+        f"kerala-cities: {', '.join(city_label(item) for item in KERALA_CITIES)}",
         "",
     ])
     write_text(SITE_ROOT / "version.txt", content)
@@ -3475,6 +3997,8 @@ def main() -> None:
     locations_hub()
     for location in LOCATIONS:
         location_page(location)
+    for city in KERALA_CITIES:
+        kerala_city_page(city)
     resources_hub()
     for resource in RESOURCES:
         resource_page(resource)
