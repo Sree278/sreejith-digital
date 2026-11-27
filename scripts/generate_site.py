@@ -21,7 +21,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-27"
-SITE_VERSION = "2026-11-27.4"
+SITE_VERSION = "2026-11-27.5"
 DEFAULT_DESCRIPTION = (
     "SEO expert in India, based in Chennai. SEO services for technical, "
     "local and AI search — with dated client results, not ranking promises."
@@ -65,9 +65,14 @@ EXPERIENCE: list[dict] = [
     },
 ]
 
-# Analytics stay off until IDs are added AND a visitor opts in (consent banner).
-GA4_MEASUREMENT_ID = ""  # e.g. "G-XXXXXXXXXX"
-CLARITY_PROJECT_ID = ""  # e.g. "abcd1234ef"
+# Analytics stay off until an ID is added AND a visitor opts in (consent banner).
+# Google Tag Manager is the single loader: GA4 (G-EP5M7JTRXK), Microsoft Clarity
+# (zkbxk7xkbk) and future Google Ads conversion tags live in the GTM container.
+# Leave GA4_MEASUREMENT_ID and CLARITY_PROJECT_ID empty while GTM is set, or
+# those tools would load twice.
+GTM_CONTAINER_ID = "GTM-K4MJL3SM"
+GA4_MEASUREMENT_ID = ""  # direct-load fallback only, e.g. "G-XXXXXXXXXX"
+CLARITY_PROJECT_ID = ""  # direct-load fallback only, e.g. "abcd1234ef"
 
 # Enquiries POST here (Cloudflare Worker in worker/index.js). If the endpoint is
 # not configured yet, main.js falls back to preparing an email instead.
@@ -2162,7 +2167,7 @@ def render_header(current: str) -> str:
 
 
 def analytics_enabled() -> bool:
-    return bool(GA4_MEASUREMENT_ID or CLARITY_PROJECT_ID)
+    return bool(GTM_CONTAINER_ID or GA4_MEASUREMENT_ID or CLARITY_PROJECT_ID)
 
 
 def render_footer() -> str:
@@ -2365,7 +2370,7 @@ def faq_schema(faqs: list[tuple[str, str]]) -> dict:
 def analytics_head() -> str:
     if not analytics_enabled():
         return ""
-    config = json.dumps({"ga4": GA4_MEASUREMENT_ID, "clarity": CLARITY_PROJECT_ID})
+    config = json.dumps({"gtm": GTM_CONTAINER_ID, "ga4": GA4_MEASUREMENT_ID, "clarity": CLARITY_PROJECT_ID})
     return f"  <script>window.SD_ANALYTICS = {config};</script>\n"
 
 
@@ -4201,7 +4206,7 @@ def privacy_page() -> None:
       <h2>How long it is kept</h2>
       <p>Enquiries are kept only as long as needed to respond and follow up — normally no longer than 12 months — unless we start working together, in which case they are kept for the length of the engagement and any period the law requires.</p>
       <h2>Analytics and cookies</h2>
-      <p>Analytics are off by default. If analytics are enabled on this site, Google Analytics 4 and Microsoft Clarity load only after you choose “Allow analytics”, and they set cookies to measure visits and how pages are used. You can change your choice at any time with “Cookie settings” in the footer. The site’s own scripts store only that choice in your browser.</p>
+      <p>Analytics are off by default. Google Tag Manager, Google Analytics 4 and Microsoft Clarity load only after you choose “Allow analytics”, and Google Analytics and Clarity then set cookies to measure visits and how pages are used. Advertising cookies stay off. You can change your choice at any time with “Cookie settings” in the footer. The site’s own scripts store only that choice in your browser.</p>
       <h2>Technical information</h2>
       <p>The hosting provider may process routine technical data such as IP addresses, request times and requested URLs to deliver the site, keep it secure and prevent abuse. This data is not used for advertising.</p>
       <h2>Your rights</h2>

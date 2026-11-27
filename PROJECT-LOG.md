@@ -11,6 +11,16 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-27 — Measurement live: GTM, GA4, Clarity (release 2026-11-27.5)
+
+- **Set up:** GA4 account "Sreejith Digital" → property `sreejithdigital.com` (565911323), web stream `G-EP5M7JTRXK`, enhanced measurement on, event and user data retention 14 months, linked to the Search Console Domain property. Microsoft Clarity project `zkbxk7xkbk`. Google Tag Manager web container `GTM-K4MJL3SM` (version 2 published) with the GA4 Google tag, GA4 event tags for `generate_lead` and `form_start`, and the Clarity tag.
+- **Changed in the repo:** `GTM_CONTAINER_ID` in the generator; `main.js` loads GTM only after "Allow analytics", sets Consent Mode v2 defaults (analytics granted, all ad signals denied) and pushes `form_start` / `generate_lead` to the dataLayer; privacy policy names GTM and says advertising cookies stay off.
+- **Why:** owner plans Google Ads and conversion tracking; one GTM container lets Ads conversion tags be added later without code changes. Loading GTM only after consent keeps the DPDP-based privacy promise ("nothing loads unless you allow it").
+- **Evidence:** headless Chromium against the built site: before consent no third-party request and the banner shows; after "Allow" one request to `gtm.js?id=GTM-K4MJL3SM` with the consent defaults in the dataLayer; on `/thank-you/?ref=…` the dataLayer gets `{event: "generate_lead", reference}`; after "No thanks" and a reload, no third-party request. The published container (`gtm.js`) contains `G-EP5M7JTRXK`, `zkbxk7xkbk`, `generate_lead` and `form_start`.
+- **Next:** mark `generate_lead` as a GA4 key event when it first arrives; add an advertising consent choice before any Google Ads tag.
+
+---
+
 ## 2026-11-27 — Domain hardening (Cloudflare) + release 2026-11-27.4
 
 - **Changed in Cloudflare:** Always Use HTTPS on; minimum TLS 1.2; SSL Full (strict); HSTS 6 months with includeSubDomains (no preload); Certificate Transparency alerts on; `www` record + 301 Redirect Rule to the apex (path and query kept); DNSSEC on; Email Routing `hello@` → owner inbox with SPF, DKIM and DMARC `p=reject`; Google Search Console Domain property and Bing Webmaster Tools verified by DNS, sitemap submitted to both; Worker secret `ENQUIRY_TO` added.

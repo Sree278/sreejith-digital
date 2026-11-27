@@ -120,6 +120,27 @@
   const loadAnalytics = () => {
     if (!analyticsConfig || analyticsLoaded) return;
     analyticsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+    // Consent Mode v2: the visitor allowed analytics only. Advertising signals
+    // stay denied until the banner asks for advertising consent as well.
+    window.gtag("consent", "default", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      functionality_storage: "granted",
+      security_storage: "granted",
+    });
+    if (analyticsConfig.gtm) {
+      // Google Tag Manager carries GA4, Clarity and future ad tags.
+      window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+      const gtm = document.createElement("script");
+      gtm.async = true;
+      gtm.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(analyticsConfig.gtm)}`;
+      document.head.appendChild(gtm);
+      return;
+    }
     if (analyticsConfig.ga4) {
       const tag = document.createElement("script");
       tag.async = true;
@@ -143,6 +164,12 @@
   };
 
   const trackEvent = (name, params) => {
+    if (analyticsConfig && analyticsConfig.gtm) {
+      // GTM reads these from the dataLayer (custom-event triggers).
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: name }, params || {}));
+      return;
+    }
     if (typeof window.gtag === "function") window.gtag("event", name, params || {});
   };
 

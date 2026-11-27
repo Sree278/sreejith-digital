@@ -101,7 +101,19 @@ Without the binding or the secret the form still works: it opens the visitor's e
 
 ### 2. Analytics (only after consent)
 
-Create a GA4 property and a Microsoft Clarity project, put the IDs in `GA4_MEASUREMENT_ID` and `CLARITY_PROJECT_ID` at the top of `scripts/generate_site.py`, and run `python3 scripts/generate_site.py`. A consent banner then appears; nothing loads until a visitor chooses **Allow analytics**. In GA4, mark `generate_lead` as a key event.
+**Status 27 Nov 2026: live through Google Tag Manager.**
+
+| Tool | ID | Where it is configured |
+| --- | --- | --- |
+| Google Tag Manager | `GTM-K4MJL3SM` (account "Sreejith") | `GTM_CONTAINER_ID` in `scripts/generate_site.py` |
+| Google Analytics 4 | `G-EP5M7JTRXK` (account "Sreejith Digital", property 565911323) | Google tag in GTM, trigger Initialization – All Pages |
+| Microsoft Clarity | `zkbxk7xkbk` | Custom HTML tag in GTM, trigger All Pages |
+
+- `main.js` loads GTM only after the visitor chooses **Allow analytics**. Before GTM loads it sets Consent Mode v2 defaults: `analytics_storage` granted, `ad_storage`, `ad_user_data` and `ad_personalization` denied. "No thanks" loads nothing.
+- Events pushed to the dataLayer: `form_start` (`form_location`) and `generate_lead` (`reference`, sent to GA4 as `enquiry_reference`), each with a GA4 event tag in GTM.
+- GA4: data retention 14 months; linked to the Search Console Domain property. Mark `generate_lead` as a key event in Admin → Events once the first one arrives (GA4 only lists events it has received).
+- Keep `GA4_MEASUREMENT_ID` and `CLARITY_PROJECT_ID` empty while GTM is set, or the tools load twice.
+- **Before adding Google Ads tags:** add an advertising choice to the consent banner and send `ad_storage`, `ad_user_data` and `ad_personalization` updates from it. Ads conversion tags then go into GTM without code changes.
 
 ### 3. Search engines and crawlers
 
