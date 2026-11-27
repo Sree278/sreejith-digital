@@ -11,6 +11,15 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-27 — Positioning reworded: no "independent" / "freelancer"
+
+**Why:** the site should read as a senior, master-level SEO specialist, not a solo freelancer.
+**Changed:** every self-description in `scripts/generate_site.py` (titles, H1s, meta, FAQs incl. Tamil Nadu pages, schema job title, byline, footer, OG image) now says "SEO expert / senior SEO consultant"; agency-vs-expert FAQs say "dedicated expert". Competitor SERP notes say "individual consultants". Positioning lines in `SEO-STRATEGY.md` and the TN brief updated. OG image SVG and PNG regenerated.
+**Kept on purpose:** search-query data in `SEO-STRATEGY.md` (e.g. "freelance seo expert india") because it records what people type, not our wording.
+**Evidence:** site rebuilt; 0 matches for independent/freelanc across `public/`.
+
+---
+
 ## 2026-11-27 — Tamil Nadu hub and three city pages (release 2026-11-27.2)
 
 - **Changed:** refactored `KERALA_CITIES` into `STATE_CITIES = {"kerala": [...], "tamil-nadu": [...]}`, generalised `city_place()`, `state_city_cards()` and `state_city_page()`, added `/locations/tamil-nadu/`, `/locations/tamil-nadu/coimbatore/`, `/locations/tamil-nadu/madurai/` and `/locations/tamil-nadu/salem/`, added Chennai/home-page/locations-hub linking, nested Service schema, FAQPage schema, four-level breadcrumbs, ItemList entries, `areaServed` entries and five `_redirects` rules. `SITE_VERSION` is `2026-11-27.2`; Kerala city data, entity answers, `areaServed` nodes and non-shared visible content remain unchanged.

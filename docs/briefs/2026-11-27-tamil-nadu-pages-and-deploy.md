@@ -42,7 +42,7 @@ A Tamil Nadu hub plus three city pages, mirroring the Kerala implementation (`KE
   - Consults in English and Malayalam. **Do not claim Tamil** — it is not confirmed.
   - No local client result in these cities: say so, as the Kerala pages do.
   - No fake office or address. No "best" or "No. 1" claims.
-- **"SEO company" intent** dominates Tamil Nadu suggestions. Every city page gets one company-vs-independent-expert FAQ in wording unique to that city.
+- **"SEO company" intent** dominates Tamil Nadu suggestions. Every city page gets one company-vs-dedicated-expert FAQ in wording unique to that city.
 - Titles ≤ 62 characters; descriptions 70–160, unique site-wide; one H1 per page.
 
 ## 3. Schema and linking

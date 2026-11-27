@@ -4,7 +4,7 @@ The single strategy document for this site. It replaces v1 (26 Nov 2026). Day-by
 
 ## 1. Positioning
 
-**Who:** Sreejith CU, independent SEO consultant. Originally from Kerala, based in Chennai (south Chennai, GST Road), working with businesses across India.
+**Who:** Sreejith CU, senior SEO consultant. Originally from Kerala, based in Chennai (south Chennai, GST Road), working with businesses across India.
 
 **Promise:** SEO that produces enquiries, shown with **dated, verifiable results — including the misses** — instead of ranking promises.
 
@@ -61,7 +61,7 @@ Google rewards pages that are the most useful, trustworthy answer for a search. 
 ## 5. Site architecture
 
 ```text
-/                                   National: "Independent SEO consultant in India" + proof + CTA
+/                                   National: "SEO expert in India" + proof + CTA
 /about/                             Person entity home (ProfilePage → Person "Sreejith CU")
 /case-studies/                      Work and results hub (+ work history)
   /case-studies/mindtech-solutions-mep-seo/
@@ -134,7 +134,7 @@ Sources: Google Keyword Planner (India, Nov 2025–Oct 2026, ranges), Google and
 ## 8. Entity, E-E-A-T and off-page plan
 
 **Entity (M1–M2)**
-- Same name, photo, headline and one-line bio on the site, LinkedIn, Clutch, GoodFirms and author bios: "Sreejith CU — independent SEO consultant, Chennai".
+- Same name, photo, headline and one-line bio on the site, LinkedIn, Clutch, GoodFirms and author bios: "Sreejith CU — SEO consultant, Chennai".
 - Add verified profile URLs to `OWNER_PROFILES` (feeds `sameAs`), a headshot to `OWNER_PHOTO`, and confirmed roles to `EXPERIENCE` in `scripts/generate_site.py`.
 - Google Business Profile **only if** you meet Chennai clients in person (Google requires in-person contact). Then: service-area business, address hidden, business-only number, service areas within the Chennai region. If remote-only, skip it.
 
@@ -152,7 +152,7 @@ Sources: Google Keyword Planner (India, Nov 2025–Oct 2026, ranges), Google and
 - Google's guidance (May 2026): optimising for AI features is still SEO; no special files or markup needed. Effort goes to entity clarity, answer-first content and third-party corroboration.
 - Answer blocks (40–60 words) open every service page; FAQs are visible and marked up.
 - Crawl access: allow Googlebot, Bingbot, OAI-SearchBot, PerplexityBot; check Cloudflare AI Crawl Control (owner, M1).
-- Get into the sources AI cites: independent listicles, directories, review profiles.
+- Get into the sources AI cites: third-party listicles, directories, review profiles.
 - Baseline and monthly re-run of 15 fixed prompts in ChatGPT, Perplexity, Gemini, Copilot and Google AI Mode (logged in the tracker).
 - llms.txt: optional, no measurable effect in current evidence.
 
@@ -192,7 +192,7 @@ Targets are estimates for a domain registered on 26 Nov 2026, not guarantees.
 | When | Piece | Target URL / cluster |
 | --- | --- | --- |
 | Dec 2026 | How long SEO takes for a new website in India (with this site's own timeline) | Resources → AEO questions |
-| Dec 2026 | Freelance SEO consultant vs agency in India | Resources → national consultant |
+| Dec 2026 | SEO consultant vs agency in India | Resources → national consultant |
 | Jan 2027 | SEO for MEP and HVAC contractors: service × city pages that rank | Industry cluster |
 | Jan 2027 | Does llms.txt work? What the evidence says | AI search cluster |
 | Feb 2027 | Original data: Core Web Vitals + schema on 50 Chennai SMB sites | Link-earning asset |
