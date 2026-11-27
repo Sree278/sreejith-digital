@@ -11,6 +11,40 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-27 — Tamil Nadu hub and three city pages (release 2026-11-27.2)
+
+- **Changed:** refactored `KERALA_CITIES` into `STATE_CITIES = {"kerala": [...], "tamil-nadu": [...]}`, generalised `city_place()`, `state_city_cards()` and `state_city_page()`, added `/locations/tamil-nadu/`, `/locations/tamil-nadu/coimbatore/`, `/locations/tamil-nadu/madurai/` and `/locations/tamil-nadu/salem/`, added Chennai/home-page/locations-hub linking, nested Service schema, FAQPage schema, four-level breadcrumbs, ItemList entries, `areaServed` entries and five `_redirects` rules. `SITE_VERSION` is `2026-11-27.2`; Kerala city data, entity answers, `areaServed` nodes and non-shared visible content remain unchanged.
+- **Why:** the brief’s demand gate and city-name test. Each new page has four verified sectors, two search-behaviour paragraphs, ten localities, five city-specific FAQs, one company-vs-independent FAQ and three dated page-1 observations from real logged-out Google India searches. No Tamil-language consulting, local office, local client result, "best" or "No. 1" claim was added.
+- **Evidence — local facts:** Coimbatore district economy and hospitals ([economy](https://coimbatore.nic.in/economy/), [hospitals](https://coimbatore.nic.in/public-utility-category/hospitals/)) plus ward/pincode locality lists; Madurai district tourism, industries and colleges ([tourism](https://madurai.nic.in/tourist-places/), [industries](https://madurai.nic.in/industries-commerce/), [colleges](https://madurai.nic.in/public-utility-category/colleges/)) plus [Aravind Eye Hospital](https://uat.aravind.org/hospitals/madurai/); Salem district economy, GI and transport pages ([at a glance](https://salem.nic.in/about-district/salem-at-a-glance/), [GI](https://salem.nic.in/geographical-indications), [tourism](https://salem.nic.in/tourism-2/)) plus Salem locality/municipal-zone lists. Wikipedia city/district pages were used for schema `sameAs` URLs.
+- **Evidence — page-1 snapshots:** logged-out Google India searches with `gl=in`, `hl=en`, `pws=0` and `num=10` for `seo expert in coimbatore`, `seo company in coimbatore`, `seo expert in madurai`, `seo company in madurai`, `seo expert in salem` and `seo company in salem`, checked 27 Nov 2026. Snapshot sections were included because real results were retrievable; none were invented.
+- **Evidence — checks:**
+  - `python3 scripts/generate_site.py`: `Generated 52 indexable pages plus thank-you, 404.html, sitemap.xml and version.txt`
+
+```text
+Titles unique and <=62 chars: PASS
+Descriptions unique and 70-160 chars: PASS
+Exactly one H1 per HTML file: PASS
+All JSON-LD parses: PASS
+Self-referencing canonicals on indexable pages: PASS
+Every internal href resolves: PASS
+Sitemap complete: PASS
+Kerala content unchanged (excluding shared components): PASS
+  /locations/tamil-nadu/coimbatore/ vs /locations/tamil-nadu/madurai/: 57.0%
+  /locations/tamil-nadu/coimbatore/ vs /locations/tamil-nadu/salem/: 55.6%
+  /locations/tamil-nadu/madurai/ vs /locations/tamil-nadu/salem/: 57.9%
+  maximum: 57.9%
+City-name similarity <=60%: PASS
+Tamil Nadu guardrails: PASS
+Section 4 item 4 (390 px / 1280 px headless Chrome render): PENDING INSTRUCTOR
+HTML files: 54; sitemap URLs: 52; redirect sources: 47
+Overall section 4 items 1-3: PASS
+```
+
+- **Guardrails:** section 4 item 4 (390 px / 1280 px headless Chrome render) is pending with the instructor by reassignment; no browser tooling was installed. Deployment, PR creation and PR merging were not performed; section 6 of the brief is instructor-handled.
+- **Next:** instructor runs the 390 px / 1280 px render check on the pushed branch, then handles deployment; measure impressions per Tamil Nadu city page in Search Console from M1.
+
+---
+
 ## 2026-11-27 — Keyword research with more free tools
 
 - Added Google and Bing autosuggest, YouTube autosuggest, Google Trends, and Ahrefs' free keyword generator and backlink checker to the Keyword Planner, AnswerThePublic and LSIGraph data. `SEO-STRATEGY.md` §6 is now a data-backed keyword → page map.

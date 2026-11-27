@@ -49,8 +49,10 @@ Google rewards pages that are the most useful, trustworthy answer for a search. 
 | Hyderabad | `/locations/hyderabad/` | Active client page, not page 1 yet | In progress |
 | Chennai | `/locations/chennai/` | Home base | Home base |
 | Kerala | `/locations/kerala/` | Home state; NRI/visitor demand insight | Home state |
+| Tamil Nadu | `/locations/tamil-nadu/` | Chennai home base in the same state; brief-supplied "SEO company" demand | Same state |
 
 | Kerala cities (8) | `/locations/kerala/<city>/` — Kochi, Trivandrum, Calicut, Thrissur, Malappuram, Kannur, Kollam, Palakkad | Owner decision 27 Nov 2026; autocomplete demand gate | Home state — no local client result yet, said on each page |
+| Tamil Nadu cities (3) | `/locations/tamil-nadu/<city>/` — Coimbatore, Madurai, Salem | Brief 27 Nov 2026; logged-out Google India page-1 snapshots, verified local facts and city-name gate | Same state — no local office, no local client result and no Tamil-language consulting claimed on each page |
 
 **Changed 27 Nov 2026 (owner):** the proof gate is dropped, as it was for Mindtech on 15 Nov. What stays: the city-name test, honesty (no fake office, no borrowed results) and a **demand gate** — Google India autocomplete shows "seo expert in <city>" as a popular suggestion, or Keyword Planner shows 100+ searches a month. Towns get a page only on the same gate.
 
@@ -99,6 +101,10 @@ Sources: Google Keyword Planner (India, Nov 2025–Oct 2026, ranges), Google and
 | `/locations/kerala/trivandrum/` | seo company in trivandrum (100–1k) | seo expert in trivandrum (10–100) | The "company" phrasing has more volume here |
 | `/locations/kerala/{malappuram,kannur,palakkad}/` | seo expert in <city> (100–1k each) | — | |
 | `/locations/kerala/kollam/` | seo expert in kollam (no Keyword Planner data; popular autosuggest) | — | Merge into the Kerala hub if it has no impressions after 90 days |
+| `/locations/tamil-nadu/` | seo expert in tamil nadu / seo company in tamil nadu | seo services in tamil nadu · Chennai home-base link | State hub; links Chennai without moving its URL |
+| `/locations/tamil-nadu/coimbatore/` | seo expert in coimbatore (brief-supplied Keyword Planner 100–1k, +900% 3-month) | seo company in coimbatore · seo services in coimbatore | Popular autosuggestions; textile, pump, IT park and hospital sectors |
+| `/locations/tamil-nadu/madurai/` | seo company in madurai | seo services in madurai | Popular autosuggestion; §17 lists no Keyword Planner data for "seo expert in madurai" |
+| `/locations/tamil-nadu/salem/` | seo company in salem / seo services in salem | seo expert in salem | Popular autosuggestions; steel, sago, handloom, mango and transport sectors |
 | `/locations/chennai/` | seo expert in chennai (100–1k) | seo company in chennai (1k–10k) · seo services in chennai (100–1k; Easy) | Chennai tops Google autosuggest for both "seo services in" and "seo company in". Home base: a Google Business Profile is possible here |
 | `/locations/bengaluru/` | seo expert in bangalore (100–1k; top bid ₹292) | seo company in bangalore (1k–10k) | |
 | `/locations/hyderabad/` | seo expert in hyderabad (100–1k) | seo company in hyderabad (1k–10k) | Not in Google autosuggest |
@@ -112,7 +118,7 @@ Sources: Google Keyword Planner (India, Nov 2025–Oct 2026, ranges), Google and
 
 **Authority gap (Ahrefs free backlink checker, 27 Nov 2026):** nikhilsoman.in DR 55, 835 linking sites · jijojosephseo.in DR 32, 588 · digitalcommunicator.in DR 18, 285 · sreeharisk.in DR 0, 3 linking sites — yet it ranks #2 for "seo expert in kochi", with a Kochi Google Business Profile and 14 reviews · sreejithdigital.com DR 0, 0. Links aren't the only lever at this level; relevance, local proof and profiles carry the low-DR winners.
 
-**Next South rollout (data):** Tamil Nadu leads "seo company in / seo services in" suggestions — Chennai, Coimbatore, Salem, Madurai, Tirunelveli and Nagercoil. "seo expert in coimbatore" is 100–1k (+900% 3-month). Build a Tamil Nadu hub with Coimbatore, Madurai and Salem when ready; being Chennai-based makes this honest.
+**South rollout shipped 27 Nov 2026:** Tamil Nadu hub plus Coimbatore, Madurai and Salem are live in the generator. The hub keeps Chennai at `/locations/chennai/`; each city has four verified sectors, two search-behaviour paragraphs, ten localities, five FAQs and three dated logged-out Google India page-1 observations. Trichy, Tirunelveli, Nagercoil, Mysuru, Mangaluru, Vizag and Vijayawada remain gated on demand and distinct local substance.
 
 ## 7. Conversion strategy
 
@@ -290,7 +296,7 @@ After each profile goes live: record the URL and date here, match name, role and
 
 ## 17. Location hierarchy and keyword data (27 Nov 2026)
 
-**Hierarchy:** India (home page) → Locations hub (ItemList of every location page) → state/region (Kerala, Delhi NCR) or metro (Chennai, Bengaluru, Hyderabad) → city (`/locations/kerala/<city>/`) → town only on demand. Breadcrumbs and `BreadcrumbList` follow the same path; `Service.areaServed` nests City → District → State → Country with Wikipedia `sameAs` for disambiguation. State hubs for Tamil Nadu or Karnataka are added only once each state has two city pages.
+**Hierarchy:** India (home page) → Locations hub (ItemList of every location page) → state/region (Kerala, Tamil Nadu, Delhi NCR) or metro (Chennai, Bengaluru, Hyderabad) → city (`/locations/kerala/<city>/` or `/locations/tamil-nadu/<city>/`) → town only on demand. Breadcrumbs and `BreadcrumbList` follow the same path; `Service.areaServed` nests City → District → State → Country with Wikipedia `sameAs` for disambiguation. The Tamil Nadu hub now has three city pages; Karnataka still waits for two qualifying city pages.
 
 **Keyword Planner (India, Nov 2025–Oct 2026, ranges — no active ad spend; plan saved as a draft in the DotMiracle Ads account)**
 
@@ -315,7 +321,7 @@ Top-of-page bids (high range) show commercial value: Bengaluru ₹292, Mumbai �
 
 **Rollout order (each page must pass the city-name and demand gates)**
 1. Done: Kerala hub + 8 cities; home and metros retitled "SEO expert in …".
-2. Next, South: Coimbatore (then a Tamil Nadu hub), Madurai, Trichy; Mysuru, Mangaluru, Vizag and Vijayawada only if demand rises.
+2. Done: Tamil Nadu hub + Coimbatore, Madurai and Salem on 27 Nov 2026. Trichy, Mysuru, Mangaluru, Vizag and Vijayawada remain gated on demand and distinct local substance.
 3. Then North: split Noida and Gurugram out of Delhi NCR only with distinct content; Mumbai, Kolkata, Chandigarh.
 4. Measure: Search Console impressions per city page each week from M1; a page with no impressions after 90 days is merged back into its hub.
 
