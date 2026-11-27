@@ -53,11 +53,12 @@ Configured in the Cloudflare dashboard and verified live (SSL Labs A+ on all fou
 | Email Routing | On. `hello@sreejithdigital.com` → owner's verified inbox. MX ×3, SPF `include:_spf.mx.cloudflare.net ~all`, DKIM `cf2024-1`, DMARC `p=reject; sp=reject; adkim=s; aspf=s` |
 | Google Search Console | Domain property verified by DNS TXT; sitemap submitted |
 | Bing Webmaster Tools | Verified by CNAME (DNS only, not proxied); sitemap submitted |
+| Crawler Hints (IndexNow) | On |
 | Registrar | Transfer lock, WHOIS privacy and auto-renew on; expires 26 Nov 2027 |
 
 Keep the `google-site-verification` TXT record and the Bing CNAME (`18cbf232….sreejithdigital.com` → `verify.bing.com`), or the search consoles lose verification.
 
-**Auto-deploy check:** after every merge to `main`, confirm a build ran in Workers & Pages → `sreejith-digital` → Deployments, and that `/version.txt` shows the new release. On 27 Nov 2026 merges after 10:33 UTC did not start a build until one was run by hand. If a merge does not start a build, open Settings → Builds and reconnect the GitHub repository.
+**Auto-deploy check:** after every merge to `main`, confirm a build ran in Workers & Pages → `sreejith-digital` → Deployments, and that `/version.txt` shows the new release. On 27 Nov 2026 merges did not start builds because the Cloudflare Workers and Pages GitHub App had access only to `Sree278/dotmiracle`; `Sree278/sreejith-digital` was added (GitHub → Settings → Installed GitHub Apps → Cloudflare Workers and Pages → Repository access). If a merge ever stops starting a build, check that list first.
 
 ## Current release to publish
 
@@ -78,7 +79,7 @@ These steps need the Cloudflare and Google dashboards, which are not connected t
 
 ### 1. Enquiry form → your inbox (Cloudflare Email Routing, free)
 
-**Status 27 Nov 2026:** steps 1–5 are done (Email Routing on, inbox verified, `hello@` routed, `[[send_email]]` enabled in release `2026-11-27.4`, `ENQUIRY_TO` secret set). Step 6 is the live test.
+**Status 27 Nov 2026:** steps 1–5 are done (Email Routing on, inbox verified, `hello@` routed, `[[send_email]]` enabled in release `2026-11-27.4`, `ENQUIRY_TO` secret set). Step 6 passed on 27 Nov 2026: reference `SD-20261127-6EP28L` arrived in the inbox.
 
 Without the binding or the secret the form still works: it opens the visitor's email app with the enquiry pre-filled.
 
@@ -100,7 +101,19 @@ Without the binding or the secret the form still works: it opens the visitor's e
 
 ### 2. Analytics (only after consent)
 
-Create a GA4 property and a Microsoft Clarity project, put the IDs in `GA4_MEASUREMENT_ID` and `CLARITY_PROJECT_ID` at the top of `scripts/generate_site.py`, and run `python3 scripts/generate_site.py`. A consent banner then appears; nothing loads until a visitor chooses **Allow analytics**. In GA4, mark `generate_lead` as a key event.
+**Status 27 Nov 2026: live through Google Tag Manager.**
+
+| Tool | ID | Where it is configured |
+| --- | --- | --- |
+| Google Tag Manager | `GTM-K4MJL3SM` (account "Sreejith") | `GTM_CONTAINER_ID` in `scripts/generate_site.py` |
+| Google Analytics 4 | `G-EP5M7JTRXK` (account "Sreejith Digital", property 565911323) | Google tag in GTM, trigger Initialization – All Pages |
+| Microsoft Clarity | `zkbxk7xkbk` | Custom HTML tag in GTM, trigger All Pages |
+
+- `main.js` loads GTM only after the visitor chooses **Allow analytics**. Before GTM loads it sets Consent Mode v2 defaults: `analytics_storage` granted, `ad_storage`, `ad_user_data` and `ad_personalization` denied. "No thanks" loads nothing.
+- Events pushed to the dataLayer: `form_start` (`form_location`) and `generate_lead` (`reference`, sent to GA4 as `enquiry_reference`), each with a GA4 event tag in GTM.
+- GA4: data retention 14 months; linked to the Search Console Domain property. Mark `generate_lead` as a key event in Admin → Events once the first one arrives (GA4 only lists events it has received).
+- Keep `GA4_MEASUREMENT_ID` and `CLARITY_PROJECT_ID` empty while GTM is set, or the tools load twice.
+- **Before adding Google Ads tags:** add an advertising choice to the consent banner and send `ad_storage`, `ad_user_data` and `ad_personalization` updates from it. Ads conversion tags then go into GTM without code changes.
 
 ### 3. Search engines and crawlers
 

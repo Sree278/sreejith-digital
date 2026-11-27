@@ -11,15 +11,26 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-27 — Measurement live: GTM, GA4, Clarity (release 2026-11-27.5)
+
+- **Set up:** GA4 account "Sreejith Digital" → property `sreejithdigital.com` (565911323), web stream `G-EP5M7JTRXK`, enhanced measurement on, event and user data retention 14 months, linked to the Search Console Domain property. Microsoft Clarity project `zkbxk7xkbk`. Google Tag Manager web container `GTM-K4MJL3SM` (version 2 published) with the GA4 Google tag, GA4 event tags for `generate_lead` and `form_start`, and the Clarity tag.
+- **Changed in the repo:** `GTM_CONTAINER_ID` in the generator; `main.js` loads GTM only after "Allow analytics", sets Consent Mode v2 defaults (analytics granted, all ad signals denied) and pushes `form_start` / `generate_lead` to the dataLayer; privacy policy names GTM and says advertising cookies stay off.
+- **Why:** owner plans Google Ads and conversion tracking; one GTM container lets Ads conversion tags be added later without code changes. Loading GTM only after consent keeps the DPDP-based privacy promise ("nothing loads unless you allow it").
+- **Evidence:** headless Chromium against the built site: before consent no third-party request and the banner shows; after "Allow" one request to `gtm.js?id=GTM-K4MJL3SM` with the consent defaults in the dataLayer; on `/thank-you/?ref=…` the dataLayer gets `{event: "generate_lead", reference}`; after "No thanks" and a reload, no third-party request. The published container (`gtm.js`) contains `G-EP5M7JTRXK`, `zkbxk7xkbk`, `generate_lead` and `form_start`.
+- **Next:** mark `generate_lead` as a GA4 key event when it first arrives; add an advertising consent choice before any Google Ads tag.
+
+---
+
 ## 2026-11-27 — Domain hardening (Cloudflare) + release 2026-11-27.4
 
 - **Changed in Cloudflare:** Always Use HTTPS on; minimum TLS 1.2; SSL Full (strict); HSTS 6 months with includeSubDomains (no preload); Certificate Transparency alerts on; `www` record + 301 Redirect Rule to the apex (path and query kept); DNSSEC on; Email Routing `hello@` → owner inbox with SPF, DKIM and DMARC `p=reject`; Google Search Console Domain property and Bing Webmaster Tools verified by DNS, sitemap submitted to both; Worker secret `ENQUIRY_TO` added.
 - **Changed in the repo (release 2026-11-27.4):** `[[send_email]]` binding enabled so the form emails enquiries directly; favicon set added (`/favicon.ico` 16/32/48, `/apple-touch-icon.png` 180, 192 and 512 PNG icons, `/site.webmanifest`) and linked on every page; `logo` ImageObject added to the ProfessionalService schema; DEPLOYMENT.md records the hardened settings.
 - **Why:** `http://` and `https://` both returned 200 (every page existed twice); `www` did not resolve; TLS 1.0 was accepted; the site and schema listed `hello@sreejithdigital.com` while the domain had no MX, so enquiries bounced; nothing was verified in a search console; Google needs a crawlable favicon that is a multiple of 48 px; production was two releases behind `main`.
-- **Root cause of stale deploys:** the Workers Builds project shows "disconnected from your Git account", so merges to `main` do not start builds. Manual builds from the dashboard still work. Reconnecting needs the owner's GitHub passkey (Settings → Installed GitHub Apps → Cloudflare Workers and Pages → repository access).
+- **Root cause of stale deploys (fixed):** the Cloudflare Workers and Pages GitHub App only had access to `Sree278/dotmiracle`, so Workers Builds showed "disconnected from your Git account" and merges to `main` started no build. `Sree278/sreejith-digital` was added to the app's repository access (owner confirmed with passkey); the warning is gone. Release 27.4 was built by hand at 18:15 UTC.
 - **Evidence:** SSL Labs A+ on all four edge IPs (TLS 1.2/1.3 only, HSTS present). DNS-over-HTTPS: DS + AD=true, MX ×3, SPF, DMARC. `http://sreejithdigital.com/about/?a=1` → 301 `https://sreejithdigital.com/about/?a=1`; `https://www.sreejithdigital.com/services/local-seo/?utm_source=x` → 301 to the apex with the query. Release 27.2 on production: 52 sitemap URLs all 200, self-canonical, one H1, unique titles and descriptions, valid JSON-LD, 0 broken internal links; 390 px and 1280 px renders with no overflow or console errors (Tamil Nadu brief section 4 item 4: PASS). Release 27.4 locally: 54 HTML files, valid JSON-LD, icon links on every page, `wrangler deploy --dry-run` lists `env.ENQUIRY_EMAIL (Send Email)`.
 - **Registrar:** transfer lock, WHOIS privacy and auto-renew on; expires 26 Nov 2027.
-- **Next (owner):** reconnect GitHub in Workers Builds; settle the Cloudflare billing notices so auto-renew can charge; request indexing for `/`, `/about/`, the case study and `/free-seo-review/` in Search Console.
+- **Verified live (release 2026-11-27.4):** `/favicon.ico`, `/apple-touch-icon.png`, `/site.webmanifest` (`application/manifest+json`) and both PNG icons return 200; the logo is in the schema; all 52 URLs 200 with self-canonicals and valid JSON-LD. A test email to `hello@` shows **Forwarded** in the Email Routing activity log. A test enquiry from `/free-seo-review/` returned 200, landed on `/thank-you/?ref=SD-20261127-6EP28L`, and the email from `website@sreejithdigital.com` arrived in the Gmail inbox (not spam). Crawler Hints (IndexNow) turned on with the owner's OK. Billing: the four "payment failed" notices were retries; every invoice is paid and two cards are on file, so auto-renew can charge.
+- **Next (owner):** request indexing for `/`, `/about/`, the case study and `/free-seo-review/` in Search Console; GA4 and Clarity IDs.
 
 ---
 

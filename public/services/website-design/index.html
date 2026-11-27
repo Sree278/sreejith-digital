@@ -27,7 +27,7 @@
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=2026-11-27.4">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=2026-11-27.5">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -277,7 +277,8 @@
   ]
 }
   </script>
-  <script src="/assets/js/main.js?v=2026-11-27.4" defer></script>
+  <script>window.SD_ANALYTICS = {"gtm": "GTM-K4MJL3SM", "ga4": "", "clarity": ""};</script>
+  <script src="/assets/js/main.js?v=2026-11-27.5" defer></script>
 </head>
 <body class="has-mobile-cta">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -538,7 +539,7 @@
       <ul>
         <li><a href="/privacy/">Privacy Policy</a></li>
         <li><a href="/terms/">Terms</a></li>
-        
+        <li><button class="footer-link-button" type="button" data-consent-open>Cookie settings</button></li>
       </ul>
     </div>
   </div>
@@ -550,6 +551,12 @@
 <div class="mobile-cta" data-mobile-cta>
   <a class="btn btn--primary" href="/free-seo-review/">Get a free SEO review <span aria-hidden="true">→</span></a>
 </div>
-
+<div class="consent-banner" data-consent-banner hidden role="region" aria-label="Analytics choice">
+  <p>May I use analytics (Google Analytics and Microsoft Clarity) to see which pages help visitors? Nothing loads unless you allow it. <a href="/privacy/">Privacy policy</a></p>
+  <div class="consent-actions">
+    <button class="btn btn--small btn--primary" type="button" data-consent="granted">Allow analytics</button>
+    <button class="btn btn--small btn--secondary" type="button" data-consent="denied">No thanks</button>
+  </div>
+</div>
 </body>
 </html>

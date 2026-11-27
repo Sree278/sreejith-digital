@@ -27,7 +27,7 @@
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=2026-11-27.4">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=2026-11-27.5">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -235,7 +235,8 @@
   ]
 }
   </script>
-  <script src="/assets/js/main.js?v=2026-11-27.4" defer></script>
+  <script>window.SD_ANALYTICS = {"gtm": "GTM-K4MJL3SM", "ga4": "", "clarity": ""};</script>
+  <script src="/assets/js/main.js?v=2026-11-27.5" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -323,7 +324,7 @@
       <h2>How long it is kept</h2>
       <p>Enquiries are kept only as long as needed to respond and follow up — normally no longer than 12 months — unless we start working together, in which case they are kept for the length of the engagement and any period the law requires.</p>
       <h2>Analytics and cookies</h2>
-      <p>Analytics are off by default. If analytics are enabled on this site, Google Analytics 4 and Microsoft Clarity load only after you choose “Allow analytics”, and they set cookies to measure visits and how pages are used. You can change your choice at any time with “Cookie settings” in the footer. The site’s own scripts store only that choice in your browser.</p>
+      <p>Analytics are off by default. Google Tag Manager, Google Analytics 4 and Microsoft Clarity load only after you choose “Allow analytics”, and Google Analytics and Clarity then set cookies to measure visits and how pages are used. Advertising cookies stay off. You can change your choice at any time with “Cookie settings” in the footer. The site’s own scripts store only that choice in your browser.</p>
       <h2>Technical information</h2>
       <p>The hosting provider may process routine technical data such as IP addresses, request times and requested URLs to deliver the site, keep it secure and prevent abuse. This data is not used for advertising.</p>
       <h2>Your rights</h2>
@@ -363,7 +364,7 @@
       <ul>
         <li><a href="/privacy/">Privacy Policy</a></li>
         <li><a href="/terms/">Terms</a></li>
-        
+        <li><button class="footer-link-button" type="button" data-consent-open>Cookie settings</button></li>
       </ul>
     </div>
   </div>
@@ -373,6 +374,12 @@
   </div>
 </footer>
 
-
+<div class="consent-banner" data-consent-banner hidden role="region" aria-label="Analytics choice">
+  <p>May I use analytics (Google Analytics and Microsoft Clarity) to see which pages help visitors? Nothing loads unless you allow it. <a href="/privacy/">Privacy policy</a></p>
+  <div class="consent-actions">
+    <button class="btn btn--small btn--primary" type="button" data-consent="granted">Allow analytics</button>
+    <button class="btn btn--small btn--secondary" type="button" data-consent="denied">No thanks</button>
+  </div>
+</div>
 </body>
 </html>
