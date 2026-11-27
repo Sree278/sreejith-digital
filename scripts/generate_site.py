@@ -1129,7 +1129,246 @@ STATE_CITIES = {
         "nearby": ["thrissur", "malappuram", "kochi"],
     },
     ],
-    "tamil-nadu": [],
+    "tamil-nadu": [{'slug': 'coimbatore',
+          'name': 'Coimbatore',
+          'crumb': 'Coimbatore',
+          'alt_names': ['Kovai'],
+          'wiki': 'Coimbatore',
+          'district': 'Coimbatore',
+          'status_label': 'Same state',
+          'title': 'SEO Expert in Coimbatore | Sreejith Digital',
+          'description': 'SEO expert in Coimbatore for textile, pump, foundry, IT park and hospital firms: '
+                         'city-specific research, no local office and no invented client results.',
+          'h1': 'SEO expert in Coimbatore',
+          'lede': 'Coimbatore’s buyers range from textile-mill procurement teams and pump exporters to TIDEL Park '
+                  'software firms and hospital departments. I help those businesses build pages around the questions '
+                  'their buyers actually ask, from Chennai in the same state.',
+          'short': 'Textile mills, pumps, IT parks and hospitals in the Kovai market.',
+          'economy_heading': 'What Coimbatore businesses need from search',
+          'economy': [('Textiles and knitwear',
+                       'Coimbatore has large and small textile mills, textile research institutes and a nearby '
+                       'Tiruppur knitwear export cluster. Spinning mills and machinery suppliers need specification '
+                       'pages for buyers, while garment exporters need category and certification detail rather than '
+                       'a generic city page.'),
+                      ('Pumps, motors and foundries',
+                       'The district is known for pump and motor manufacturing, foundries and engineering goods. '
+                       'Industrial suppliers are often compared on capacity, materials, standards and delivery '
+                       'areas, so product and service pages should answer those checks before asking for an '
+                       'enquiry.'),
+                      ('IT parks and B2B services',
+                       'TIDEL Park and other IT parks support software and B2B teams whose customers may be in '
+                       'Chennai, Bengaluru or overseas. Their search work is usually national or export-led: '
+                       'solution pages, comparison content and proof, not a stack of locality pages.'),
+                      ('Hospitals and healthcare',
+                       'Government and private hospitals serve patients from the district and nearby towns. '
+                       'Department pages, doctor credentials, appointment routes and accurate profile information '
+                       'matter more than broad claims, especially for treatment-related searches.')],
+          'search': ['Coimbatore searchers often use two names for the same place: Coimbatore and Kovai. Lead with '
+                     'the name your customers use in Search Console, mention the other once where it reads '
+                     'naturally, and do not build a separate page for each name.',
+                     'Locality intent is strong around Gandhipuram, Peelamedu, Singanallur and Saravanampatti. For a '
+                     'clinic or showroom, those belong in service areas and profile details; for an exporter selling '
+                     'outside Tamil Nadu, they usually should not lead the page at all.'],
+          'areas': ['Gandhipuram',
+                    'RS Puram',
+                    'Tatabad',
+                    'Race Course',
+                    'Peelamedu',
+                    'Singanallur',
+                    'Saravanampatti',
+                    'Kalapatti',
+                    'Ganapathy',
+                    'Saibaba Colony'],
+          'landscape': ['On 27 November 2026, logged-out Google India searches for “seo expert in coimbatore” and '
+                        '“seo company in coimbatore” detected Coimbatore, Tamil Nadu and reported about 54 and 53 '
+                        'results respectively.',
+                        'The local pack for the expert query showed BAA GROUPS (4.9, 744 reviews), Keywordit (4.9, '
+                        '293) and CLOUD DREAMS (4.8, 493); the company query showed BAA GROUPS, Webnox Technologies '
+                        '(4.8, 451) and CLOUD DREAMS.',
+                        'AI Mode replies summarised local agencies, while web results included Webnox’s AI SEO '
+                        'services page, an Upwork freelance listing and a OneCity local comparison page. Results '
+                        'change daily, so the checklist beside this asks for dated evidence.'],
+          'faqs': [('Should I hire an SEO company in Coimbatore or an independent expert?',
+                    'If a textile machinery exporter needs a new website, ads, social media and SEO coordinated by '
+                    'one team, a company can fit. If a pump manufacturer wants one person to audit specification '
+                    'pages, fix indexation and report enquiries, an independent expert fits. I work independently '
+                    'from Chennai.'),
+                   ('Can a TIDEL Park software firm target buyers outside Coimbatore?',
+                    'Yes, and that is usually the right goal. Buyers in Chennai, Bengaluru or overseas rarely search '
+                    'for a Coimbatore address; they search for the problem, integration, pricing model or proof. '
+                    'Build solution pages around those queries and keep the city as context.'),
+                   ('Do you have a Coimbatore office or a published local client result?',
+                    'No. I am based in Chennai, in the same state, and can meet in person when travelling. I do not '
+                    'list a Coimbatore office, and I do not have a published Coimbatore client result. The dated '
+                    'case study on this site is from other markets.'),
+                   ('Should my Coimbatore pages use Kovai as well?',
+                    'Only where real query data supports it. Use the spelling your customers already search, mention '
+                    'the alternate name once in useful copy, and avoid creating duplicate pages for Coimbatore and '
+                    'Kovai. Search Console should settle which name leads.'),
+                   ('Do you offer Tamil-language SEO consulting in Coimbatore?',
+                    'I consult in English or Malayalam. Tamil-language consulting is not claimed, so content, calls '
+                    'and reporting are planned around the confirmed languages rather than an unverified '
+                    'capability.')],
+          'nearby': ['madurai', 'salem']},
+         {'slug': 'madurai',
+          'name': 'Madurai',
+          'crumb': 'Madurai',
+          'wiki': 'Madurai',
+          'district': 'Madurai',
+          'status_label': 'Same state',
+          'title': 'SEO Company in Madurai | Sreejith Digital',
+          'description': 'SEO company in Madurai advice for temple tourism, textile, eye-care and education pages, '
+                         'with verified local context and an independent consultant based in Chennai.',
+          'h1': 'SEO company in Madurai',
+          'lede': 'Madurai’s search demand is shaped by visitors planning a temple trip, families comparing colleges '
+                  'and hospitals, and textile buyers checking product detail. I help those organisations separate '
+                  'visitor, local and admission enquiries instead of chasing one generic city keyword.',
+          'short': 'Temple tourism, textiles, eye care and colleges around the Vaigai city.',
+          'economy_heading': 'What Madurai businesses need from search',
+          'economy': [('Temple and visitor economy',
+                       'The Meenakshi Sundareswarar Temple is the landmark around which the city’s visitor economy '
+                       'is organised. Hotels, guides and retailers need pages that answer dates, routes, check-in, '
+                       'accessibility and nearby areas before the booking question.'),
+                      ('Textiles and readymade garments',
+                       'The district’s industries include cotton textiles, hosiery, silk weaving and integrated '
+                       'textile parks. Exporters and retailers need product, fabric, sizing and wholesale pages; a '
+                       'location-only page rarely answers a buyer’s comparison.'),
+                      ('Eye care and medical travel',
+                       'Aravind Eye Hospital began in Madurai and remains the headquarters of its eye-care system. '
+                       'Clinic and department pages need reviewed medical information, practitioner credentials and '
+                       'clear appointment paths, not broad promotional copy.'),
+                      ('Education and institutions',
+                       'Madurai Kamaraj University, medical and arts colleges, and training institutes draw students '
+                       'from beyond the district. Course pages need fees, dates, eligibility and outcome '
+                       'information, with enquiries separated from local service calls.')],
+          'search': ['Madurai queries split by intent: temple visitors ask about timings, routes and stays; students '
+                     'ask about courses, fees and eligibility; textile buyers ask about fabric, minimum order and '
+                     'dispatch. One page with one H1 cannot serve all three jobs well.',
+                     'Area names such as Anna Nagar, KK Nagar, Goripalayam, SS Colony and Thiruparankundram often '
+                     'carry local intent. They belong in profile service areas and contact pages. A separate page '
+                     'for each area is justified only when its own query data and content are distinct.'],
+          'areas': ['Anna Nagar',
+                    'KK Nagar',
+                    'Tallakulam',
+                    'Goripalayam',
+                    'Simmakkal',
+                    'Arapalayam',
+                    'SS Colony',
+                    'Thiruparankundram',
+                    'Alagar Kovil Road',
+                    'Vilangudi'],
+          'landscape': ['On 27 November 2026, logged-out Google India searches for “seo expert in madurai” and “seo '
+                        'company in madurai” detected Madurai, Tamil Nadu and reported about 58 and 55 results '
+                        'respectively.',
+                        'The local pack for the expert query showed Rank You Higher (4.8, 337 reviews), Digital Hari '
+                        '(5.0, 98) and Findway Digital (5.0, 268); the company query showed SEO Business Company '
+                        '(4.8, 46), Findway Digital and Century Minds (4.9, 191).',
+                        'AI Mode replies named local agencies, while web results included Lavish Technologies’ '
+                        'specialist page, a Moris Media small-business guide and a 10SEOS directory page. Results '
+                        'change daily; that is why this page asks for the URL, date and method behind any claim.'],
+          'faqs': [('Should I hire an SEO company in Madurai or an independent expert?',
+                    'A company suits a hotel group that wants design, paid campaigns, social content and SEO '
+                    'coordinated together. An independent expert suits a textile exporter or college that wants one '
+                    'accountable person for structure, technical fixes and reporting. I am an independent consultant '
+                    'based in Chennai.'),
+                   ('Can a hotel near Meenakshi Temple rank for visitor searches?',
+                    'Yes, but the page has to answer the visitor’s actual questions: distance and route to the '
+                    'temple, check-in times, parking, family rooms and festival dates. A page that only repeats the '
+                    'city name rarely beats a useful itinerary or stay page.'),
+                   ('Do you have a Madurai office or a published local client result?',
+                    'No. I am based in Chennai, in the same state, and can meet in person when travelling. I do not '
+                    'list a Madurai office, and I do not have a published Madurai client result. The dated case '
+                    'study on this site is from other markets.'),
+                   ('How should a college or hospital structure its Madurai pages?',
+                    'Give each course, department or treatment its own evidence-backed page, then connect it to one '
+                    'clear Madurai hub. Medical and education pages need reviewed facts, dates and credentials; '
+                    'reporting should separate admission, appointment and general enquiries.'),
+                   ('Do you offer Tamil-language SEO consulting in Madurai?',
+                    'I consult in English or Malayalam. Tamil-language consulting is not claimed, so content, calls '
+                    'and reporting are planned around the confirmed languages rather than an unverified '
+                    'capability.')],
+          'nearby': ['coimbatore', 'salem']},
+         {'slug': 'salem',
+          'name': 'Salem',
+          'crumb': 'Salem',
+          'wiki': 'Salem,_Tamil_Nadu',
+          'district': 'Salem',
+          'status_label': 'Same state',
+          'title': 'SEO Company in Salem | Sreejith Digital',
+          'description': 'SEO company in Salem for steel, sago, handloom, mango and transport businesses: local '
+                         'search research, English or Malayalam consulting, and honest status.',
+          'h1': 'SEO company in Salem',
+          'lede': 'Salem is a manufacturing and distribution city: steel, sago, handloom, mangoes and road–rail '
+                  'links all shape what buyers search. I help Salem firms turn those supply-chain details into '
+                  'specification pages, service areas and enquiry reporting that a generic city template cannot '
+                  'provide.',
+          'short': 'Steel, sago, handloom, mango and transport searches in the Steel City.',
+          'economy_heading': 'What Salem businesses need from search',
+          'economy': [('Steel and minerals',
+                       'The Salem Steel Plant and local magnesite, bauxite and iron-ore deposits support metal, '
+                       'refractory and engineering suppliers. Their buyers compare grades, dimensions, tolerances '
+                       'and delivery regions, so specification pages and downloadable data sheets matter more than '
+                       'broad location copy.'),
+                      ('Sago, starch and mangoes',
+                       'Salem is known for sago and for Malgova mangoes; Sagoserve and GI-tag material document the '
+                       'district’s tapioca and produce economy. Food brands need origin, pack size, season, shipping '
+                       'and certification pages, with enquiries split by wholesale and retail.'),
+                      ('Handloom and textiles',
+                       'The district’s handloom industry produces silk and cotton sarees and dhoties alongside '
+                       'spinning and garment units. Weavers and retailers need fabric, weave, care and dispatch '
+                       'detail, plus product structured data where inventory and prices are reliable.'),
+                      ('Transport and logistics',
+                       'Salem Junction, national highways and bus routes make the city a transit point for South '
+                       'India. Logistics and service firms need clear coverage pages, depot information and contact '
+                       'routes; a map pack alone will not answer an out-of-state buyer’s question.')],
+          'search': ['Salem queries often combine a product with a place: sago manufacturer, steel sheet supplier, '
+                     'handloom saree, mango wholesale or transport service. The strongest pages answer the product '
+                     'question first, then name the areas actually served.',
+                     'Local names such as Fairlands, Suramangalam, Hasthampatti, Ammapet and Omalur Road matter for '
+                     'service businesses and profiles. For a steel or sago exporter, buyer location and shipping '
+                     'terms usually matter more, so reporting should separate Salem enquiries from other districts.'],
+          'areas': ['Fairlands',
+                    'Suramangalam',
+                    'Hasthampatti',
+                    'Ammapet',
+                    'Alagapuram',
+                    'Arisipalayam',
+                    'Nethimedu',
+                    'Kondalampatti',
+                    'Chinna Thirupathi',
+                    'Swarnapuri'],
+          'landscape': ['On 27 November 2026, logged-out Google India searches for “seo expert in salem” and “seo '
+                        'company in salem” detected Salem, Tamil Nadu and reported about 43 and 54 results '
+                        'respectively.',
+                        'The local pack for the expert query showed First Success Technologies (4.8, 1.8K reviews), '
+                        'SEO Freelancer Salem - Vijay SEO Expert (5.0, 3) and SEO Expert with no reviews; the '
+                        'company query showed First Success Technologies, OctaDigi (5.0, 56) and Vijay Digital India '
+                        '(5.0, 3).',
+                        'An AI Overview was unavailable on both queries, while web results included a Justdial '
+                        'directory listing, a Moris Media small-business guide and Doozy Info’s company page. Dated '
+                        'observations are useful context, not a ranking promise.'],
+          'faqs': [('Should I hire an SEO company in Salem or an independent expert?',
+                    'A company fits a textile retailer that wants website design, paid ads, social media and SEO run '
+                    'by one team. An independent expert fits a sago exporter or steel supplier that wants one person '
+                    'to fix product-page architecture, indexation and enquiry tracking. I work independently from '
+                    'Chennai.'),
+                   ('Can a Salem sago or mango brand rank outside the district?',
+                    'Yes, if the page answers the buyer’s commercial checks: origin, variety, pack sizes, season, '
+                    'minimum order, shipping and certification. Buyers in other states rarely search only for Salem; '
+                    'they search for the product and then check the supplier.'),
+                   ('Do you have a Salem office or a published local client result?',
+                    'No. I am based in Chennai, in the same state, and can meet in person when travelling. I do not '
+                    'list a Salem office, and I do not have a published Salem client result. The dated case study on '
+                    'this site is from other markets.'),
+                   ('Should a Salem logistics firm create a page for every route?',
+                    'Only when each route has real demand and distinct content. Start with one clear coverage page, '
+                    'name the corridors you actually serve, add depot and contact detail, then split routes out once '
+                    'Search Console shows separate queries and you have something true to say about each.'),
+                   ('Do you offer Tamil-language SEO consulting in Salem?',
+                    'I consult in English or Malayalam. Tamil-language consulting is not claimed, so content, calls '
+                    'and reporting are planned around the confirmed languages rather than an unverified '
+                    'capability.')],
+          'nearby': ['coimbatore', 'madurai']}],
 }
 
 KERALA_CITIES = STATE_CITIES["kerala"]
@@ -3318,6 +3557,7 @@ def state_city_page(state_slug: str, city: dict) -> None:
     economy_cards = [{"tag": "Sector", "title": title, "text": text} for title, text in city["economy"]]
     search_paragraphs = "".join(f"<p>{e(paragraph)}</p>" for paragraph in city["search"])
     if state_slug == "kerala":
+        serp_heading = f'What page 1 looked like for “SEO expert in {label}”'
         serp_intro = f"Google India, logged out, with Google placing the search in {label}, checked on {SERP_DATE}:"
         gap_html = (
             f'<p>I don’t have a published {e(label)} client result yet, and I won’t invent one. My published work is in other markets: '
@@ -3332,6 +3572,7 @@ def state_city_page(state_slug: str, city: dict) -> None:
         nearby_heading = "Other Kerala cities"
         nearby_intro = "Each city page has its own market, search patterns and page-1 snapshot."
     else:
+        serp_heading = f'What page 1 looked like for “SEO expert / company in {label}”'
         serp_intro = (
             f"Google India, logged out (gl=in, pws=0), with the location detected as {label}, "
             f"{state_label}, checked on {SERP_DATE}:"
@@ -3396,7 +3637,7 @@ def state_city_page(state_slug: str, city: dict) -> None:
       <a class="btn btn--primary btn--full" href="/free-seo-review/">Get a free SEO review <span aria-hidden="true">→</span></a>
     </aside>
     <div class="prose">
-      <h2>What page 1 looked like for “SEO expert in {e(label)}”</h2>
+      <h2>{e(serp_heading)}</h2>
       <p>{e(serp_intro)}</p>
       {dash_list(city["landscape"])}
       <p>Results change daily, and lists in AI answers are assembled from websites and profiles, not verified results. That is why the checklist beside this asks for evidence rather than adjectives.</p>
