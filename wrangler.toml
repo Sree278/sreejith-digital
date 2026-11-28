@@ -17,6 +17,9 @@ run_worker_first = ["/api/*"]
 [vars]
 # Sender address on this domain. Email Routing must be enabled for the zone.
 ENQUIRY_FROM = "website@sreejithdigital.com"
+# Sender for the email-link check on the phone reveal (Brevo, domain authenticated).
+# BREVO_API_KEY and VERIFY_SECRET are secrets set in the dashboard, never here.
+VERIFY_FROM = "hello@sreejithdigital.com"
 # ENQUIRY_TO is your verified destination inbox. Set it as a secret so it never
 # appears in this public repository:  npx wrangler secret put ENQUIRY_TO
 
