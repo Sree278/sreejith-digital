@@ -367,6 +367,13 @@
       if (result) result.hidden = false;
       trackEvent("phone_reveal", {});
     };
+    const setStatus = (text, state) => {
+      if (!status) return;
+      status.textContent = text;
+      if (state) status.dataset.state = state;
+      else status.removeAttribute("data-state");
+    };
+
     // Opened from the confirmation email: ?verify=<signed token>
     const verifyToken = new URLSearchParams(window.location.search).get("verify");
     if (verifyToken) {
@@ -387,13 +394,6 @@
         })
         .catch(() => setStatus("The check couldn’t reach the server. Please use the enquiry form or email.", "error"));
     }
-    const setStatus = (text, state) => {
-      if (!status) return;
-      status.textContent = text;
-      if (state) status.dataset.state = state;
-      else status.removeAttribute("data-state");
-    };
-
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const emailField = form.querySelector('[name="email"]');
