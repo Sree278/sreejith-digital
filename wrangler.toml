@@ -30,6 +30,11 @@ name = "ENQUIRY_EMAIL"
 # binding = "ENQUIRIES"
 # id = "<your KV namespace id>"
 
+# Daily cap and single-use links for the gated phone reveal (28 Nov 2026).
+[[kv_namespaces]]
+binding = "CONTACT_KV"
+id = "86a54c16c6094c13bad6948ce0ceb2d9"
+
 # Cloudflare creates this custom-domain DNS record and certificate on deploy.
 [[routes]]
 pattern = "sreejithdigital.com"
