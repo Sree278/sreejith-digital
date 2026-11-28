@@ -349,6 +349,7 @@
 
     const messages = {
       invalid_email: "Please enter a valid email address.",
+      invalid_phone: "Please enter a valid mobile number, for example +91 98XXXXXXXX.",
       email_not_accepted: "That email address can’t be used. Please use a Gmail, Outlook, Yahoo, iCloud or your company email (no temporary or relay addresses).",
       rate_limited: "Too many requests. Please try again later or use the enquiry form.",
       challenge_failed: "Please complete the check and try again.",
@@ -369,8 +370,14 @@
         setStatus(messages.invalid_email, "error");
         return;
       }
+      const phoneField = form.querySelector('[name="visitor_phone"]');
+      if (!(phoneField instanceof HTMLInputElement) || !/^\+?[0-9][0-9\s().-]{7,18}$/.test(phoneField.value.trim())) {
+        setStatus(messages.invalid_phone, "error");
+        return;
+      }
       const payload = {
         email: emailField.value.trim(),
+        visitor_phone: phoneField.value.trim(),
         started_at: started instanceof HTMLInputElement ? started.value : "",
         company_url: String(new FormData(form).get("company_url") || ""),
       };
