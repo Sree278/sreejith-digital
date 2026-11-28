@@ -291,3 +291,14 @@ Then submit `https://sreejithdigital.com/sitemap.xml` in Google Search Console.
 - Connect a real form endpoint if you do not want enquiries to rely on the visitor’s email app.
 - Verify that no fabricated client names, testimonials, rankings, or case-study metrics were added.
 - Purge the Cloudflare cache after a content update if cached HTML does not refresh immediately.
+
+## Gated phone number (28 Nov 2026)
+
+The contact page shows the phone/WhatsApp number only after a visitor gives a valid, non-disposable email (`/api/contact` in `worker/index.js`). The number is never in the HTML or schema.
+
+Owner steps (secrets never go in this repo):
+1. `npx wrangler secret put CONTACT_PHONE` — enter the number with country code, e.g. `+919XXXXXXXXX`. Until set, the panel says the number is not available online.
+2. Optional human challenge (recommended): create a free Cloudflare Turnstile widget for sreejithdigital.com, then `npx wrangler secret put TURNSTILE_SECRET` and put the public site key in `TURNSTILE_SITE_KEY` in `scripts/generate_site.py`.
+3. Optional: add a Cloudflare WAF rate-limiting rule on `/api/contact` (the Worker's own limit is best effort per instance).
+
+Accepted: Gmail, Outlook/Hotmail, Yahoo, iCloud, Proton, Zoho, Rediff and any domain with a working MX record. Rejected: disposable inboxes and relay/alias services (Apple private relay, SimpleLogin, addy.io, Firefox Relay, duck.com). Every successful reveal emails the visitor's address to ENQUIRY_TO as a lead.
