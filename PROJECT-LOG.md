@@ -11,6 +11,10 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — Phone safeguards stage 2 (code)
+
+- `/api/contact` can now require a signed, 30-minute email link before showing the number (`/api/contact/verify`), enforce a daily reveal cap via KV, and check Turnstile. Each piece activates only when its secret or binding exists; production behaviour is unchanged until then. Steps in `DEPLOYMENT.md`.
+
 ## 2026-11-28 — Owner inputs recorded
 
 **Recorded:** Mindtech Solutions naming and ranking publication approved by the client (by phone, confirmed by owner). No LinkedIn or headshot yet, so `OWNER_PROFILES` and `OWNER_PHOTO` stay empty and no `sameAs` is published.
