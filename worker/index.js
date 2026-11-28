@@ -286,8 +286,14 @@ async function sendVerificationEmail(env, email, token) {
         htmlContent: `<p>Open this link within 30 minutes to see my phone number and WhatsApp:</p><p><a href="${link}">Show my contact number</a></p><p>If you did not ask for this, ignore this email.</p><p>Sreejith, sreejithdigital.com</p>`,
       }),
     });
+    if (!response.ok) {
+      // Log Brevo's reason (no secrets, no address) so a failed send can be diagnosed.
+      const detail = await response.text().catch(() => "");
+      console.error("brevo_send_failed", response.status, detail.slice(0, 300));
+    }
     return response.ok;
   } catch (error) {
+    console.error("brevo_send_error", String(error));
     return false;
   }
 }

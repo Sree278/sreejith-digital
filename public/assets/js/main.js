@@ -437,6 +437,8 @@
       } catch (error) {
         setStatus("The check couldn’t reach the server. Please use the enquiry form or email.", "error");
       } finally {
+        // A Turnstile token works once; always get a fresh one for the next try.
+        if (window.turnstile && !form.hidden) window.turnstile.reset();
         if (button) button.disabled = false;
       }
     });
