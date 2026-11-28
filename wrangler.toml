@@ -6,6 +6,10 @@ compatibility_date = "2026-11-26"
 workers_dev = true
 preview_urls = false
 
+# Keep Worker logs so failed sends (e.g. Brevo) can be diagnosed.
+[observability]
+enabled = true
+
 [assets]
 directory = "./public/"
 binding = "ASSETS"
