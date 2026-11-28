@@ -13,6 +13,36 @@ This is the single record of everything planned and done on this website, from t
 | Task briefs given to other tools | [`docs/briefs/`](docs/briefs/) |
 | Repository | https://github.com/Sree278/sreejith-digital (PRs #1–#29) |
 
+## Logbook rules (mandatory for every person and AI tool)
+
+This file is the permanent log book of the website. It lives in the repo and is never replaced by another document.
+
+1. **Log every core change in the same PR that makes it.** A PR that changes the site, the Worker, Cloudflare/DNS/email settings, measurement, SEO strategy, content plan or a business fact is not complete until its entry is here. Typo fixes and pure formatting do not need an entry.
+2. **Log decisions too**, including ones not implemented: proposals accepted, proposals rejected, and owner choices (with who decided).
+3. **Log work done outside the repo** (Cloudflare dashboard, Search Console, GA4/GTM, Brevo, registrar) in the next PR, with the date it happened.
+4. **Append, never rewrite history.** Add new entries at the end of the latest phase or start a new phase. Correct a wrong fact by adding a dated correction, not by deleting it. Keep entries oldest first.
+5. **Every entry answers What, Why, When, Where, How**, then Evidence and Open. Use the template below.
+6. **When:** date and UTC time, plus the PR number and release (`/version.txt`). **Where:** file paths, URLs, dashboards and tools touched.
+7. **Evidence is something checkable:** a command output, a live URL check, a screenshot description, a test result. No "should work". If it was not verified, say "not verified".
+8. **Update the "At a glance" table, "Where things stand" and "Open items"** when an entry changes them.
+9. **Never write secrets** (API keys, passwords, tokens, the phone number) in this file.
+10. **Never invent** dates, results, rankings, clients or approvals. Mark anything unconfirmed as such.
+
+### Entry template
+
+```markdown
+### <Phase letter><n>. <Short title> (PR #<n>, release <yyyy-mm-dd.n>)
+- **What:** what changed or was decided.
+- **Why:** the problem, request or evidence behind it; who decided.
+- **When:** <date>, <hh:mm> UTC (merged / done).
+- **Where:** files, URLs, dashboards, tools.
+- **How:** method, tools, checks run.
+- **Evidence:** checkable results.
+- **Open:** what is left, and who owns it.
+```
+
+---
+
 **Who did the work.** Owner: Sreejith CU (decisions, approvals, merges, passkeys, sign-ins, payments). Builders: the Arena coding agent (site build on 26 Nov; Tamil Nadu pages on 27 Nov) and Claude (audit, SEO, infrastructure, measurement, contact safeguards from 27 Nov). Every change reached production through a GitHub pull request merged by the owner.
 
 ---
@@ -33,6 +63,7 @@ This is the single record of everything planned and done on this website, from t
 | J | 28 Nov, 07:54–08:05 | Contact details | Area address in schema; phone shown only after email + mobile checks; hours; "SEO since 2015" | PRs #18–#19, releases 28.2–28.3 | Done |
 | K | 28 Nov, 08:56–10:21 | Phone safeguards | Signed email link, daily cap (KV), Turnstile | PRs #22–#25 | Done |
 | L | 28 Nov, 10:39–11:20 | Email verification switched on and debugged | Brevo sender, invalid key replaced, token reuse fixed, logs on, link bug fixed | PRs #26–#29 | PR #29 awaiting merge |
+| M | 28 Nov, 12:04 | Log book | Complete history; mandatory logging rules for every PR | PR #30, `AGENTS.md` | Awaiting merge |
 
 ---
 
@@ -233,6 +264,19 @@ This is the single record of everything planned and done on this website, from t
 **Open (Phase L):** merge PR #29, then test end to end: fresh link → number and WhatsApp shown → second click refused → owner notification received. Delete the two unused Brevo keys. Decide on branch-preview builds (fill Preview values or turn them off).
 
 **Owner suggestion not adopted:** "force users to accept analytics". Advised against: the privacy policy promises nothing loads without consent (DPDP), and a forced wall costs enquiries. Alternative offered: cookieless Cloudflare Web Analytics for basic counts. Awaiting the owner's decision.
+
+---
+
+## Phase M — Log book rules (28 Nov 2026)
+
+### M1. Complete history and mandatory logging (PR #30)
+- **What:** this file rewritten as the complete A–Z history (oldest first) with Logbook rules and an entry template; new `AGENTS.md` (instructions for every person and AI tool) and `CLAUDE.md` (points to `AGENTS.md`) make a log entry mandatory in the same PR as each core change or decision.
+- **Why:** owner decision: keep one permanent log book in the repo of every decision and implementation (what, why, when, where, how) for the historical record and the final case study.
+- **When:** 28 Nov 2026, PR #30 opened 12:04 UTC.
+- **Where:** `PROJECT-LOG.md`, `AGENTS.md`, `CLAUDE.md`, `README.md`.
+- **How:** history rebuilt from GitHub PRs #1–#29, the full git history, `SEO-STRATEGY.md`, `DEPLOYMENT.md` and the earlier log; dates and PR numbers checked against the GitHub API.
+- **Evidence:** all 29 PRs and their merge times appear in the phases above.
+- **Open:** owner merges PR #30.
 
 ---
 

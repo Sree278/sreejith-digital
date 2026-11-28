@@ -61,7 +61,8 @@ Optionally, after `npm install`, `npm run dev` starts Wrangler’s local static-
 ├── package-lock.json
 ├── DEPLOYMENT.md               # Cloudflare Workers / Pages / domain instructions
 ├── SEO-STRATEGY.md             # Strategy, keyword map, milestones and KPIs
-├── PROJECT-LOG.md              # Dated log of what changed and why
+├── PROJECT-LOG.md              # Complete log book: every change and decision (see its Logbook rules)
+├── AGENTS.md                   # Rules for people and AI tools, incl. mandatory logging
 └── README.md
 ```
 
