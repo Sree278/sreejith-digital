@@ -316,4 +316,4 @@ The code is live and switches on piece by piece. Nothing breaks if a piece is no
 
 Test after each step on `/contact/`: a Gmail plus a real mobile gets an email; the link shows the number; opening it twice is refused.
 
-**Status, 28 Nov 2026:** Turnstile is ON (widget `sreejithdigital-contact`, secret `TURNSTILE_SECRET`, site key in `generate_site.py`). The daily cap is ON (KV namespace `sreejith-contact` bound as `CONTACT_KV` in `wrangler.toml`; cap 20 a day). Email-link verification is OFF until `BREVO_API_KEY`, `VERIFY_FROM` and `VERIFY_SECRET` are added.
+**Status, 28 Nov 2026:** Turnstile is ON (widget `sreejithdigital-contact`, secret `TURNSTILE_SECRET`, site key in `generate_site.py`). The daily cap is ON (KV namespace `sreejith-contact` bound as `CONTACT_KV` in `wrangler.toml`; cap 20 a day). Email-link verification is ON (Brevo free account, domain authenticated with DKIM; secrets `BREVO_API_KEY` and `VERIFY_SECRET` set in the dashboard, `VERIFY_FROM` = hello@sreejithdigital.com in `wrangler.toml`). The Brevo key is send-only (transactional email).

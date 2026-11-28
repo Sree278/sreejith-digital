@@ -15,7 +15,7 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 - Turnstile widget created and enforced on `/api/contact` (a request without a token is refused with `challenge_failed`). The widget renders on `/contact/`.
 - KV namespace `sreejith-contact` bound as `CONTACT_KV`: daily reveal cap of 20 and single-use email links. Main build succeeded.
-- Open: email-link verification waits for a free Brevo sender (owner sign-up).
+- 28 Nov 2026: Brevo domain authenticated, sender added, send-only API key and Worker secrets set; email-link verification switched ON. Open: end-to-end test with a real inbox.
 
 ## 2026-11-28 — Phone safeguards stage 2 (code)
 
