@@ -31,6 +31,15 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — Gap plan against Jijo Joseph
+
+**Why:** owner wants to compete with jijojosephseo.in for Kerala and India rankings.
+**Changed:** `SEO-STRATEGY.md` section 18 — competitor snapshot (sitemaps and homepage), winnable-now vs later keyword tiers, actions. Docs only; no site change.
+**Evidence:** page sitemap ~26 URLs, post sitemap 36 URLs, homepage claims fetched 28 Nov 2026. No backlink or traffic data.
+**Next:** industry-in-Kerala pages, pricing and agency-vs-expert pages (done in the next entry), reviews and referring domains.
+
+---
+
 ## 2026-11-28 — "SEO consultant India" page set and pricing
 
 **Why:** SERP checks (28 Nov) showed MysticDigi and Jijo Joseph winning "seo consultant in india" with a dedicated page and price/experience in the snippet; Google's AI Overview for "seo expert in india" quotes ₹ ranges. We had neither.

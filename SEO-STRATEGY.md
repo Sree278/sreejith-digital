@@ -326,3 +326,25 @@ Top-of-page bids (high range) show commercial value: Bengaluru ₹292, Mumbai �
 4. Measure: Search Console impressions per city page each week from M1; a page with no impressions after 90 days is merged back into its hub.
 
 **Honest limits:** No page can be made "competition-proof". The moat is what competitors lack and can't copy quickly: named, dated proof, consistent entity data, real local substance per city, and third-party profiles (ledger in §16). FAQ rich results are shown only for government and health sites, so FAQPage markup here serves AI parsing, not SERP stars. Breadcrumbs remain eligible for rich results. Review stars are not used, because self-served reviews are ineligible and none exist yet. llms.txt is skipped, consistent with the AI-search service page (no measured effect).
+
+## 18. Competing with Jijo Joseph (28 Nov 2026)
+
+**Snapshot (web-fetch of jijojosephseo.in and its sitemaps; no traffic or backlink data, free tools only).**
+- Size: about 26 pages (17 location pages incl. 6 metros, 8 Kerala districts, UAE/UK/Australia; 3 case studies) plus 36 posts, 21 of them updated 14–21 Nov 2026. Posts cluster on backlinks, GBP/Maps, entity SEO, AI SEO tools and Malayalam SEO.
+- Authority signals: since 2012, 300+ projects, 12,000+ students, YouTube and LinkedIn audiences, 21 Google reviews (4.6), Clutch/Trustpilot badges, Entity Map page.
+- Weak points: repeated stats that disagree (two subscriber, follower and view counts), self-applied "No.1", flat city pages, no confirmed schema in page text.
+- He is not first everywhere: on 27 Nov he led Kerala and Kochi, but Calicut, Trivandrum and Thrissur went to others (section 15).
+
+**Where to compete, in order**
+1. Winnable now (new domain): "seo for [industry] in kerala/india", "seo company/services in chennai", Tamil Nadu cities, "AI search / GEO consultant india", "seo consultant vs agency" and pricing queries. He has no industry-specific pages.
+2. 3–6 months: "seo expert in india", Thrissur, Trivandrum, Calicut, once there are reviews, citations and a few referring domains.
+3. Not now: "seo expert in kerala" and "seo expert in kochi". Treat as a 9–12 month target; his audience-driven backlinks and review count are the gap.
+
+**Actions**
+- Build 5 industry-in-Kerala/India pages backed by real work (MEP/construction first, from Mindtech).
+- Publish a dated, evidence-led "SEO pricing in India/Kerala" page and an "SEO consultant vs agency" page (his posts do not cover either).
+- Earn the first 10 reviews (Google Business Profile as a service-area business in Chennai, Clutch, GoodFirms, LinkedIn recommendations).
+- Get 10–20 genuine referring domains: Mindtech and client mentions, Kerala/Chennai business directories, guest posts, podcast and community answers.
+- Add Malayalam FAQs on the Kerala pages; keep stats consistent everywhere.
+- Weekly Search Console tracking of the 20 target queries against the live top 10; compare against his URL for each.
+- Do not copy his 17-city template: it fails the city-name test (section 3).
