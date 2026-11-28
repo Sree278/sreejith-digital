@@ -11,12 +11,42 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — Visitor number required, hours, SEO since 2015
+
+**Why:** owner asked that visitors give their own mobile number (like the email) before the phone is shown, and supplied working hours and the year he started in SEO.
+**Changed:** `/api/contact` now also validates the visitor's mobile (Indian mobile or international; rejects fillers like 9999999999 and 1234567890) and includes it in the owner's notification. Contact form has the new field. "SEO since 2015" added to the About hero, homepage trust list and Person schema description. Working hours 9am–6pm IST added to the contact page and `openingHoursSpecification` (Monday–Friday assumed). Release 2026-11-28.3.
+**Not stored in repo:** the phone number itself — it must be set as the `CONTACT_PHONE` Cloudflare secret by the owner (see DEPLOYMENT.md).
+**Evidence:** 14 phone/email gating cases tested; contact page rendered at 390 and 1280 px, no overflow; invalid number blocked client-side and a valid one sends `visitor_phone`.
+**Open:** set the secret; confirm working days; profile links, headshot, Mindtech permission.
+
+---
+
+## 2026-11-28 — Area address in schema and gated phone number
+
+**Why:** owner confirmed Perungalathur, Chennai 600063 and wants the phone number hidden from scrapers and spam, shown only after a legitimate email.
+**Changed:** postal code 600063 in Organization/ProfessionalService schema and a visible "where I work from" panel on `/contact/` (area only; no flat or street). New `/api/contact` Worker route: email format, disposable/relay blocklist, reputable-provider allowlist, MX check for other domains, honeypot, time check, per-IP/email limits, optional Turnstile; the number comes from the `CONTACT_PHONE` secret. Every reveal emails the owner the visitor's address. Privacy page updated. Release 2026-11-28.2.
+**Not in schema:** no `telephone` property, on purpose, so scrapers cannot read it.
+**Evidence:** 11 gating cases tested (valid, disposable, relay, no-MX, malformed, honeypot, rate limit, unset secret); contact page rendered at 390 and 1280 px with no overflow; reveal flow tested in a browser with a mocked endpoint.
+**Open:** owner must set `CONTACT_PHONE` (and optionally Turnstile) — see DEPLOYMENT.md.
+
+---
+
 ## 2026-11-28 — Gap plan against Jijo Joseph
 
 **Why:** owner wants to compete with jijojosephseo.in for Kerala and India rankings.
 **Changed:** `SEO-STRATEGY.md` section 18 — competitor snapshot (sitemaps and homepage), winnable-now vs later keyword tiers, actions. Docs only; no site change.
 **Evidence:** page sitemap ~26 URLs, post sitemap 36 URLs, homepage claims fetched 28 Nov 2026. No backlink or traffic data.
-**Next:** industry-in-Kerala pages, pricing and agency-vs-expert pages, reviews and referring domains.
+**Next:** industry-in-Kerala pages, pricing and agency-vs-expert pages (done in the next entry), reviews and referring domains.
+
+---
+
+## 2026-11-28 — "SEO consultant India" page set and pricing
+
+**Why:** SERP checks (28 Nov) showed MysticDigi and Jijo Joseph winning "seo consultant in india" with a dedicated page and price/experience in the snippet; Google's AI Overview for "seo expert in india" quotes ₹ ranges. We had neither.
+**Changed:** `/services/seo-consulting/` retargeted to "SEO consultant in India" (title, meta, intro, 2 new FAQs incl. price range); `/resources/seo-cost-india/` gained a dated "published price ranges" section; new guide `/resources/seo-consultant-vs-agency-india/`; homepage guide links updated. Release 2026-11-28.1.
+**Pricing source:** owner-approved placeholder ₹10,000–₹50,000/month market range (published Kerala packages, Nov 2026; AI summary on Google India, 28 Nov). Own quote left "set after a free review" until owner supplies a figure.
+**Evidence:** rebuilt 53 pages; 0 matches for independent/freelanc in `public/`.
+**Next:** owner supplies PIN code, phone/WhatsApp, profile URLs; then add schema contact/sameAs and start citations.
 
 ---
 

@@ -322,6 +322,97 @@
   });
 
   /* ---------------------------------------------------------------------
+     Contact page: reveal the phone number after an email check.
+     The number is never in the page; /api/contact returns it on success.
+     --------------------------------------------------------------------- */
+  document.querySelectorAll("[data-phone-form]").forEach((form) => {
+    if (!(form instanceof HTMLFormElement)) return;
+    const panel = form.closest("[data-phone-panel]");
+    const status = form.querySelector("[data-phone-status]");
+    const started = form.querySelector("[data-phone-started]");
+    const result = panel ? panel.querySelector("[data-phone-result]") : null;
+    const button = form.querySelector('button[type="submit"]');
+    if (started instanceof HTMLInputElement) started.value = String(Date.now());
+
+    const turnstileHost = form.querySelector("[data-turnstile-sitekey]");
+    if (turnstileHost && !document.querySelector("script[data-turnstile]")) {
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      script.defer = true;
+      script.dataset.turnstile = "1";
+      script.onload = () => {
+        if (window.turnstile) window.turnstile.render(turnstileHost, { sitekey: turnstileHost.getAttribute("data-turnstile-sitekey") });
+      };
+      document.head.appendChild(script);
+    }
+
+    const messages = {
+      invalid_email: "Please enter a valid email address.",
+      invalid_phone: "Please enter a valid mobile number, for example +91 98XXXXXXXX.",
+      email_not_accepted: "That email address can’t be used. Please use a Gmail, Outlook, Yahoo, iCloud or your company email (no temporary or relay addresses).",
+      rate_limited: "Too many requests. Please try again later or use the enquiry form.",
+      challenge_failed: "Please complete the check and try again.",
+      try_again: "We couldn’t check that address just now. Please try again in a moment.",
+      not_configured: "The number isn’t available online right now. Please use the enquiry form or email.",
+    };
+    const setStatus = (text, state) => {
+      if (!status) return;
+      status.textContent = text;
+      if (state) status.dataset.state = state;
+      else status.removeAttribute("data-state");
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const emailField = form.querySelector('[name="email"]');
+      if (!(emailField instanceof HTMLInputElement) || !emailField.value.trim() || !emailField.checkValidity()) {
+        setStatus(messages.invalid_email, "error");
+        return;
+      }
+      const phoneField = form.querySelector('[name="visitor_phone"]');
+      if (!(phoneField instanceof HTMLInputElement) || !/^\+?[0-9][0-9\s().-]{7,18}$/.test(phoneField.value.trim())) {
+        setStatus(messages.invalid_phone, "error");
+        return;
+      }
+      const payload = {
+        email: emailField.value.trim(),
+        visitor_phone: phoneField.value.trim(),
+        started_at: started instanceof HTMLInputElement ? started.value : "",
+        company_url: String(new FormData(form).get("company_url") || ""),
+      };
+      const token = form.querySelector('[name="cf-turnstile-response"]');
+      if (token instanceof HTMLInputElement) payload.turnstile_token = token.value;
+      if (button) button.disabled = true;
+      setStatus("Checking…");
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        });
+        let data = null;
+        try { data = await response.json(); } catch (error) { data = null; }
+        if (response.ok && data && data.ok && data.phone) {
+          const tel = panel.querySelector("[data-phone-tel]");
+          const wa = panel.querySelector("[data-phone-wa]");
+          if (tel) { tel.textContent = data.phone; tel.setAttribute("href", `tel:${data.phone}`); }
+          if (wa && /^https:\/\/wa\.me\/[0-9]+$/.test(data.whatsapp || "")) wa.setAttribute("href", data.whatsapp);
+          form.hidden = true;
+          if (result) result.hidden = false;
+          trackEvent("phone_reveal", {});
+          return;
+        }
+        setStatus(messages[data && data.code] || "Something went wrong. Please use the enquiry form or email.", "error");
+      } catch (error) {
+        setStatus("The check couldn’t reach the server. Please use the enquiry form or email.", "error");
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  });
+
+  /* ---------------------------------------------------------------------
      Thank-you page: show the reference and record one lead per enquiry.
      --------------------------------------------------------------------- */
   const refHolder = document.querySelector("[data-enquiry-ref]");

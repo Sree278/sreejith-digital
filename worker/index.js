@@ -32,12 +32,204 @@ export default {
     if (url.pathname === "/api/enquiry") {
       return handleEnquiry(request, env);
     }
+    if (url.pathname === "/api/contact") {
+      return handleContactReveal(request, env);
+    }
     if (url.pathname.startsWith("/api/")) {
       return json({ ok: false, code: "not_found" }, 404);
     }
     return env.ASSETS.fetch(request);
   },
 };
+
+/* ---------------------------------------------------------------------
+   POST /api/contact — reveal the phone number to a verified-looking visitor.
+   The number lives only in the CONTACT_PHONE secret, never in the HTML or the
+   schema, so scrapers reading pages never see it. A visitor must give an email
+   that (1) is well formed, (2) is not a disposable or relay address, and
+   (3) is either from a reputable provider or a domain that really receives
+   mail (MX record). Optional Cloudflare Turnstile adds a human challenge.
+   --------------------------------------------------------------------- */
+const REPUTABLE_EMAIL_DOMAINS = new Set([
+  "gmail.com", "googlemail.com", "outlook.com", "hotmail.com", "live.com", "msn.com",
+  "yahoo.com", "yahoo.in", "yahoo.co.in", "ymail.com", "icloud.com", "me.com", "mac.com",
+  "proton.me", "protonmail.com", "zoho.com", "zohomail.in", "rediffmail.com", "aol.com",
+  "fastmail.com", "hey.com",
+]);
+const BLOCKED_EMAIL_DOMAINS = new Set([
+  // Disposable / temporary inboxes
+  "mailinator.com", "guerrillamail.com", "guerrillamail.net", "guerrillamail.org", "guerrillamail.biz",
+  "sharklasers.com", "grr.la", "guerrillamailblock.com", "pokemail.net", "spam4.me",
+  "10minutemail.com", "10minutemail.net", "20minutemail.com", "tempmail.com", "temp-mail.org",
+  "temp-mail.io", "tempmail.net", "tempmailo.com", "tempail.com", "tempr.email", "tmpmail.org",
+  "tmpmail.net", "throwawaymail.com", "trashmail.com", "trashmail.net", "trashmail.de",
+  "yopmail.com", "yopmail.net", "yopmail.fr", "cool.fr.nf", "jetable.org", "nospam.ze.tc",
+  "getnada.com", "nada.email", "maildrop.cc", "mailnesia.com", "mailcatch.com", "mintemail.com",
+  "dispostable.com", "fakeinbox.com", "fakemail.net", "emailondeck.com", "spamgourmet.com",
+  "mytemp.email", "mohmal.com", "burnermail.io", "inboxkitten.com", "moakt.com", "mailsac.com",
+  "dropmail.me", "emailfake.com", "fakemailgenerator.com", "email-fake.com", "generator.email",
+  "mail.tm", "1secmail.com", "1secmail.net", "1secmail.org", "wegwerfmail.de", "wegwerfmail.net",
+  "discard.email", "discardmail.com", "mailforspam.com", "spambox.us", "spamex.com", "tempinbox.com",
+  "harakirimail.com", "mailpoof.com", "tempmailaddress.com", "minuteinbox.com", "luxusmail.org",
+  "anonbox.net", "mailtemp.net", "tmail.ws", "mail7.io", "mailnator.com", "yomail.info",
+  "linshiyouxiang.net", "bccto.me", "chacuo.net", "33mail.com", "trbvm.com", "owlymail.com",
+  "temporary-mail.net", "tempsky.com", "boxformail.in", "vusra.com", "nowmymail.com",
+  // Generated forwarding / relay addresses
+  "privaterelay.appleid.com", "relay.firefox.com", "mozmail.com", "simplelogin.com", "simplelogin.co",
+  "simplelogin.fr", "aleeas.com", "slmail.me", "anonaddy.com", "anonaddy.me", "addy.io",
+  "duck.com", "passmail.net", "passinbox.com", "mailnull.com",
+]);
+
+const contactHits = new Map(); // best-effort, per isolate: ip/email -> [timestamps]
+
+function tooManyRequests(key, limit, windowMs) {
+  const now = Date.now();
+  const recent = (contactHits.get(key) || []).filter((time) => now - time < windowMs);
+  if (recent.length >= limit) {
+    contactHits.set(key, recent);
+    return true;
+  }
+  recent.push(now);
+  contactHits.set(key, recent);
+  if (contactHits.size > 5000) contactHits.clear();
+  return false;
+}
+
+// Visitor's own number (spam-proofing, like the email). Indian mobiles or
+// international E.164 numbers; obvious fillers such as 9999999999 are refused.
+function normaliseVisitorPhone(value) {
+  const compact = String(value || "").trim().replace(/[\s().-]/g, "");
+  if (!/^\+?[0-9]{8,15}$/.test(compact)) return null;
+  let digits = compact.replace(/^\+/, "");
+  let national;
+  if (compact.startsWith("+")) {
+    if (digits.startsWith("91")) {
+      national = digits.slice(2);
+      if (!/^[6-9][0-9]{9}$/.test(national)) return null;
+    } else if (digits.length < 9 || digits.startsWith("0")) {
+      return null;
+    } else {
+      national = digits.slice(-9);
+    }
+  } else {
+    national = digits.replace(/^(?:91|0)(?=[6-9][0-9]{9}$)/, "");
+    if (!/^[6-9][0-9]{9}$/.test(national)) return null;
+    digits = `91${national}`;
+  }
+  if (/^(.)\1{6,}$/.test(national) || /0123456789|1234567890|9876543210|0987654321/.test(national)) return null;
+  return `+${digits}`;
+}
+
+function emailDomainBlocked(domain) {
+  if (BLOCKED_EMAIL_DOMAINS.has(domain)) return true;
+  const parts = domain.split(".");
+  for (let i = 1; i < parts.length - 1; i += 1) {
+    if (BLOCKED_EMAIL_DOMAINS.has(parts.slice(i).join("."))) return true;
+  }
+  return /(^|[.-])(temp|tmp|trash|throwaway|disposable|burner|fakeinbox|10min|guerrilla)[a-z0-9-]*\./.test(domain);
+}
+
+async function domainReceivesMail(domain) {
+  try {
+    const response = await fetch(
+      `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=MX`,
+      { headers: { Accept: "application/dns-json" }, cf: { cacheTtl: 3600 } }
+    );
+    if (!response.ok) return null;
+    const data = await response.json();
+    if (data.Status !== 0) return false;
+    return Array.isArray(data.Answer) && data.Answer.some((record) => record.type === 15);
+  } catch (error) {
+    return null;
+  }
+}
+
+async function handleContactReveal(request, env) {
+  if (request.method !== "POST") {
+    return json({ ok: false, code: "method_not_allowed" }, 405, { Allow: "POST" });
+  }
+  const raw = await request.text();
+  if (raw.length > 2000) return json({ ok: false, code: "too_large" }, 413);
+  let fields;
+  try {
+    fields = JSON.parse(raw);
+  } catch (error) {
+    return json({ ok: false, code: "bad_request" }, 400);
+  }
+
+  const phone = String(env.CONTACT_PHONE || "").replace(/[\s()-]/g, "");
+  if (!/^\+?[0-9]{10,15}$/.test(phone)) {
+    return json({ ok: false, code: "not_configured" }, 503);
+  }
+
+  const email = String(fields.email || "").trim().toLowerCase().slice(0, 200);
+  const startedAt = Number(fields.started_at || 0);
+  const botLike = String(fields.company_url || "").trim() !== "" || (startedAt > 0 && Date.now() - startedAt < 2000);
+  if (botLike) return json({ ok: false, code: "invalid_email" }, 422);
+
+  const visitorPhone = normaliseVisitorPhone(fields.visitor_phone);
+
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+  if (tooManyRequests(`ip:${ip}`, 3, 60 * 60 * 1000) || tooManyRequests(`email:${email}`, 2, 60 * 60 * 1000)) {
+    return json({ ok: false, code: "rate_limited" }, 429);
+  }
+
+  if (!EMAIL_RE.test(email) || email.length > 120 || email.split("@").length !== 2) {
+    return json({ ok: false, code: "invalid_email" }, 422);
+  }
+  if (!visitorPhone) {
+    return json({ ok: false, code: "invalid_phone" }, 422);
+  }
+  const [local, domain] = email.split("@");
+  if (local.length > 64 || !/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(local) || !/^[a-z0-9.-]+\.[a-z]{2,}$/.test(domain)) {
+    return json({ ok: false, code: "invalid_email" }, 422);
+  }
+  if (emailDomainBlocked(domain)) {
+    return json({ ok: false, code: "email_not_accepted" }, 422);
+  }
+
+  if (!REPUTABLE_EMAIL_DOMAINS.has(domain)) {
+    const receivesMail = await domainReceivesMail(domain);
+    if (receivesMail === null) return json({ ok: false, code: "try_again" }, 503);
+    if (!receivesMail) return json({ ok: false, code: "email_not_accepted" }, 422);
+  }
+
+  if (env.TURNSTILE_SECRET) {
+    const token = String(fields.turnstile_token || "");
+    let passed = false;
+    if (token) {
+      try {
+        const verify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ secret: env.TURNSTILE_SECRET, response: token, remoteip: ip }),
+        });
+        passed = Boolean((await verify.json()).success);
+      } catch (error) {
+        passed = false;
+      }
+    }
+    if (!passed) return json({ ok: false, code: "challenge_failed" }, 403);
+  }
+
+  // Tell the owner who asked — every reveal is also a lead. Best effort.
+  if (env.ENQUIRY_EMAIL && env.ENQUIRY_TO && env.ENQUIRY_FROM) {
+    try {
+      const record = {
+        name: "Phone number request", email, offer: "Phone reveal", form_location: "contact-phone",
+        page: "/contact/", website: "", service: "", budget: "",
+        message: `This visitor passed the email and phone checks and was shown your phone number.\nTheir phone: ${visitorPhone}`,
+        reference: makeReference(), received_at: new Date().toISOString(),
+      };
+      await env.ENQUIRY_EMAIL.send(new EmailMessage(env.ENQUIRY_FROM, env.ENQUIRY_TO, buildMessage(env.ENQUIRY_FROM, env.ENQUIRY_TO, record)));
+    } catch (error) {
+      // The reveal must not depend on the notification.
+    }
+  }
+
+  const digits = phone.replace(/^\+/, "");
+  return json({ ok: true, phone: `+${digits}`, whatsapp: `https://wa.me/${digits}` });
+}
 
 async function handleEnquiry(request, env) {
   if (request.method === "OPTIONS") {
