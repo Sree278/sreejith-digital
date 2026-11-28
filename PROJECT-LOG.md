@@ -11,6 +11,12 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — Phone safeguards switched on
+
+- Turnstile widget created and enforced on `/api/contact` (a request without a token is refused with `challenge_failed`). The widget renders on `/contact/`.
+- KV namespace `sreejith-contact` bound as `CONTACT_KV`: daily reveal cap of 20 and single-use email links. Main build succeeded.
+- Open: email-link verification waits for a free Brevo sender (owner sign-up).
+
 ## 2026-11-28 — Phone safeguards stage 2 (code)
 
 - `/api/contact` can now require a signed, 30-minute email link before showing the number (`/api/contact/verify`), enforce a daily reveal cap via KV, and check Turnstile. Each piece activates only when its secret or binding exists; production behaviour is unchanged until then. Steps in `DEPLOYMENT.md`.

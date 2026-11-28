@@ -315,3 +315,5 @@ The code is live and switches on piece by piece. Nothing breaks if a piece is no
 | Email-link verification | Free Brevo account (300 emails a day). Verify a sender address, create an API key, then add secrets `BREVO_API_KEY`, `VERIFY_FROM` (the verified sender) and `VERIFY_SECRET` (any long random string). When all three exist, the number appears only after the visitor opens the emailed link (valid 30 minutes, single use when KV is bound). |
 
 Test after each step on `/contact/`: a Gmail plus a real mobile gets an email; the link shows the number; opening it twice is refused.
+
+**Status, 28 Nov 2026:** Turnstile is ON (widget `sreejithdigital-contact`, secret `TURNSTILE_SECRET`, site key in `generate_site.py`). The daily cap is ON (KV namespace `sreejith-contact` bound as `CONTACT_KV` in `wrangler.toml`; cap 20 a day). Email-link verification is OFF until `BREVO_API_KEY`, `VERIFY_FROM` and `VERIFY_SECRET` are added.
