@@ -355,7 +355,38 @@
       challenge_failed: "Please complete the check and try again.",
       try_again: "We couldn’t check that address just now. Please try again in a moment.",
       not_configured: "The number isn’t available online right now. Please use the enquiry form or email.",
+      daily_limit: "The number has been requested too many times today. Please use the enquiry form and I will reply personally.",
+      link_invalid: "That confirmation link has expired or was already used. Please request a new one.",
     };
+    const showNumber = (data) => {
+      const tel = panel.querySelector("[data-phone-tel]");
+      const wa = panel.querySelector("[data-phone-wa]");
+      if (tel) { tel.textContent = data.phone; tel.setAttribute("href", `tel:${data.phone}`); }
+      if (wa && /^https:\/\/wa\.me\/[0-9]+$/.test(data.whatsapp || "")) wa.setAttribute("href", data.whatsapp);
+      form.hidden = true;
+      if (result) result.hidden = false;
+      trackEvent("phone_reveal", {});
+    };
+    // Opened from the confirmation email: ?verify=<signed token>
+    const verifyToken = new URLSearchParams(window.location.search).get("verify");
+    if (verifyToken) {
+      setStatus("Confirming your email…");
+      fetch("/api/contact/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ token: verifyToken }),
+      })
+        .then((response) => response.json().catch(() => null).then((data) => ({ response, data })))
+        .then(({ response, data }) => {
+          if (response.ok && data && data.ok && data.phone) {
+            showNumber(data);
+            window.history.replaceState(null, "", window.location.pathname);
+          } else {
+            setStatus(messages[data && data.code] || "Something went wrong. Please use the enquiry form or email.", "error");
+          }
+        })
+        .catch(() => setStatus("The check couldn’t reach the server. Please use the enquiry form or email.", "error"));
+    }
     const setStatus = (text, state) => {
       if (!status) return;
       status.textContent = text;
@@ -394,13 +425,12 @@
         let data = null;
         try { data = await response.json(); } catch (error) { data = null; }
         if (response.ok && data && data.ok && data.phone) {
-          const tel = panel.querySelector("[data-phone-tel]");
-          const wa = panel.querySelector("[data-phone-wa]");
-          if (tel) { tel.textContent = data.phone; tel.setAttribute("href", `tel:${data.phone}`); }
-          if (wa && /^https:\/\/wa\.me\/[0-9]+$/.test(data.whatsapp || "")) wa.setAttribute("href", data.whatsapp);
-          form.hidden = true;
-          if (result) result.hidden = false;
-          trackEvent("phone_reveal", {});
+          showNumber(data);
+          return;
+        }
+        if (response.ok && data && data.ok && data.step === "verify_sent") {
+          setStatus("Check your inbox: I have emailed you a link. Open it within 30 minutes to see my number.", "ok");
+          if (window.turnstile) window.turnstile.reset();
           return;
         }
         setStatus(messages[data && data.code] || "Something went wrong. Please use the enquiry form or email.", "error");

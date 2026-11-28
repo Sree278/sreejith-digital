@@ -302,3 +302,16 @@ Owner steps (secrets never go in this repo):
 3. Optional: add a Cloudflare WAF rate-limiting rule on `/api/contact` (the Worker's own limit is best effort per instance).
 
 Accepted: Gmail, Outlook/Hotmail, Yahoo, iCloud, Proton, Zoho, Rediff and any domain with a working MX record. Rejected: disposable inboxes and relay/alias services (Apple private relay, SimpleLogin, addy.io, Firefox Relay, duck.com). Every successful reveal emails the visitor's address to ENQUIRY_TO as a lead.
+
+
+## Phone safeguards, stage 2 (28 Nov 2026)
+
+The code is live and switches on piece by piece. Nothing breaks if a piece is not set up yet.
+
+| Safeguard | Turn it on |
+|---|---|
+| Turnstile human check | Cloudflare dashboard → Turnstile → Add widget for `sreejithdigital.com`. Put the site key in `TURNSTILE_SITE_KEY` in `scripts/generate_site.py`; add the secret as `TURNSTILE_SECRET` (Worker → Settings → Variables and Secrets). |
+| Daily cap (default 20 a day) | Workers & Pages → KV → create a namespace, then bind it to the Worker as `CONTACT_KV`. Optional variable `DAILY_REVEAL_CAP`. |
+| Email-link verification | Free Brevo account (300 emails a day). Verify a sender address, create an API key, then add secrets `BREVO_API_KEY`, `VERIFY_FROM` (the verified sender) and `VERIFY_SECRET` (any long random string). When all three exist, the number appears only after the visitor opens the emailed link (valid 30 minutes, single use when KV is bound). |
+
+Test after each step on `/contact/`: a Gmail plus a real mobile gets an email; the link shows the number; opening it twice is refused.

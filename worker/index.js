@@ -35,6 +35,9 @@ export default {
     if (url.pathname === "/api/contact") {
       return handleContactReveal(request, env);
     }
+    if (url.pathname === "/api/contact/verify") {
+      return handleContactVerify(request, env);
+    }
     if (url.pathname.startsWith("/api/")) {
       return json({ ok: false, code: "not_found" }, 404);
     }
@@ -212,6 +215,129 @@ async function handleContactReveal(request, env) {
     if (!passed) return json({ ok: false, code: "challenge_failed" }, 403);
   }
 
+  // Email verification (when a sender is configured): mail a signed, expiring
+  // link. The number is shown only when the visitor opens it, which proves the
+  // inbox is really theirs. Without a sender the checks above are the gate.
+  if (verificationConfigured(env)) {
+    if (await dailyCapReached(env)) return json({ ok: false, code: "daily_limit" }, 429);
+    const token = await signToken(env, { e: email, p: visitorPhone, x: Date.now() + VERIFY_TTL_MS });
+    const sent = await sendVerificationEmail(env, email, token);
+    if (!sent) return json({ ok: false, code: "try_again" }, 503);
+    return json({ ok: true, step: "verify_sent" });
+  }
+
+  if (await dailyCapReached(env)) return json({ ok: false, code: "daily_limit" }, 429);
+  return revealNumber(env, email, visitorPhone, phone);
+}
+
+const VERIFY_TTL_MS = 30 * 60 * 1000;
+const DAILY_REVEAL_CAP = 20;
+
+function verificationConfigured(env) {
+  return Boolean(env.VERIFY_SECRET && env.BREVO_API_KEY && env.VERIFY_FROM);
+}
+
+function b64url(bytes) {
+  let text = "";
+  for (const byte of bytes) text += String.fromCharCode(byte);
+  return btoa(text).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function b64urlDecode(value) {
+  const padded = value.replace(/-/g, "+").replace(/_/g, "/") + "=".repeat((4 - (value.length % 4)) % 4);
+  return Uint8Array.from(atob(padded), (char) => char.charCodeAt(0));
+}
+
+async function hmacKey(env, usage) {
+  return crypto.subtle.importKey("raw", new TextEncoder().encode(env.VERIFY_SECRET), { name: "HMAC", hash: "SHA-256" }, false, [usage]);
+}
+
+async function signToken(env, payload) {
+  const body = b64url(new TextEncoder().encode(JSON.stringify(payload)));
+  const signature = await crypto.subtle.sign("HMAC", await hmacKey(env, "sign"), new TextEncoder().encode(body));
+  return `${body}.${b64url(new Uint8Array(signature))}`;
+}
+
+async function readToken(env, token) {
+  try {
+    const [body, signature] = String(token || "").split(".");
+    if (!body || !signature || token.length > 600) return null;
+    const ok = await crypto.subtle.verify("HMAC", await hmacKey(env, "verify"), b64urlDecode(signature), new TextEncoder().encode(body));
+    if (!ok) return null;
+    const payload = JSON.parse(new TextDecoder().decode(b64urlDecode(body)));
+    if (!payload || typeof payload.e !== "string" || typeof payload.p !== "string" || !(payload.x > Date.now())) return null;
+    return payload;
+  } catch (error) {
+    return null;
+  }
+}
+
+async function sendVerificationEmail(env, email, token) {
+  const link = `https://sreejithdigital.com/contact/?verify=${encodeURIComponent(token)}`;
+  try {
+    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: { "api-key": env.BREVO_API_KEY, "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        sender: { name: "Sreejith Digital", email: env.VERIFY_FROM },
+        to: [{ email }],
+        subject: "Confirm your email to see my phone number",
+        textContent: `Open this link within 30 minutes to see my phone number and WhatsApp:\n\n${link}\n\nIf you did not ask for this, ignore this email.\n\nSreejith, sreejithdigital.com`,
+        htmlContent: `<p>Open this link within 30 minutes to see my phone number and WhatsApp:</p><p><a href="${link}">Show my contact number</a></p><p>If you did not ask for this, ignore this email.</p><p>Sreejith, sreejithdigital.com</p>`,
+      }),
+    });
+    return response.ok;
+  } catch (error) {
+    return false;
+  }
+}
+
+// Daily ceiling on reveals, kept in Workers KV (CONTACT_KV) when bound.
+function todayKey() {
+  return `reveals:${new Date().toISOString().slice(0, 10)}`;
+}
+
+async function dailyCapReached(env) {
+  if (!env.CONTACT_KV) return false;
+  const cap = Number(env.DAILY_REVEAL_CAP) || DAILY_REVEAL_CAP;
+  return Number(await env.CONTACT_KV.get(todayKey())) >= cap;
+}
+
+async function countReveal(env) {
+  if (!env.CONTACT_KV) return;
+  const key = todayKey();
+  await env.CONTACT_KV.put(key, String(Number(await env.CONTACT_KV.get(key)) + 1), { expirationTtl: 2 * 24 * 60 * 60 });
+}
+
+async function handleContactVerify(request, env) {
+  if (request.method !== "POST") {
+    return json({ ok: false, code: "method_not_allowed" }, 405, { Allow: "POST" });
+  }
+  const phone = String(env.CONTACT_PHONE || "").replace(/[\s()-]/g, "");
+  if (!verificationConfigured(env) || !/^\+?[0-9]{10,15}$/.test(phone)) {
+    return json({ ok: false, code: "not_configured" }, 503);
+  }
+  let fields;
+  try {
+    fields = JSON.parse(await request.text());
+  } catch (error) {
+    return json({ ok: false, code: "bad_request" }, 400);
+  }
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+  if (tooManyRequests(`verify:${ip}`, 10, 60 * 60 * 1000)) return json({ ok: false, code: "rate_limited" }, 429);
+  const payload = await readToken(env, fields.token);
+  if (!payload) return json({ ok: false, code: "link_invalid" }, 410);
+  if (env.CONTACT_KV) {
+    const usedKey = `used:${String(fields.token).slice(-40)}`;
+    if (await env.CONTACT_KV.get(usedKey)) return json({ ok: false, code: "link_invalid" }, 410);
+    if (await dailyCapReached(env)) return json({ ok: false, code: "daily_limit" }, 429);
+    await env.CONTACT_KV.put(usedKey, "1", { expirationTtl: 2 * 60 * 60 });
+  }
+  return revealNumber(env, payload.e, payload.p, phone);
+}
+
+async function revealNumber(env, email, visitorPhone, phone) {
+  await countReveal(env).catch(() => {});
   // Tell the owner who asked — every reveal is also a lead. Best effort.
   if (env.ENQUIRY_EMAIL && env.ENQUIRY_TO && env.ENQUIRY_FROM) {
     try {
@@ -226,7 +352,6 @@ async function handleContactReveal(request, env) {
       // The reveal must not depend on the notification.
     }
   }
-
   const digits = phone.replace(/^\+/, "");
   return json({ ok: true, phone: `+${digits}`, whatsapp: `https://wa.me/${digits}` });
 }
