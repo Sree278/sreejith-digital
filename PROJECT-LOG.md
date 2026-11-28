@@ -11,6 +11,15 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — Gap plan against Jijo Joseph
+
+**Why:** owner wants to compete with jijojosephseo.in for Kerala and India rankings.
+**Changed:** `SEO-STRATEGY.md` section 18 — competitor snapshot (sitemaps and homepage), winnable-now vs later keyword tiers, actions. Docs only; no site change.
+**Evidence:** page sitemap ~26 URLs, post sitemap 36 URLs, homepage claims fetched 28 Nov 2026. No backlink or traffic data.
+**Next:** industry-in-Kerala pages, pricing and agency-vs-expert pages, reviews and referring domains.
+
+---
+
 ## 2026-11-27 — Measurement live: GTM, GA4, Clarity (release 2026-11-27.5)
 
 - **Set up:** GA4 account "Sreejith Digital" → property `sreejithdigital.com` (565911323), web stream `G-EP5M7JTRXK`, enhanced measurement on, event and user data retention 14 months, linked to the Search Console Domain property. Microsoft Clarity project `zkbxk7xkbk`. Google Tag Manager web container `GTM-K4MJL3SM` (version 2 published) with the GA4 Google tag, GA4 event tags for `generate_lead` and `form_start`, and the Clarity tag.
