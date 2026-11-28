@@ -11,6 +11,16 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — "SEO consultant India" page set and pricing
+
+**Why:** SERP checks (28 Nov) showed MysticDigi and Jijo Joseph winning "seo consultant in india" with a dedicated page and price/experience in the snippet; Google's AI Overview for "seo expert in india" quotes ₹ ranges. We had neither.
+**Changed:** `/services/seo-consulting/` retargeted to "SEO consultant in India" (title, meta, intro, 2 new FAQs incl. price range); `/resources/seo-cost-india/` gained a dated "published price ranges" section; new guide `/resources/seo-consultant-vs-agency-india/`; homepage guide links updated. Release 2026-11-28.1.
+**Pricing source:** owner-approved placeholder ₹10,000–₹50,000/month market range (published Kerala packages, Nov 2026; AI summary on Google India, 28 Nov). Own quote left "set after a free review" until owner supplies a figure.
+**Evidence:** rebuilt 53 pages; 0 matches for independent/freelanc in `public/`.
+**Next:** owner supplies PIN code, phone/WhatsApp, profile URLs; then add schema contact/sameAs and start citations.
+
+---
+
 ## 2026-11-27 — Measurement live: GTM, GA4, Clarity (release 2026-11-27.5)
 
 - **Set up:** GA4 account "Sreejith Digital" → property `sreejithdigital.com` (565911323), web stream `G-EP5M7JTRXK`, enhanced measurement on, event and user data retention 14 months, linked to the Search Console Domain property. Microsoft Clarity project `zkbxk7xkbk`. Google Tag Manager web container `GTM-K4MJL3SM` (version 2 published) with the GA4 Google tag, GA4 event tags for `generate_lead` and `form_start`, and the Clarity tag.
