@@ -11,6 +11,16 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — Area address in schema and gated phone number
+
+**Why:** owner confirmed Perungalathur, Chennai 600063 and wants the phone number hidden from scrapers and spam, shown only after a legitimate email.
+**Changed:** postal code 600063 in Organization/ProfessionalService schema and a visible "where I work from" panel on `/contact/` (area only; no flat or street). New `/api/contact` Worker route: email format, disposable/relay blocklist, reputable-provider allowlist, MX check for other domains, honeypot, time check, per-IP/email limits, optional Turnstile; the number comes from the `CONTACT_PHONE` secret. Every reveal emails the owner the visitor's address. Privacy page updated. Release 2026-11-28.2.
+**Not in schema:** no `telephone` property, on purpose, so scrapers cannot read it.
+**Evidence:** 11 gating cases tested (valid, disposable, relay, no-MX, malformed, honeypot, rate limit, unset secret); contact page rendered at 390 and 1280 px with no overflow; reveal flow tested in a browser with a mocked endpoint.
+**Open:** owner must set `CONTACT_PHONE` (and optionally Turnstile) — see DEPLOYMENT.md.
+
+---
+
 ## 2026-11-28 — "SEO consultant India" page set and pricing
 
 **Why:** SERP checks (28 Nov) showed MysticDigi and Jijo Joseph winning "seo consultant in india" with a dedicated page and price/experience in the snippet; Google's AI Overview for "seo expert in india" quotes ₹ ranges. We had neither.

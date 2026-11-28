@@ -21,7 +21,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-27"
-SITE_VERSION = "2026-11-27.5"
+SITE_VERSION = "2026-11-28.2"
 DEFAULT_DESCRIPTION = (
     "SEO expert in India, based in Chennai. SEO services for technical, "
     "local and AI search — with dated client results, not ranking promises."
@@ -34,6 +34,9 @@ DEFAULT_DESCRIPTION = (
 OWNER_NAME = "Sreejith CU"  # as credited publicly on client work ("Site by Sreejith CU")
 OWNER_JOB_TITLE = "SEO consultant"
 OWNER_BASE_CITY = "Chennai"
+OWNER_LOCALITY = "Perungalathur"
+OWNER_POSTAL_CODE = "600063"  # area-level address only: no street or flat is published
+TURNSTILE_SITE_KEY = ""  # Cloudflare Turnstile site key (public). Leave empty until the owner creates one.
 OWNER_ORIGIN = "Thrissur, Kerala"  # owner-confirmed home town, 27 Nov 2026
 OWNER_PHOTO = ""  # e.g. "/assets/img/sreejith-cu.jpg" once a real headshot is added
 OWNER_PROFILES: list[str] = []  # verified profile URLs, e.g. LinkedIn — feeds schema sameAs + About page
@@ -2386,6 +2389,7 @@ def business_node() -> dict:
             "@type": "PostalAddress",
             "addressLocality": "Chennai",
             "addressRegion": "Tamil Nadu",
+            "postalCode": OWNER_POSTAL_CODE,
             "addressCountry": "IN",
         },
         "areaServed": [
@@ -4215,6 +4219,35 @@ def contact_page() -> None:
         <a class="contact-email-lg" href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>
         <p>Include your website and one sentence about the goal. That is enough to start.</p>
       </div>
+      <div class="aside-panel" data-phone-panel>
+        <p class="eyebrow">Prefer to call?</p>
+        <h3>Get my phone and WhatsApp</h3>
+        <p>To keep the number away from spam and scrapers, enter a real email address and I will show it here. Temporary and relay addresses are not accepted.</p>
+        <form class="phone-form" data-phone-form novalidate>
+          <input type="hidden" name="started_at" value="" data-phone-started>
+          <div class="form-trap" aria-hidden="true">
+            <label for="phone_company_url">Leave this field empty</label>
+            <input id="phone_company_url" name="company_url" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="phone_email">Your email</label>
+            <input id="phone_email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com" required>
+          </div>
+          {f'<div class="cf-turnstile" data-turnstile-sitekey="{e(TURNSTILE_SITE_KEY)}"></div>' if TURNSTILE_SITE_KEY else ""}
+          <button class="btn btn--secondary btn--full" type="submit">Show my contact number</button>
+          <p class="form-status" data-phone-status role="status" aria-live="polite"></p>
+        </form>
+        <div class="phone-result" data-phone-result hidden>
+          <p><a class="contact-email-lg" data-phone-tel href="#"></a></p>
+          <p><a class="btn btn--primary btn--full" data-phone-wa href="#" rel="noopener">Message on WhatsApp <span aria-hidden="true">→</span></a></p>
+        </div>
+        <noscript><p class="form-note">JavaScript is needed to show the number. Use the enquiry form or email instead.</p></noscript>
+      </div>
+      <div class="aside-panel">
+        <p class="eyebrow">Where I work from</p>
+        <h3>{e(OWNER_LOCALITY)}, {e(OWNER_BASE_CITY)}</h3>
+        <p>{e(OWNER_LOCALITY)}, {e(OWNER_BASE_CITY)}, Tamil Nadu {e(OWNER_POSTAL_CODE)}, India. Remote-first across India; I can meet in person by appointment, including in Kerala when I travel.</p>
+      </div>
       <div class="aside-panel">
         <p class="eyebrow">What happens next</p>
         <h3>A useful first exchange</h3>
@@ -4279,6 +4312,7 @@ def privacy_page() -> None:
       <p>{e(OWNER_NAME)}, trading as {e(SITE_NAME)}, Chennai, India, is responsible for personal data collected through this website. Contact: <a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>.</p>
       <h2>Information you send</h2>
       <p>The enquiry and free-review forms ask for your name, email, website, the service you need, a budget range and an optional message. They are used only to reply to you and, if you ask for one, to prepare your review. You give consent by ticking the box on the form, as required by India’s Digital Personal Data Protection Act, 2023.</p>
+      <p>The contact page can show my phone number after you enter an email address. That address is checked for validity (including a DNS lookup of its domain) and a notice of the request, with your email address, is sent to my inbox. It is not used for marketing and is deleted with other enquiries.</p>
       <p>Form submissions are processed by Cloudflare, which hosts this site, and delivered to my inbox. If the form cannot reach the server, your own email app prepares the message instead, and your email provider processes it under its own terms.</p>
       <h2>How long it is kept</h2>
       <p>Enquiries are kept only as long as needed to respond and follow up — normally no longer than 12 months — unless we start working together, in which case they are kept for the length of the engagement and any period the law requires.</p>
