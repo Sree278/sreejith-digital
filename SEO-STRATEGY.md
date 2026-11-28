@@ -201,12 +201,13 @@ Targets are estimates for a domain registered on 26 Nov 2026, not guarantees.
 ## 13. Owner inputs needed
 
 - [ ] Confirm public name **"Sreejith CU"** (add a surname if preferred)
-- [ ] LinkedIn and other profile URLs → `OWNER_PROFILES`
-- [ ] Headshot → `OWNER_PHOTO`
+- [ ] LinkedIn and other profile URLs → `OWNER_PROFILES` (owner has none to share yet, 28 Nov 2026)
+- [ ] Headshot → `OWNER_PHOTO` (not available yet, 28 Nov 2026)
 - [ ] Work history (employers, roles, years) → `EXPERIENCE`
 - [x] Languages you consult in → `OWNER_LANGUAGES` (English, Malayalam — 27 Nov 2026)
+- [x] Area address Perungalathur, Chennai 600063 (no street published); phone shown only after email + mobile check; hours 9am–6pm IST; SEO since 2015 (28 Nov 2026)
 - [x] Home town: Thrissur; based in Chennai; meets Kerala clients in person when travelling (27 Nov 2026)
-- [ ] Client permission to publish the Mindtech case study with name and rankings
+- [x] Client permission to publish the Mindtech case study with name and rankings (client approved by phone; owner confirmed 28 Nov 2026 — keep a written note or email from the client on file)
 - [ ] Keep the free review offer and the "usually within one business day" reply promise?
 - [ ] Do you meet Chennai clients in person? (decides Google Business Profile eligibility)
 - [ ] "From" prices for a `/pricing/` page

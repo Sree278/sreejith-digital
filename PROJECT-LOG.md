@@ -11,6 +11,14 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — Owner inputs recorded
+
+**Recorded:** Mindtech Solutions naming and ranking publication approved by the client (by phone, confirmed by owner). No LinkedIn or headshot yet, so `OWNER_PROFILES` and `OWNER_PHOTO` stay empty and no `sameAs` is published.
+**Site impact:** none — Mindtech is already named on the case study, location and homepage proof.
+**Next:** owner sets `CONTACT_PHONE`; ask Mindtech for a one-line email confirming the permission; create LinkedIn and a headshot when ready, then add them.
+
+---
+
 ## 2026-11-28 — Visitor number required, hours, SEO since 2015
 
 **Why:** owner asked that visitors give their own mobile number (like the email) before the phone is shown, and supplied working hours and the year he started in SEO.
