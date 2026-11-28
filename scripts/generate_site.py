@@ -147,9 +147,9 @@ SERVICES = [
         "slug": "seo-consulting",
         "name": "SEO Consulting",
         "short": "Senior-level direction for teams that already have execution capacity.",
-        "description": "SEO consulting and advisory support for in-house marketing, product, and engineering teams.",
+        "description": "SEO consultant in India for in-house teams: senior-led audit, roadmap and release review. Market retainers run ₹10,000–₹50,000 a month; quote after a free review.",
         "intro": (
-            "Practical senior guidance for teams that can ship the work but need "
+            "An SEO consultant in India for teams that can ship the work but need "
             "a sharper strategy, a second opinion, or a reliable decision framework."
         ),
         "audience": "In-house teams, founders, and agencies that need expertise without a full outsourced programme.",
@@ -175,6 +175,8 @@ SERVICES = [
         "faq": [
             ("Is this a retainer?", "It can be. Advisory support is usually most useful as a recurring monthly or quarterly engagement."),
             ("Will you write every brief?", "The scope is flexible. Some teams want strategy only; others want briefs and implementation review too."),
+            ("How much does an SEO consultant cost in India?", "Published monthly SEO retainers in India commonly sit between about ₹10,000 and ₹50,000, depending on site size, competition and deliverables; one-off audits are priced separately. I checked published Kerala packages and an AI summary on Google India in November 2026. My own quote is set after a free review, once the scope is clear, and is written down before work starts."),
+            ("SEO consultant or SEO agency: which should I choose?", "Choose an agency if you need ads, social media, design and SEO delivered by one team. Choose a consultant if you want one accountable specialist to set the strategy, review the work and report results. The guide on consultant versus agency in India sets out the questions to ask either one."),
         ],
     },
     {
@@ -438,7 +440,7 @@ SERVICES.sort(key=lambda item: SERVICE_ORDER.index(item["slug"]))
 # Answer-first block shown at the top of each service page (40–60 words).
 SERVICE_ANSWERS = {
     "seo-services": "SEO services cover the whole programme: fixing what stops Google crawling and trusting your site, giving each page one clear search intent, improving content and internal links, and measuring enquiries rather than traffic. Expect first movement in two to four months; competitive terms take longer.",
-    "seo-consulting": "SEO consulting gives your team senior direction without outsourcing the work: a senior-led audit, a prioritised roadmap, review before changes go live, and help when a decision is unclear. It suits teams that already have developers or writers but need someone accountable for search decisions.",
+    "seo-consulting": "An SEO consultant in India gives your team senior direction without outsourcing the work: a senior-led audit, a prioritised roadmap, review before changes go live, and help when a decision is unclear. It suits teams that already have developers or writers but need someone accountable for search decisions.",
     "local-seo": "Local SEO makes a business easy to find for searches in a specific place: a complete Google Business Profile if you meet customers in person, one genuinely useful page per real service area, consistent business details across listings, and a steady flow of honest reviews.",
     "technical-seo": "Technical SEO removes the reasons Google can’t crawl, render or confidently index your pages: broken internal links, duplicate URLs, wrong canonicals, slow templates, blocked resources and schema that doesn’t match the page. The output is a ranked fix list your developers can ship and verify.",
     "ai-search-optimization": "AI search optimisation helps Google AI Overviews, AI Mode, ChatGPT and Perplexity identify your business and cite it. Google says it is still SEO; the emphasis shifts to an unambiguous entity, direct answers on your pages, open crawl access for search bots and mentions in the sources AI answers draw on.",
@@ -1631,7 +1633,7 @@ RESOURCES = [
         "slug": "seo-cost-india",
         "name": "SEO Cost in India: A Practical Pricing Guide for 2026",
         "short": "Understand pricing models, scope variables and the questions to ask before comparing quotes.",
-        "description": "A practical guide to SEO pricing in India covering retainers, audits, projects, scope, deliverables and proposal red flags without unverified price claims.",
+        "description": "SEO cost in India, 2026: published retainer ranges of ₹10,000–₹50,000 a month, what changes the price, how to compare quotes and the red flags to avoid.",
         "category": "SEO Strategy",
         "reading": "7 min read",
         "intro": "SEO quotes are difficult to compare because two proposals with the same monthly fee can describe completely different work. Start by comparing scope, evidence and ownership.",
@@ -1647,6 +1649,19 @@ RESOURCES = [
                     "Project: a defined build such as a migration, information architecture or measurement setup.",
                     "Programme: ongoing strategy, implementation support, content planning and reporting.",
                 ],
+            },
+            {
+                "heading": "Published price ranges in India (checked November 2026)",
+                "paragraphs": [
+                    "These are ranges businesses actually see, gathered from published packages and from an AI summary on Google India on 28 November 2026. They are market context, not a quote, and they move with scope.",
+                ],
+                "bullets": [
+                    "Local or basic SEO: roughly ₹5,000–₹20,000 a month for a smaller scope.",
+                    "E-commerce or multi-market SEO: often ₹10,000–₹50,000 or more a month, depending on catalogue size and competition.",
+                    "Kerala SEO providers: published packages started between about ₹10,000 and ₹15,000 a month, with larger plans up to ₹50,000; one agency advertised from ₹3,000.",
+                    "Hourly platform rates for individual consultants: often quoted around $5–$10 an hour on global marketplaces.",
+                ],
+                "callout": "A very low fee is not automatically poor value, and a high fee is not automatically better. Compare written scope, who does the work and how results are reported.",
             },
             {
                 "heading": "What genuinely changes the scope",
@@ -1923,6 +1938,67 @@ RESOURCES.insert(
     },
 )
 
+RESOURCES.append(
+    {
+        "slug": "seo-consultant-vs-agency-india",
+        "name": "SEO Consultant vs SEO Agency in India: How to Choose",
+        "short": "When one accountable specialist is the better fit, when a full-service team is, and the questions that tell them apart.",
+        "description": "SEO consultant or SEO agency in India? Compare cost, accountability, speed and scope, with the questions to ask either one before you sign.",
+        "category": "SEO Strategy",
+        "reading": "6 min read",
+        "intro": "Both can work. The better choice depends on how many services you need, how much you want to be involved and how closely you want to see the work.",
+        "sections": [
+            {
+                "heading": "Where an agency fits",
+                "paragraphs": [
+                    "An agency suits businesses that need several channels delivered together: SEO, paid ads, social media, design and content under one contract. A team can cover more ground at once and usually has capacity for larger production work.",
+                ],
+                "bullets": [
+                    "You want ads, social media, design and SEO from one team.",
+                    "You have little internal time to brief or review work.",
+                    "You need large volumes of content or creative produced quickly.",
+                ],
+            },
+            {
+                "heading": "Where a dedicated consultant fits",
+                "paragraphs": [
+                    "A consultant suits businesses that want strategy, prioritisation and quality control from one accountable specialist, often alongside an in-house team or existing developers and writers.",
+                ],
+                "bullets": [
+                    "You want to deal directly with the person making the decisions.",
+                    "Your team can ship fixes but needs direction and review.",
+                    "You want SEO as the focus, not one line item among many.",
+                ],
+            },
+            {
+                "heading": "Cost and accountability",
+                "paragraphs": [
+                    "Published SEO retainers in India commonly run from about ₹10,000 to ₹50,000 a month across both models, with wide variation by scope. Price alone does not separate the two. What matters is who does the work, how it is written down and how results are reported.",
+                ],
+                "bullets": [
+                    "Ask who will actually work on your site, and for how many hours.",
+                    "Ask for a written scope and what is out of scope.",
+                    "Ask for dated results from similar work, including what did not move.",
+                ],
+            },
+            {
+                "heading": "Questions to ask either one",
+                "paragraphs": [
+                    "The same checks apply whichever you choose.",
+                ],
+                "bullets": [
+                    "What will be reviewed in the first thirty days?",
+                    "How are recommendations prioritised and who implements them?",
+                    "How are enquiries, not only rankings, measured?",
+                    "What do I keep if the engagement ends?",
+                    "Do you guarantee rankings? (If yes, walk away.)",
+                ],
+                "callout": "Choose the option that can show its process and its results with dates. The label on the business matters less than the evidence.",
+            },
+        ],
+    }
+)
+
 RESOURCE_SERVICE_LINKS = {
     "location-pages-without-doorway-risk": ["local-seo", "content-strategy", "seo-consulting"],
     "technical-seo-audit-checklist": ["technical-seo", "seo-services", "analytics-reporting"],
@@ -1931,6 +2007,7 @@ RESOURCE_SERVICE_LINKS = {
     "practical-seo-measurement": ["analytics-reporting", "seo-consulting", "google-ads-management"],
     "seo-cost-india": ["seo-consulting", "seo-services", "analytics-reporting"],
     "choose-seo-consultant-india": ["seo-consulting", "technical-seo", "analytics-reporting"],
+    "seo-consultant-vs-agency-india": ["seo-consulting", "seo-services", "analytics-reporting"],
     "local-seo-indian-businesses": ["local-seo", "website-design", "analytics-reporting"],
     "seo-vs-google-ads-india": ["google-ads-management", "seo-services", "analytics-reporting"],
 }
@@ -2011,7 +2088,7 @@ LOCATION_BY_SLUG = {item["slug"]: item for item in LOCATIONS}
 RESOURCE_BY_SLUG = {item["slug"]: item for item in RESOURCES}
 
 SERVICE_SEO_TITLES = {
-    "seo-consulting": "SEO Consulting Services India | Senior SEO Consultant",
+    "seo-consulting": "SEO Consultant in India | Senior-Led, With Pricing Guide",
     "technical-seo": "Technical SEO Consultant India | Audits & Implementation",
     "local-seo": "Local SEO Services India | Profiles & Location Pages",
     "ai-search-optimization": "AI SEO Expert India | AI Search Optimisation (AEO, GEO)",
@@ -2799,7 +2876,7 @@ def home_page() -> None:
             "href": f'/resources/{item["slug"]}/',
             "link_label": "Read guide",
         }
-        for item in (RESOURCE_BY_SLUG["location-pages-without-doorway-risk"], RESOURCE_BY_SLUG["seo-cost-india"], RESOURCE_BY_SLUG["choose-seo-consultant-india"])
+        for item in (RESOURCE_BY_SLUG["seo-cost-india"], RESOURCE_BY_SLUG["seo-consultant-vs-agency-india"], RESOURCE_BY_SLUG["choose-seo-consultant-india"])
     ]
     approach_steps = [
         ("Baseline", "Record where you stand today — Search Console, rankings, AI answers and enquiries — before changing anything."),
