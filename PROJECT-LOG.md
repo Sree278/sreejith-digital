@@ -11,6 +11,16 @@ Newest first. Each entry records what changed, why, the evidence, and what comes
 
 ---
 
+## 2026-11-28 — Visitor number required, hours, SEO since 2015
+
+**Why:** owner asked that visitors give their own mobile number (like the email) before the phone is shown, and supplied working hours and the year he started in SEO.
+**Changed:** `/api/contact` now also validates the visitor's mobile (Indian mobile or international; rejects fillers like 9999999999 and 1234567890) and includes it in the owner's notification. Contact form has the new field. "SEO since 2015" added to the About hero, homepage trust list and Person schema description. Working hours 9am–6pm IST added to the contact page and `openingHoursSpecification` (Monday–Friday assumed). Release 2026-11-28.3.
+**Not stored in repo:** the phone number itself — it must be set as the `CONTACT_PHONE` Cloudflare secret by the owner (see DEPLOYMENT.md).
+**Evidence:** 14 phone/email gating cases tested; contact page rendered at 390 and 1280 px, no overflow; invalid number blocked client-side and a valid one sends `visitor_phone`.
+**Open:** set the secret; confirm working days; profile links, headshot, Mindtech permission.
+
+---
+
 ## 2026-11-28 — Area address in schema and gated phone number
 
 **Why:** owner confirmed Perungalathur, Chennai 600063 and wants the phone number hidden from scrapers and spam, shown only after a legitimate email.

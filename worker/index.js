@@ -95,6 +95,31 @@ function tooManyRequests(key, limit, windowMs) {
   return false;
 }
 
+// Visitor's own number (spam-proofing, like the email). Indian mobiles or
+// international E.164 numbers; obvious fillers such as 9999999999 are refused.
+function normaliseVisitorPhone(value) {
+  const compact = String(value || "").trim().replace(/[\s().-]/g, "");
+  if (!/^\+?[0-9]{8,15}$/.test(compact)) return null;
+  let digits = compact.replace(/^\+/, "");
+  let national;
+  if (compact.startsWith("+")) {
+    if (digits.startsWith("91")) {
+      national = digits.slice(2);
+      if (!/^[6-9][0-9]{9}$/.test(national)) return null;
+    } else if (digits.length < 9 || digits.startsWith("0")) {
+      return null;
+    } else {
+      national = digits.slice(-9);
+    }
+  } else {
+    national = digits.replace(/^(?:91|0)(?=[6-9][0-9]{9}$)/, "");
+    if (!/^[6-9][0-9]{9}$/.test(national)) return null;
+    digits = `91${national}`;
+  }
+  if (/^(.)\1{6,}$/.test(national) || /0123456789|1234567890|9876543210|0987654321/.test(national)) return null;
+  return `+${digits}`;
+}
+
 function emailDomainBlocked(domain) {
   if (BLOCKED_EMAIL_DOMAINS.has(domain)) return true;
   const parts = domain.split(".");
@@ -142,6 +167,8 @@ async function handleContactReveal(request, env) {
   const botLike = String(fields.company_url || "").trim() !== "" || (startedAt > 0 && Date.now() - startedAt < 2000);
   if (botLike) return json({ ok: false, code: "invalid_email" }, 422);
 
+  const visitorPhone = normaliseVisitorPhone(fields.visitor_phone);
+
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   if (tooManyRequests(`ip:${ip}`, 3, 60 * 60 * 1000) || tooManyRequests(`email:${email}`, 2, 60 * 60 * 1000)) {
     return json({ ok: false, code: "rate_limited" }, 429);
@@ -149,6 +176,9 @@ async function handleContactReveal(request, env) {
 
   if (!EMAIL_RE.test(email) || email.length > 120 || email.split("@").length !== 2) {
     return json({ ok: false, code: "invalid_email" }, 422);
+  }
+  if (!visitorPhone) {
+    return json({ ok: false, code: "invalid_phone" }, 422);
   }
   const [local, domain] = email.split("@");
   if (local.length > 64 || !/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(local) || !/^[a-z0-9.-]+\.[a-z]{2,}$/.test(domain)) {
@@ -188,7 +218,7 @@ async function handleContactReveal(request, env) {
       const record = {
         name: "Phone number request", email, offer: "Phone reveal", form_location: "contact-phone",
         page: "/contact/", website: "", service: "", budget: "",
-        message: "This visitor passed the email check and was shown your phone number.",
+        message: `This visitor passed the email and phone checks and was shown your phone number.\nTheir phone: ${visitorPhone}`,
         reference: makeReference(), received_at: new Date().toISOString(),
       };
       await env.ENQUIRY_EMAIL.send(new EmailMessage(env.ENQUIRY_FROM, env.ENQUIRY_TO, buildMessage(env.ENQUIRY_FROM, env.ENQUIRY_TO, record)));

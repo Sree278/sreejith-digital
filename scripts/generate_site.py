@@ -21,7 +21,7 @@ BASE_URL = "https://sreejithdigital.com"
 SITE_NAME = "Sreejith Digital"
 CONTACT_EMAIL = "hello@sreejithdigital.com"
 LAST_UPDATED = "2026-11-27"
-SITE_VERSION = "2026-11-28.2"
+SITE_VERSION = "2026-11-28.3"
 DEFAULT_DESCRIPTION = (
     "SEO expert in India, based in Chennai. SEO services for technical, "
     "local and AI search — with dated client results, not ranking promises."
@@ -34,6 +34,8 @@ DEFAULT_DESCRIPTION = (
 OWNER_NAME = "Sreejith CU"  # as credited publicly on client work ("Site by Sreejith CU")
 OWNER_JOB_TITLE = "SEO consultant"
 OWNER_BASE_CITY = "Chennai"
+OWNER_SEO_SINCE = 2015
+WORKING_HOURS = ("09:00", "18:00")  # IST, Monday to Friday (days assumed; confirm with owner)
 OWNER_LOCALITY = "Perungalathur"
 OWNER_POSTAL_CODE = "600063"  # area-level address only: no street or flat is published
 TURNSTILE_SITE_KEY = ""  # Cloudflare Turnstile site key (public). Leave empty until the owner creates one.
@@ -2356,6 +2358,7 @@ def person_node() -> dict:
         "name": OWNER_NAME,
         "jobTitle": OWNER_JOB_TITLE,
         "url": BASE_URL + "/about/",
+        "description": f"{OWNER_JOB_TITLE} working in SEO since {OWNER_SEO_SINCE}, from {OWNER_ORIGIN}, based in {OWNER_BASE_CITY}.",
         "worksFor": {"@id": BUSINESS_ID},
         "homeLocation": {"@type": "Place", "name": "Chennai, Tamil Nadu, India"},
         "knowsAbout": OWNER_KNOWS_ABOUT,
@@ -2385,6 +2388,12 @@ def business_node() -> dict:
             "height": 512,
         },
         "founder": {"@id": PERSON_ID},
+        "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": WORKING_HOURS[0],
+            "closes": WORKING_HOURS[1],
+        }],
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Chennai",
@@ -2890,6 +2899,7 @@ def home_page() -> None:
     ]
     why_items = [
         "You work directly with the person doing the work",
+        f"Working in SEO since {OWNER_SEO_SINCE}",
         "Dated, verifiable results — including what hasn’t moved yet",
         "Strategy and hands-on technical delivery in one place",
         "Consent-based tracking that counts real enquiries",
@@ -3072,7 +3082,7 @@ def about_page() -> None:
         eyebrow="About",
         title=f"{OWNER_NAME}, SEO consultant",
         lede=f"I run {SITE_NAME}: SEO strategy plus the technical work that makes it stick — site structure, structured data, enquiry tracking and careful releases. From {OWNER_ORIGIN}, based in {OWNER_BASE_CITY}, working with businesses across India.",
-        meta=[f"From {OWNER_ORIGIN} · based in {OWNER_BASE_CITY}", "Senior-led practice", "Strategy + delivery"],
+        meta=[f"From {OWNER_ORIGIN} · based in {OWNER_BASE_CITY}", f"SEO since {OWNER_SEO_SINCE}", "Strategy + delivery"],
     )}
 
 <section class="section">
@@ -4222,7 +4232,7 @@ def contact_page() -> None:
       <div class="aside-panel" data-phone-panel>
         <p class="eyebrow">Prefer to call?</p>
         <h3>Get my phone and WhatsApp</h3>
-        <p>To keep the number away from spam and scrapers, enter a real email address and I will show it here. Temporary and relay addresses are not accepted.</p>
+        <p>To keep the number away from spam and scrapers, enter your email address and your own mobile number and I will show mine here. Temporary and relay emails and made-up numbers are not accepted.</p>
         <form class="phone-form" data-phone-form novalidate>
           <input type="hidden" name="started_at" value="" data-phone-started>
           <div class="form-trap" aria-hidden="true">
@@ -4234,6 +4244,10 @@ def contact_page() -> None:
             <input id="phone_email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com" required>
           </div>
           {f'<div class="cf-turnstile" data-turnstile-sitekey="{e(TURNSTILE_SITE_KEY)}"></div>' if TURNSTILE_SITE_KEY else ""}
+          <div class="field">
+            <label for="phone_visitor">Your mobile number</label>
+            <input id="phone_visitor" name="visitor_phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="+91 98XXXXXXXX" required>
+          </div>
           <button class="btn btn--secondary btn--full" type="submit">Show my contact number</button>
           <p class="form-status" data-phone-status role="status" aria-live="polite"></p>
         </form>
@@ -4247,6 +4261,7 @@ def contact_page() -> None:
         <p class="eyebrow">Where I work from</p>
         <h3>{e(OWNER_LOCALITY)}, {e(OWNER_BASE_CITY)}</h3>
         <p>{e(OWNER_LOCALITY)}, {e(OWNER_BASE_CITY)}, Tamil Nadu {e(OWNER_POSTAL_CODE)}, India. Remote-first across India; I can meet in person by appointment, including in Kerala when I travel.</p>
+        <p>Working hours: 9am–6pm IST, Monday to Friday.</p>
       </div>
       <div class="aside-panel">
         <p class="eyebrow">What happens next</p>
@@ -4312,7 +4327,7 @@ def privacy_page() -> None:
       <p>{e(OWNER_NAME)}, trading as {e(SITE_NAME)}, Chennai, India, is responsible for personal data collected through this website. Contact: <a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>.</p>
       <h2>Information you send</h2>
       <p>The enquiry and free-review forms ask for your name, email, website, the service you need, a budget range and an optional message. They are used only to reply to you and, if you ask for one, to prepare your review. You give consent by ticking the box on the form, as required by India’s Digital Personal Data Protection Act, 2023.</p>
-      <p>The contact page can show my phone number after you enter an email address. That address is checked for validity (including a DNS lookup of its domain) and a notice of the request, with your email address, is sent to my inbox. It is not used for marketing and is deleted with other enquiries.</p>
+      <p>The contact page can show my phone number after you enter an email address. That address is checked for validity (including a DNS lookup of its domain), your number is checked for format, and a notice of the request, with your email address and number, is sent to my inbox so I can follow up. It is not used for marketing and is deleted with other enquiries.</p>
       <p>Form submissions are processed by Cloudflare, which hosts this site, and delivered to my inbox. If the form cannot reach the server, your own email app prepares the message instead, and your email provider processes it under its own terms.</p>
       <h2>How long it is kept</h2>
       <p>Enquiries are kept only as long as needed to respond and follow up — normally no longer than 12 months — unless we start working together, in which case they are kept for the length of the engagement and any period the law requires.</p>

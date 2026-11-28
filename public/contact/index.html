@@ -27,7 +27,7 @@
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=2026-11-28.2">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=2026-11-28.3">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -49,6 +49,20 @@
       "founder": {
         "@id": "https://sreejithdigital.com/about/#person"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Chennai",
@@ -165,6 +179,7 @@
       "name": "Sreejith CU",
       "jobTitle": "SEO consultant",
       "url": "https://sreejithdigital.com/about/",
+      "description": "SEO consultant working in SEO since 2015, from Thrissur, Kerala, based in Chennai.",
       "worksFor": {
         "@id": "https://sreejithdigital.com/#business"
       },
@@ -237,7 +252,7 @@
 }
   </script>
   <script>window.SD_ANALYTICS = {"gtm": "GTM-K4MJL3SM", "ga4": "", "clarity": ""};</script>
-  <script src="/assets/js/main.js?v=2026-11-28.2" defer></script>
+  <script src="/assets/js/main.js?v=2026-11-28.3" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -383,7 +398,7 @@
       <div class="aside-panel" data-phone-panel>
         <p class="eyebrow">Prefer to call?</p>
         <h3>Get my phone and WhatsApp</h3>
-        <p>To keep the number away from spam and scrapers, enter a real email address and I will show it here. Temporary and relay addresses are not accepted.</p>
+        <p>To keep the number away from spam and scrapers, enter your email address and your own mobile number and I will show mine here. Temporary and relay emails and made-up numbers are not accepted.</p>
         <form class="phone-form" data-phone-form novalidate>
           <input type="hidden" name="started_at" value="" data-phone-started>
           <div class="form-trap" aria-hidden="true">
@@ -395,6 +410,10 @@
             <input id="phone_email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com" required>
           </div>
           
+          <div class="field">
+            <label for="phone_visitor">Your mobile number</label>
+            <input id="phone_visitor" name="visitor_phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="+91 98XXXXXXXX" required>
+          </div>
           <button class="btn btn--secondary btn--full" type="submit">Show my contact number</button>
           <p class="form-status" data-phone-status role="status" aria-live="polite"></p>
         </form>
@@ -408,6 +427,7 @@
         <p class="eyebrow">Where I work from</p>
         <h3>Perungalathur, Chennai</h3>
         <p>Perungalathur, Chennai, Tamil Nadu 600063, India. Remote-first across India; I can meet in person by appointment, including in Kerala when I travel.</p>
+        <p>Working hours: 9am–6pm IST, Monday to Friday.</p>
       </div>
       <div class="aside-panel">
         <p class="eyebrow">What happens next</p>
